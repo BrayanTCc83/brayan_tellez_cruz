@@ -1,0 +1,32 @@
+{
+    "es": {
+        "stages": [
+            {
+                "title": "Acerca de mi",
+                "subtitle": "",
+                "type": "text",
+                "content": "Soy un programador"
+            }
+        ]
+    },
+    "en": {
+        "stages": [
+            {
+                "title": "About me",
+                "subtitle": "",
+                "type": "text",
+                "content": "I'm a programmer"
+            }
+        ]
+    },
+    "ch": {
+        "stages": [
+            {
+                "title": "叫我",
+                "subtitle": "",
+                "type": "text",
+                "content": "我是一个程序员"
+            }
+        ]
+    }
+}

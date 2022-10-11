@@ -1,0 +1,52 @@
+{
+    "es" : {
+        "stages" : [
+            {
+                "title": "Mis proyectos",
+                "subtitle": "Mi canal de youtube",
+                "type": "text tree mainly",
+                "content": "En este canal, estoy enfocado en enseñar a programar, abarcando temas desde los fundamentos, pasando por estructuras y programación orientada a objetos. <br>Además de un claro enfoque en el desarrollo web, con tecnologías de HTML, CSS, Javascript, React JS y Next JS."
+            },
+            {
+                "subtitle": "Mi blog",
+                "type": "text",
+                "content": "Relacionado al canal, en este blog mi objetivo es ayudar a resolver dudas y hacer los aportes en cuanto pueda en diferentes aspectos. <br/>Dividiendolo en diferentes secciones, para Javascript, React, Diseño Web y algún otro contenido extra a los principales."
+            },
+            {
+                "subtitle": "Otros proyectos",
+                "type": "text",
+                "content": "Algunos otros proyectos que he realizado o estoy realizando son: <ul><li><b>Debatapp:</b> Es una pequeña aplicación, cuyo objetivo es informar a las personas sobre diferentes notas dentro del lugar donde viven, dandoles las herramientas para poder debatir, llegar a conclusiones y tomar desiciones más informadas.<br><button>Más</button></li><li><b>Colaborapp: </b>Esta aplicación, busca fomentar la creación de proyectos de forma coolaborativa, tanto de indole personal, como en beneficio de un grupo más grande. Sea un proyecto audiovisual(pelicula) independiente o cualquier proyecto educativo o de desarrollo de una comunidad.<br/><button>Más</button></li></ul>"
+            }
+        ]
+    },
+    "en" : {
+        "stages" : [
+            {
+                "title": "My projects",
+                "subtitle": "My youtube channel",
+                "type": "text tree",
+                "content": "On this channel, I'm focused to teach programming, with matters since fundaments, across data structs and oriented object programming. <br>Also a clear focus on web development, using technologies as HTML, CSS, Javascript, React JS, and Next JS."
+            },
+            {
+                "subtitle": "",
+                "type": "text",
+                "content": ""
+            }
+        ]
+    },
+    "ch" : {
+        "stages" : [
+            {
+                "title": "我的 proyectos",
+                "subtitle": "我的",
+                "type": "text tree",
+                "content": "这, 我是"
+            },
+            {
+                "subtitle": "",
+                "type": "text",
+                "content": ""
+            }
+        ]
+    }
+}
