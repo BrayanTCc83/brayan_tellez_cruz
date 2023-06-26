@@ -22,7 +22,7 @@ import IconLink from '../components/iconlink';
 
 type LANGS = 'es' | 'en' | 'ch';
 
-const Landing = () : JSX.Element => {
+const Index = () : JSX.Element => {
     const [expand, setExpand] = useState<boolean>(false);
     const [arbol, setState] = useState(new Tree<number, VideoData>());
     const [selectedView, setView] = useState<number>(1);
@@ -170,4 +170,4 @@ const Landing = () : JSX.Element => {
     )
 }
 
-export default Landing;
+export default Index;
