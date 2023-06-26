@@ -1,4 +1,18 @@
-.App {
+@font-face {
+  font-family: Ubuntu;
+  src: url("../fonts/Ubuntu-Light.ttf");
+}
+
+* {
+  font-family: Ubuntu;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#__next {
   text-align: center;
   background: linear-gradient(#232323, rgb(8, 24, 37));  
   padding: 0;
@@ -20,11 +34,6 @@
 }
 *::-webkit-scrollbar-corner{
   background-color: #333333;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
 
 hr{

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CardStyle = styled.div`
+    position: relative;
     width: 250px;
     height: 350px;
     background-color: white;
@@ -14,16 +15,27 @@ const CardStyle = styled.div`
         'content'
         'sep2'
         'footer';
-    transition: width 0.3s;
-    &:hover{
-        width: 700px;
-        grid-template: 50px 1px calc(100% - 102px) 1px 50px / 250px calc( 100% - 250px );
-        grid-template-areas: 
-            'title extra'
-            'sep extra'
-            'content extra'
-            'sep2 sep2'
-            'footer footer';
+    overflow: hidden;
+    &::before {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: 'Ver detalles';
+        color: transparent;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #0000000;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+    &:hover::before {
+        font-weight: bold;
+        color: black;
+        background-color: #35d9b8be;
     }
 `;
 
