@@ -1,0 +1,11 @@
+---
+    const { image, position, caption, text } = Astro.props;
+---
+
+<div class="fragment">
+    <figure class={position}>
+        <img src=`/assets/images/langs/${image}.png` alt="No encontrado">
+        <figcaption>{caption}</figcaption>
+    </figure>
+    <p>{text}</p>
+</div>

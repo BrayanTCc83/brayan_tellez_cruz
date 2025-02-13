@@ -1,0 +1,76 @@
+---
+import Template from "../../template/Template.astro";
+import PostFragment from "../../components/article/PostFragment.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { id: 1 } },
+    { params: { id: 2 } },
+    { params: { id: 3 } },
+  ];
+}
+
+const { id } = Astro.params;
+const { titulo, subtitulo, fecha_publicacion, fecha_actualizacion, autor, tiempo, poster, fragments } = {
+    titulo: 'Titulo de mi artículo',
+    subtitulo: 'Construcción de un intérprete',
+    tiempo: 5,
+    fecha_publicacion: '10-02-2025',
+    fecha_actualizacion: '10-02-2025',
+    autor: 'Brayan Téllez Cruz',
+    poster: '/assets/images/langs/Rust.png',
+    fragments: [
+        {
+            image: 'Rust',
+            position: 'right',
+            caption: 'Figura 1: Imagen de rust',
+            text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae praesentium nam impedit similique. Iure, libero cumque, unde ullam nostrum corporis fugit molestias debitis recusandae rem, nihil maiores harum. A, recusandae? Nesciunt, ea laudantium beatae dolores unde sed officiis libero exercitationem atque odio tenetur eos, blanditiis sunt? Architecto animi doloribus error laborum harum vel consequuntur eligendi quaerat, dignissimos nihil dolorem maiores! Ipsum, placeat repudiandae possimus recusandae magni quisquam, mollitia sunt itaque necessitatibus voluptatum sit vero molestias, officiis voluptates quod enim voluptatibus quae natus saepe quam. Cumque, nihil. Est deserunt consequuntur nisi. Ipsam nam quos vitae amet obcaecati temporibus vel deserunt blanditiis non tempore dolor, ducimus molestiae fugit rem et maiores, quo dolorum ad provident fuga eaque. Sed, nostrum. Impedit, at magni. Distinctio, iste eos voluptate corporis voluptatum vero sed nesciunt quisquam quam alias vitae nulla aut, minima obcaecati tenetur veniam beatae non, quo nostrum odio ad repudiandae id nihil. Magni, dignissimos.'
+        },
+        {
+            image: 'Rust',
+            position: 'left',
+            caption: 'Figura 2: Imagen de rust',
+            text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae praesentium nam impedit similique. Iure, libero cumque, unde ullam nostrum corporis fugit molestias debitis recusandae rem, nihil maiores harum. A, recusandae? Nesciunt, ea laudantium beatae dolores unde sed officiis libero exercitationem atque odio tenetur eos, blanditiis sunt? Architecto animi doloribus error laborum harum vel consequuntur eligendi quaerat, dignissimos nihil dolorem maiores! Ipsum, placeat repudiandae possimus recusandae magni quisquam, mollitia sunt itaque necessitatibus voluptatum sit vero molestias, officiis voluptates quod enim voluptatibus quae natus saepe quam. Cumque, nihil. Est deserunt consequuntur nisi. Ipsam nam quos vitae amet obcaecati temporibus vel deserunt blanditiis non tempore dolor, ducimus molestiae fugit rem et maiores, quo dolorum ad provident fuga eaque. Sed, nostrum. Impedit, at magni. Distinctio, iste eos voluptate corporis voluptatum vero sed nesciunt quisquam quam alias vitae nulla aut, minima obcaecati tenetur veniam beatae non, quo nostrum odio ad repudiandae id nihil. Magni, dignissimos.'
+        },
+        {
+            image: 'Rust',
+            position: 'center',
+            caption: 'Figura 3: Imagen de rust',
+            text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae praesentium nam impedit similique. Iure, libero cumque, unde ullam nostrum corporis fugit molestias debitis recusandae rem, nihil maiores harum. A, recusandae? Nesciunt, ea laudantium beatae dolores unde sed officiis libero exercitationem atque odio tenetur eos, blanditiis sunt? Architecto animi doloribus error laborum harum vel consequuntur eligendi quaerat, dignissimos nihil dolorem maiores! Ipsum, placeat repudiandae possimus recusandae magni quisquam, mollitia sunt itaque necessitatibus voluptatum sit vero molestias, officiis voluptates quod enim voluptatibus quae natus saepe quam. Cumque, nihil. Est deserunt consequuntur nisi. Ipsam nam quos vitae amet obcaecati temporibus vel deserunt blanditiis non tempore dolor, ducimus molestiae fugit rem et maiores, quo dolorum ad provident fuga eaque. Sed, nostrum. Impedit, at magni. Distinctio, iste eos voluptate corporis voluptatum vero sed nesciunt quisquam quam alias vitae nulla aut, minima obcaecati tenetur veniam beatae non, quo nostrum odio ad repudiandae id nihil. Magni, dignissimos.'
+        },
+        {
+            image: 'Rust',
+            position: 'center',
+            caption: 'Figura 4: Imagen de rust',
+            text: ''
+        }
+    ]
+}
+
+---
+<Template includes={['blogpost']}>
+    <article id="main" itemscope itemtype="https://schema.org/BlogPosting">
+        <h1 itemprop="headline">{titulo}</h1>
+        <meta itemprop="datePublished" content={fecha_publicacion}>
+        <meta itemprop="dateModified" content={fecha_actualizacion}>
+        
+        <h2 itemprop="description">{subtitulo}</h2>
+        
+        <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{autor}</span>
+        </div>
+        <span class="extra">Tiempo de lectura: {tiempo} minutos.</span>
+        <span class="extra">Fecha de creación: {fecha_actualizacion}.</span>
+
+        <meta itemprop="timeRequired" content={`PT${tiempo}M`}>
+        <img src={poster} alt="No encontrado" class="poster">
+
+        <main itemprop="articleBody">
+            {
+                fragments.map( fragment => 
+                    <PostFragment {...fragment}/>
+                )
+            }
+        </main>
+    </article>
+</Template>

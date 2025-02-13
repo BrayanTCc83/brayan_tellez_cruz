@@ -1,0 +1,24 @@
+---
+---
+
+<nav class="header-navigation">
+    <ul id="items">
+        <li>
+            <a href="/">Sobre mí</a>
+        </li>
+        <li>
+            <a href="/proyectos">Proyectos</a>
+        </li>
+        <li>
+            <a href="/blog">Blog</a>
+        </li>
+    </ul>
+    <script is:inline>
+        const currentUrl = location.pathname;
+        const anchors = Array.from(document.getElementById("items").children).map( li => li.children[0] );
+        (
+            currentUrl === '/' ? anchors[0]
+            : anchors.find(a => a.href.includes(currentUrl.split('/')[1]))
+        )?.classList.add('current');
+    </script>
+</nav>

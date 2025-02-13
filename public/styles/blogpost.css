@@ -1,0 +1,73 @@
+article#main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 3.5em;
+    color: var(--main-color);
+    border-bottom: 6px solid var(--main-color);
+    border-radius: 6px;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}
+
+div.fragment > figure {
+    shape-outside: margin-box;
+
+    & > figcaption {
+        text-align: center;
+        color: var(--second-color);
+    }
+
+    & > img {
+        width: max(300px, 25vw);
+        margin: 20px;
+    }
+
+    &.center {
+        display: block;
+        width: fit-content;
+        margin: 20px auto;
+    }
+
+    &.left {
+        float: left;
+    }
+
+    &.right {
+        float: right;
+    }
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+img.poster {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+}
+
+@media screen and (max-width: 900px) {
+    div.fragment > figure {
+        width: 100%;
+        margin-bottom: 20px;
+        & > img {
+            width: calc(100% - 40px);
+        }
+    }
+}
+
+.extra {
+    color: gray;
+}

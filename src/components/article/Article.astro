@@ -1,0 +1,14 @@
+---
+const { titulo, lenguaje, autor, descripcion, duracion, id } = Astro.props;
+---
+
+<article>
+    <img src={`/assets/images/langs/${lenguaje}.png`} alt="Lenguaje no reconocido">
+    <div>
+        <h2>{titulo}</h2>
+        <h3 class="author">{autor}</h3>
+        <span>{duracion} minutos</span>
+        <p>Descripción:<br/> {descripcion}</p>
+    </div>
+    <a href={`/blog/${id}`}></a>
+</article>
