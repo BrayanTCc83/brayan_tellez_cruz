@@ -7,5 +7,11 @@ export default defineConfig({
         react({
             experimentalReactChildren: true,
         })
-    ]
+    ],
+    publicDir: "public",
+    server: {
+      fs: {
+        allow: ['../'], // Permite importar archivos fuera de src/
+      },
+    },
 });

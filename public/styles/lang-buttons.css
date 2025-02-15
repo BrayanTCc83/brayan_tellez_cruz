@@ -1,0 +1,31 @@
+* {
+    --ts-color: #3178C6;
+    --js-color: #F7DF1E;
+    --react-color: #61DAFB;
+}
+
+.ts, .ts * {
+    --color: var(--ts-color);
+}
+
+.js, .js * {
+    --color: var(--js-color);
+}
+
+.react, .react * {
+    --color: var(--react-color);
+}
+
+.button-lang, .button-lang * {
+    color: var(--color);
+    fill: var(--color);
+    cursor: pointer;
+}
+
+.button-lang:hover {
+    background-color: var(--color) !important;
+    & * {
+        color: var(--background-color);
+        fill: var(--background-color) !important;
+    }
+}
