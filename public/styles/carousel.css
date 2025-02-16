@@ -1,0 +1,108 @@
+.carousel-tablist {
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid var(--main-color);
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-inner {
+    width: inherit;
+}
+
+.carousel-arrows-controls > button {
+    position: absolute;
+    top: calc(50% - 20px);
+    background-color: var(--shadow-color-dark);
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 3;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: var(--shadow-color-dark-deep);
+        & > svg {
+            fill: white;
+        }
+    }
+
+    & > svg {
+        fill: var(--main-color);
+        color: var(--main-color);    
+        width: 40px;
+        height: 40px;
+        transition: fill 0.3s;
+
+        & > * {
+            fill: inherit;
+        }
+    }
+}
+
+.carousel-arrows-controls > button:first-child {
+    left: 20px;
+}
+
+.carousel-arrows-controls > button:last-child {
+    right: 20px;
+}
+
+.carousel-item-selector {
+    position: absolute;
+    display: flex;
+    width: max-content;
+    gap: 10px;
+    z-index: 3;
+    background-color: var(--shadow-color-dark);
+    padding: 10px;
+    border-radius: 20px;
+    place-self: anchor-center;
+    top: 80%;
+
+    & > button {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        border: 2px solid var(--main-color);
+        background-color: transparent;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover, &.active {
+            background-color: var(--main-color);
+        }
+    }
+}
+
+.carousel-items {
+    width: inherit;
+
+    & img {
+        top: 0;
+        left: 100%;
+        position: absolute;
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        transition: left 0.5s ease-in-out;
+        z-index: 1;
+
+        &.active {
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        &.previus {
+            left: -100%;
+            z-index: 2;
+        }
+    }
+}

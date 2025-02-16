@@ -1,0 +1,182 @@
+---
+import Carousel from "../../components/react/Carousel.tsx";
+import Comment from "../../components/conversation/Comment.astro";
+import JavaScriptIcon from "/assets/icons/JavaScriptIcon.svg?raw";
+import TypeScriptIcon from "/assets/icons/TypeScriptIcon.svg?raw";
+import ReactIcon from "/assets/icons/ReactIcon.svg?raw";
+
+export async function getStaticPaths() {
+  return [
+    { params: { id: 'abc' } },
+    { params: { id: 'abcd' } },
+    { params: { id: 'abcde' } },
+  ];
+}
+
+const { id } = Astro.params;
+const { title, subtitle, description, date, author, images, cover, technologies, website, isPublic, code, projectUrl, objectives, clients, comments } = {
+    title: 'Nombre del proyecto.',
+    subtitle: 'Subtitilo o breve del proyecto.',
+    description: `
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit molestiae totam maxime eaque, asperiores porro accusantium ab cupiditate dolor impedit soluta temporibus inventore recusandae veniam! Aliquid obcaecati eligendi ex est?
+        Blanditiis consectetur illum eos natus nam ipsum a maiores repellendus, ad assumenda nulla voluptatem cupiditate aliquam quia quam modi eligendi sed, perspiciatis magnam possimus dolorem temporibus. Fuga optio consectetur blanditiis?
+        Vitae odit similique tempora expedita recusandae illum numquam accusantium in officia? Aut obcaecati molestias delectus voluptate neque, eius praesentium sit a, iste hic enim temporibus assumenda ad corporis soluta quos?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit molestiae totam maxime eaque, asperiores porro accusantium ab cupiditate dolor impedit soluta temporibus inventore recusandae veniam! Aliquid obcaecati eligendi ex est?
+        Blanditiis consectetur illum eos natus nam ipsum a maiores repellendus, ad assumenda nulla voluptatem cupiditate aliquam quia quam modi eligendi sed, perspiciatis magnam possimus dolorem temporibus. Fuga optio consectetur blanditiis?
+        Vitae odit similique tempora expedita recusandae illum numquam accusantium in officia? Aut obcaecati molestias delectus voluptate neque, eius praesentium sit a, iste hic enim temporibus assumenda ad corporis soluta quos?`,
+    author: 'Brayan Téllez',
+    date: '10-02-2025',
+    cover: 'https://1.bp.blogspot.com/-e1Snz-vmUpk/V1enGSu-92I/AAAAAAAAAuU/vfOn2szotVcjnbjku_aPnTh_AWFs2Li9ACKgB/s1600/cat-on-the-white-1462965930mn5.jpg',
+    images: [
+        'https://th.bing.com/th/id/OIP.w6e7_SXs8Mk38mllp6OVjwHaFj?rs=1&pid=ImgDetMain',
+        'https://th.bing.com/th/id/OIP.90_BDWk8wDOEohOLrTynEQHaFj?rs=1&pid=ImgDetMain',
+        'https://comunidad.retorn.com/wp-content/uploads/2018/09/gatitos.jpg',
+        'https://1.bp.blogspot.com/-e1Snz-vmUpk/V1enGSu-92I/AAAAAAAAAuU/vfOn2szotVcjnbjku_aPnTh_AWFs2Li9ACKgB/s1600/cat-on-the-white-1462965930mn5.jpg'
+    ],
+    technologies: [
+        { icon: JavaScriptIcon, lang: 'JavaScript', style: 'js' },
+        { icon: TypeScriptIcon, lang: 'TypeScript', style: 'ts' },
+        { icon: ReactIcon, lang: 'React', style: 'react' }
+    ],
+    website: 'https://bpp_brayan.org/proyectos',
+    isPublic: true,
+    code: '',
+    projectUrl: '',
+    objectives: [
+        'Objetivos del proyecto.',
+        'Otros objetivos del proyecto.',
+        'Más objetivos del proyecto.'
+    ],
+    clients: [
+        {
+            name: 'Nombre del cliente.',
+            logotipe: 'https://th.bing.com/th/id/OIP.90_BDWk8wDOEohOLrTynEQHaFj?rs=1&pid=ImgDetMain',
+            description: 'Breve descripción del cliente.'
+        }
+    ],
+    comments: [
+        {
+            image: 'https://th.bing.com/th/id/OIP.90_BDWk8wDOEohOLrTynEQHaFj?rs=1&pid=ImgDetMain',
+            name: 'Nombre del comentarista.',
+            puntuation: 9,
+            comment: 'Comentarios del proyecto.'
+        },
+        {
+            image: 'https://th.bing.com/th/id/OIP.90_BDWk8wDOEohOLrTynEQHaFj?rs=1&pid=ImgDetMain',
+            name: 'Nombre del comentarista.',
+            puntuation: 9,
+            comment: 'Comentarios del proyecto.'
+        }
+    ]
+}
+
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content={subtitle}>
+    <meta name="author" content={author} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={subtitle} />
+    <meta property="og:image" content={cover} />
+    <meta property="og:type" content={website} />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={subtitle} />
+    <meta name="twitter:image" content={cover} />
+
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/carousel.css">
+    <link rel="stylesheet" href="/styles/project.css">
+    <link rel="stylesheet" href="/styles/lang-buttons.css">
+    
+    <title>Brayan Téllez | Proyectos | {title}</title>
+</head>
+<body>
+    <header>
+        <h1 itemprop="headline">{title}</h1>
+        <p>{subtitle}</p>
+    </header>
+    <main>
+        <article itemscope itemtype="https://schema.org/CreativeWork">
+            <meta itemprop="name" content={title} />
+            <meta itemprop="author" content={author} />
+            <meta itemprop="datePublished" content={date} />
+            <meta itemprop="image" content={cover}/>
+
+            <h2>Sobre el proyecto.</h2>
+            <p itemprop="description">
+                {description}
+            </p>
+
+            <h3>Galería.</h3>
+            <section itemprop="image">
+                <Carousel images={images} client:only="react"/>
+            </section>
+
+            <section>
+                <h3>Objetivos del proyecto.</h3>
+                <ul>
+                    { objectives.map( objective => <li>{objective}</li> ) }
+                </ul>
+            </section>
+    
+            {
+                isPublic ? <>
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li>🔗 <a href={code}>Código en GitHub</a></li>
+                        <li>🌍 <a href={projectUrl}>Ver Proyecto</a></li>
+                    </ul>
+                </> : null
+            }
+
+            <section>
+                <h3>Comentarios</h3>
+                <div class="comments-container">
+                    {
+                        comments.map( comment => <Comment {...comment}/> )
+                    }
+                </div>
+            </section>
+
+            <section>
+                <h3>Tecnologías utilizadas</h3>
+                <div class="techs">
+                    {
+                        technologies.map( ({ lang, icon, style }) =>
+                            <button class={`tag button-lang ${style}`}>
+                                <Fragment set:html={icon}/>
+                                <span>{lang}</span>
+                            </button>
+                        )
+                    }
+                </div>
+            </section>
+
+            <section>
+                <h3>Clientes</h3>
+                <div class="techs">
+                    {
+                        clients.map( ({ description, logotipe, name }) =>
+                            <figure title={description}>
+                                <img src={logotipe} alt="Logotipo del cliente no encontrada."/>
+                                <figcaption>{name}</figcaption>
+                            </figure>
+                        )
+                    }
+                </div>
+            </section>
+            <footer>
+              <p>Publicado el <time datetime={date} itemprop="datePublished">{date}</time> por <span itemprop="author">{author}</span>.</p>
+            </footer>
+        </article>
+    </main>
+    <article id="main">
+</body>
+</html>

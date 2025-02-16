@@ -19,6 +19,8 @@
     --text-content-color: var(--light-color);
     --background-color: var(--dark-color);
     --shadow-color: rgba(5, 12, 17, 0.4);
+    --shadow-color-dark: rgba(46, 17, 53, 0.4);
+    --shadow-color-dark-deep: rgba(46, 17, 53, 0.8);
     color: var(--text-content-color);
 }
 
@@ -35,6 +37,7 @@ body {
 }
 
 header {
+    z-index: 5;
     position: sticky;
     top: 0;
     height: 100px;
@@ -111,13 +114,6 @@ h2 {
     font-size: clamp(20px, 4vw, 36px);
 }
 
-/*
-24px - 30px	20px - 26px	18px - 22px
-h4	20px - 26px	18px - 22px	16px - 20px
-h5	18px - 22px	16px - 20px	14px - 18px
-h6	16px - 18px	14px - 16px	12px - 14px
-*/
-
 h3 {
     font-size: clamp(18px, 3vw, 24px);
 }
@@ -150,4 +146,8 @@ figcaption {
     font-size: clamp(10px, 1.2vw, 14px);
     color: gray;
     font-style: italic;
+}
+
+li {
+    line-height: 1.8em;
 }
