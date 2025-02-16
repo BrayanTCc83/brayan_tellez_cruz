@@ -94,6 +94,19 @@ section#main {
         flex-direction: column;
         gap: 15px;
         padding: 20px;
+
+        & > a {
+            border: 1px solid transparent;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 10px;
+            width: max-content;
+            &:hover {
+                color: var(--second-color);
+                border-color: var(--second-color);
+            }
+        }
     }
 
     & > footer {

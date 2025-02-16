@@ -1,5 +1,6 @@
 ---
-const { title, date, description, technologies } = {
+const { id, title, date, description, technologies } = {
+    id: '',
     title: '',
     date: new Date(),
     description: '',
@@ -20,6 +21,7 @@ const { title, date, description, technologies } = {
             <b>Descripción:</b><br>
             {description}
         </p>
+        <a href={`/proyectos/${id}`}>Detalles</a>
     </main>
     <footer>
         {
