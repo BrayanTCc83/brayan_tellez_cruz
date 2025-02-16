@@ -12,8 +12,9 @@ const Carousel = ({ images }: CarouselProps): React.JSX.Element => {
 
     const handleChangeImage: React.MouseEventHandler<HTMLButtonElement> = (e) => {
         let target:HTMLElement|null = e.target as HTMLElement;
-        if((target as HTMLElement).tagName !== 'button') {
+        while(target && (target as HTMLElement).tagName !== 'BUTTON') {
             target = (target as HTMLElement).parentElement;
+            console.log(target?.tagName)
         }
         
         const index = (target as HTMLButtonElement)?.getAttribute('aria-colindex');
