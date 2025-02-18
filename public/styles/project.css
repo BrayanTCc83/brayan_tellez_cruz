@@ -53,6 +53,11 @@ figure {
         grid-template-areas:
             "i n"
             "i p";
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: var(--background-color);
+        border-bottom: 2px solid var(--second-color);
 
         & > img {
             width: 100px;

@@ -1,0 +1,113 @@
+header {
+    width: 100% ;
+    height: 100dvh;
+    display: flex;
+    padding: 0 20vw;
+    transition: height 0.3s ease-in-out;
+    border: none;
+
+    & > div {
+        display: flex;
+        gap: 3em;
+        width: max-content;
+    }
+
+    & > nav {
+        display: none;
+    }
+
+    & .switch {
+        display: none;
+    }
+
+    &.scroll-active {
+        top: 0;
+        padding: 0;
+        height: 80px;
+        width: 90%;
+        left: 5%;
+        font-size: 18px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        box-shadow: 0 0 5px var(--second-color);
+        padding: 10px 3em;
+        display: flex;
+        justify-content: space-between;
+
+        & div {
+            & .aside {
+                display: none;
+            }
+        }
+
+        & > nav {
+            display: flex;
+        }
+
+        & .switch {
+            display: flex;
+        }
+
+        & #foto_perfil {
+            width: 60px;
+            height: 60px;
+            aspect-ratio: 1;
+            margin: 0;
+            top: 0;
+            border-radius: 40px;
+
+            & > img:first-child {
+                display: none;
+            }
+            & > img:last-child {
+                display: block;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+h2 {
+    font-size: clamp(18px, 3vw, 24px);
+    color: var(--second-color);
+}
+
+#foto_perfil {
+    width: 25vw;
+    height: 25vw;
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10%;
+    transition: border-radius 0.3s;
+
+    & > img:first-child {
+        position: absolute;
+        top: -15%;
+        aspect-ratio: unset;
+        width: 100%;
+    }
+    & > img:last-child {
+        display: none;
+    }
+}
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+    padding: 4em 0;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.tags {
+    display: flex;
+    justify-content: space-evenly;
+}

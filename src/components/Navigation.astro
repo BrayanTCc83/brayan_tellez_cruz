@@ -1,16 +1,27 @@
 ---
+import User from "/assets/icons/User.svg?raw";
+import Blog from "/assets/icons/Blog.svg?raw";
+import Project from "/assets/icons/Project.svg?raw";
 ---
 
 <nav class="header-navigation">
     <ul id="items">
         <li>
-            <a href="/">Sobre mí</a>
+            <a href="/">
+                <Fragment set:html={User}/>Sobre mí
+            </a>
         </li>
         <li>
-            <a href="/proyectos">Proyectos</a>
+            <a href="/proyectos">
+                <Fragment set:html={Project}/>
+                Proyectos
+            </a>
         </li>
         <li>
-            <a href="/blog">Blog</a>
+            <a href="/blog">
+                <Fragment set:html={Blog}/>
+                Blog
+            </a>
         </li>
     </ul>
     <script is:inline>

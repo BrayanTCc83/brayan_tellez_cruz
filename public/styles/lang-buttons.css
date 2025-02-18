@@ -2,12 +2,16 @@
     --ts-color: #3178C6;
     --js-color: #F7DF1E;
     --react-color: #61DAFB;
+    --youtube-color: #FF0000;
+    --linkedin-color: #0077B5;
+    --github-color: #e4e4e4;
 }
 
-button.tag {
+button.tag, a.tag {
+    text-decoration: none;
     display: flex;
     background-color: var(--background-color);
-    border: 1px solid var(--main-color);
+    border: none;
     padding: 5px;
     gap: 5px;
     min-width: 100px;
@@ -40,6 +44,18 @@ button.tag {
 
 .react, .react * {
     --color: var(--react-color);
+}
+
+.youtube, .youtube * {
+    --color: var(--youtube-color);
+}
+
+.linkedin, .linkedin * {
+    --color: var(--linkedin-color);
+}
+
+.github, .github * {
+    --color: var(--github-color);
 }
 
 .button-lang, .button-lang * {

@@ -12,7 +12,7 @@ const includes = Astro.props.includes ?? [];
 		{ includes.map( ( i: string ) => <link rel="stylesheet" href={`/styles/${i}.css`} set:html/> ) }
 		<title>Astro</title>
 	</head>
-	<body>
+	<body id="root">
         <Header/>
         <slot/>
 	</body>

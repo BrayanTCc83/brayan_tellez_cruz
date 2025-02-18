@@ -1,9 +1,10 @@
 ---
 import Navigation from "./Navigation.astro"
+import ToggleDarkMode from "./react/ToggleDarkMode.tsx"
 ---
 
 <header>
     <img src="/assets/images/langs/JavaScript.png" alt="Nofound">
     <Navigation/>
-    <button>A</button>
+    <ToggleDarkMode client:only="react"/>
 </header>

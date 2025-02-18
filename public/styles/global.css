@@ -14,7 +14,7 @@
     --third-color: rgb(155, 95, 175);
     --pale-color: rgb(201, 201, 201);
     --dark-color: rgb(3, 19, 32);
-    --light-color: rgb(232, 229, 240);
+    --light-color: rgb(242, 234, 243);
     --text-heading-color: var(--third-color);
     --text-content-color: var(--light-color);
     --background-color: var(--dark-color);
@@ -36,18 +36,44 @@ body {
     background-color: var(--background-color);
 }
 
+body.light {
+    --text-content-color: var(--dark-color);
+    --background-color: var(--light-color);
+    --pale-color: rgb(73, 73, 73);
+    & * {
+        --github-color: #181717;
+        --pale-color: rgb(170, 140, 173);
+        --text-content-color: var(--dark-color);
+        --background-color: var(--light-color);
+    }
+}
+
+body.dark {
+    --text-content-color: var(--light-color);
+    --background-color: var(--dark-color);
+    & * {
+        --text-content-color: var(--light-color);
+        --background-color: var(--dark-color);
+    }
+}
+
 header {
     z-index: 5;
     position: sticky;
+    background-color: var(--background-color);
     top: 0;
+    padding: 0;
     height: 100px;
-    background-color: var(--dark-color);
-    border-bottom: 2px solid var(--second-color);
+    width: 90%;
+    left: 5%;
+    font-size: 18px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 0 5px var(--second-color);
+    padding: 10px 3em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
-    gap: 1rem;
 
     & > img {
         width: 80px;
@@ -69,8 +95,18 @@ nav.header-navigation {
         display: flex;
         list-style: none;
         gap: 1rem;
+
+        & > li svg {
+            width: 25px;
+            height: 25px;
+            & * {
+                stroke: var(--text-content-color);
+            }
+        }
         & > li > a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             position: relative;
             min-width: 100px;
             text-align: center;
@@ -96,6 +132,10 @@ nav.header-navigation {
                 &::after {
                     left: 0%;
                     width: 100%;
+                }
+
+                & > svg * {
+                    stroke: var(--third-color);
                 }
             }
         }
@@ -150,4 +190,57 @@ figcaption {
 
 li {
     line-height: 1.8em;
+}
+
+.switch {
+    border: 2px solid var(--main-color);
+    background-color: transparent;
+    height: 34px;
+    width: 64px;
+    border-radius: 16px;
+    padding: 3px;
+    position: relative;
+    cursor: pointer;
+
+    & > button {
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        transition: left 0.3s;
+        background-color: var(--main-color);
+
+        &.light {
+            left: 3px;
+            & > svg:first-of-type {
+                opacity: 1;
+            }
+            & > svg:last-of-type {
+                opacity: 0;
+            }
+        }
+        &.dark {
+            left: 33px;
+            & > svg:first-of-type {
+                opacity: 0;
+            }
+            & > svg:last-of-type {
+                opacity: 1;
+            }
+        }
+        & > svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            transition: opacity 0.3s;
+            & * {
+                fill: var(--background-color);
+                stroke: var(--background-color);
+            }
+        }
+    }
 }
