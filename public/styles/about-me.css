@@ -68,6 +68,14 @@ header {
     }
 }
 
+#main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15em;
+    padding: 20px 28vw;
+    gap: 2em;
+}
+
 h2 {
     font-size: clamp(18px, 3vw, 24px);
     color: var(--second-color);
@@ -110,4 +118,48 @@ h2 {
 .tags {
     display: flex;
     justify-content: space-evenly;
+}
+
+.experience {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    & > li {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    & img {
+        border-radius: 10px;
+        width: 60px;
+    }
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    & img {
+        width: 20vw;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 10vw;
+    }
+}
+
+a.cv {
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 10px;
+    width: max-content;
+    &:hover {
+        color: var(--second-color);
+        border-color: var(--second-color);
+    }
 }

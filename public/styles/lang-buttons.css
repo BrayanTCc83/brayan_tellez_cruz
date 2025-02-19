@@ -5,12 +5,15 @@
     --youtube-color: #FF0000;
     --linkedin-color: #0077B5;
     --github-color: #e4e4e4;
+    --html-color: #E34F26;
+    --css-color: #1572B6;
+    --django-color: #092E20;
 }
 
 button.tag, a.tag {
     text-decoration: none;
     display: flex;
-    background-color: var(--background-color);
+    background-color: transparent;
     border: none;
     padding: 5px;
     gap: 5px;
@@ -56,6 +59,18 @@ button.tag, a.tag {
 
 .github, .github * {
     --color: var(--github-color);
+}
+
+.html, .html * {
+    --color: var(--html-color);
+}
+
+.css, .css * {
+    --color: var(--css-color);
+}
+
+.django, .django * {
+    --color: var(--django-color);
 }
 
 .button-lang, .button-lang * {

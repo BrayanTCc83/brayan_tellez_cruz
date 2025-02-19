@@ -244,3 +244,19 @@ li {
         }
     }
 }
+
+footer.data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 250px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: var(--main-color);
+
+    & .tags {
+        gap: 15px;
+    }
+}
