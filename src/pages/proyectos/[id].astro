@@ -4,6 +4,7 @@ import Comment from "../../components/conversation/Comment.astro";
 import JavaScriptIcon from "/assets/icons/JavaScriptIcon.svg?raw";
 import TypeScriptIcon from "/assets/icons/TypeScriptIcon.svg?raw";
 import ReactIcon from "/assets/icons/ReactIcon.svg?raw";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 
 export async function getStaticPaths() {
   return [
@@ -68,8 +69,12 @@ const { title, subtitle, description, date, author, images, cover, technologies,
             comment: 'Comentarios del proyecto.'
         }
     ]
-}
-
+};
+const routes = [
+  { text: 'Brayan Téllez', href: '/' },
+  { text: 'Proyectos', href: '/proyectos' },
+  { text: title, href: `proyectos/${id}` }
+];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -102,6 +107,7 @@ const { title, subtitle, description, date, author, images, cover, technologies,
         <h1 itemprop="headline">{title}</h1>
         <p>{subtitle}</p>
     </header>
+    <Breadcrumb routes={routes}/>
     <main>
         <article itemscope itemtype="https://schema.org/CreativeWork">
             <meta itemprop="name" content={title} />

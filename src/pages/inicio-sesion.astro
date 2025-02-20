@@ -1,6 +1,7 @@
 ---
 import Template from "../template/Template.astro";
 import Form, { type FormProps } from "../components/react/Form.tsx";
+import Breadcrumb from "../components/Breadcrumb.astro";
 
 const formConfig: FormProps = {
     inputs: [
@@ -18,10 +19,15 @@ const formConfig: FormProps = {
     uri: '',
     method: 'POST',
     redirect: '/blog'
-}
+};
+const routes = [
+  { text: 'Brayan Téllez', href: '/' },
+  { text: 'Inicio sesión', href: '/inicio-sesion' }
+];
 ---
 <Template includes={['form']}>
-    <section id="main" class="form-container">
+    <Breadcrumb routes={routes}/>
+    <section id="main">
         <Form {...formConfig} client:only="react"/>
     </section>
 </Template>

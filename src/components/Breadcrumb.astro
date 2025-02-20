@@ -1,0 +1,19 @@
+---
+const { routes } = {
+    routes: [
+        { text: 'Brayan Téllez', href: '/' }
+    ],
+    ...Astro.props
+};
+---
+<nav class="breadcrumb">
+    <ul>
+        {
+            routes.map( ({ text, href }) =>
+                <li>
+                    <a href={href}>{text}</a>
+                </li>
+            )
+        }
+    </ul>
+</nav>

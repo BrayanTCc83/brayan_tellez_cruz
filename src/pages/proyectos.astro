@@ -4,6 +4,7 @@ import JavaScriptIcon from "/assets/icons/JavaScriptIcon.svg?raw"
 import TypeScriptIcon from "/assets/icons/TypeScriptIcon.svg?raw"
 import ReactIcon from "/assets/icons/ReactIcon.svg?raw"
 import Article from "../components/project/Article.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 
 const projects = [
     {
@@ -49,8 +50,13 @@ const projects = [
         images: []
     }
 ];
+const routes = [
+  { text: 'Brayan Téllez', href: '/' },
+  { text: 'Proyectos', href: '/proyectos' }
+];
 ---
 <Template includes={['projectcard', 'lang-buttons']}>
+    <Breadcrumb routes={routes}/>
     <section id="main">
         {
             projects.map( project => <Article {...project}/> )

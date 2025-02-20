@@ -9,6 +9,7 @@ import CSS from "/assets/icons/CSS.svg?raw";
 import Navigation from "../components/Navigation.astro";
 import ToggleDarkMode from "../components/react/ToggleDarkMode.tsx";
 import Carousel from "../components/react/Carousel";
+import Breadcrumb from "../components/Breadcrumb.astro";
 
 const name = 'Brayan Téllez Cruz'
 const credentials = 'Ingeniero en Computación | Desarrollador Web'
@@ -61,6 +62,9 @@ const images = [
   '/assets/images/projects/lua_4.png',
   '/assets/images/projects/lua_5.png',
   '/assets/images/projects/lua_6.png'
+];
+const routes = [
+  { text: 'Brayan Téllez', href: '/' }
 ];
 ---
 
@@ -125,6 +129,7 @@ const images = [
       <Navigation/>
       <ToggleDarkMode client:only="react"/>
     </header>
+    <Breadcrumb routes={routes}/>
     <section id="main" class="about-me" itemscope itemtype="https://schema.org/Person">
       <div class="about">
         <img src="/assets/images/me/brayan.jpg" alt="Foto de perfil" itemprop="image"/>

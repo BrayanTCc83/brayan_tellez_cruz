@@ -1,6 +1,7 @@
 ---
 import Template from "../template/Template.astro";
 import Article from "../components/article/Article.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 
 const articulos = [
     {
@@ -28,9 +29,13 @@ const articulos = [
         descripcion: ''
     }
 ];
+const routes = [
+  { text: 'Brayan Téllez', href: '/' },
+  { text: 'Blog', href: '/blog' }
+];
 ---
-
 <Template includes={['article']}>
+    <Breadcrumb routes={routes}/>
     <section id="main">
         {
             articulos.map( articulo => <Article {...articulo}/> )

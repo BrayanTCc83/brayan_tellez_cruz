@@ -1,6 +1,7 @@
 ---
 import Template from "../../template/Template.astro";
 import PostFragment from "../../components/article/PostFragment.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 
 export async function getStaticPaths() {
   return [
@@ -45,10 +46,15 @@ const { titulo, subtitulo, fecha_publicacion, fecha_actualizacion, autor, tiempo
             text: ''
         }
     ]
-}
-
+};
+const routes = [
+  { text: 'Brayan Téllez', href: '/' },
+  { text: 'Blog', href: '/blog' },
+  { text: titulo, href: `/blog/${id}` }
+];
 ---
 <Template includes={['blogpost']}>
+    <Breadcrumb routes={routes}/>
     <article id="main" itemscope itemtype="https://schema.org/BlogPosting">
         <h1 itemprop="headline">{titulo}</h1>
         <meta itemprop="datePublished" content={fecha_publicacion}>
