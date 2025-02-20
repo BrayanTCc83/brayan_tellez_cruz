@@ -14,7 +14,7 @@ const name = 'Brayan Téllez Cruz'
 const credentials = 'Ingeniero en Computación | Desarrollador Web'
 const meta = {
   title: `Sobre mí - ${name}`,
-  description: "El conocimiento es inutil si no se puede compartir.",
+  description: "El conocimiento es inútil si no se puede compartir.",
   image: "/assets/profile.jpg",
   url: "https://tu-sitio.com/about"
 };
@@ -167,6 +167,9 @@ const images = [
       <section itemprop="image">
         <Carousel images={images} client:only="react"/>
       </section>
+      <div class="tags">
+        <a class="cv" href="https://mmedia1.fi-b.unam.mx/lua/">Aplicación web Lua</a>
+      </div>
       <div class="tags">
         <button class={`tag button-lang js`}>
             <Fragment set:html={JavaScript}/>

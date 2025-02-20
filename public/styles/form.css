@@ -1,0 +1,111 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    width: 100%;
+    top: 0;
+    position: absolute;
+}
+
+form {
+    align-self: center;
+    width: 50vw;
+    border-radius: 10px;
+    border: 2px solid var(--second-color);
+    padding: 3em 20px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3.5em;
+}
+
+fieldset {
+    border: none;
+    position: relative;
+    outline: none;
+
+    &::after {
+        position: absolute;
+        top: 100%;
+        left: 4px;
+        content: '';
+        width: calc(100% - 8px);
+        height: 2px;
+        background-color: var(--text-content-color);
+        transition: background-color 0.15s;
+    }
+
+    &::before {
+        position: absolute;
+        content: attr(data-before);
+        top: calc(100% + 5px);
+        left: 8px;
+        width: calc(100% - 16px);
+        height: max-content;
+        font-size: 0.8em;
+        color: transparent;
+        transition: color 0.3s;
+    }
+
+    &.error::before {
+        color: var(--error-color);
+    }
+
+    &.success::before {
+        content: 'Completado';
+        color: var(--success-color);
+    }
+
+    & > label {
+        color: var(--text-content-color);
+        width: calc(100% - 16px);
+        transition: color 0.15s;
+        position: absolute;
+        top: 10px;
+        left: 8px;
+        transition: top 0.3s;
+    }
+
+    &:hover, &:has(input:focus) {
+
+        &::after {
+            background-color: var(--second-color);
+        }
+
+        & > label {
+            color: var(--second-color);
+        }
+    }
+
+    &:hover > label, & > input:focus + label, &.complete > label {
+        top: -1.3em;
+    }
+}
+
+input {
+    width: max(40vw, 200px);
+    background-color: var(--background-color);
+    border: none;
+    outline: none;
+    padding: 10px;
+}
+
+input[type=submit] {
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: var(--second-color);
+    color: var(--background-color);
+    transition: background-color 0.3s;
+
+    &:hover:not(:disabled) {
+        background-color: var(--main-color);
+    }
+
+    &:disabled {
+        background-color: var(--shadow-color);
+        color: var(--text-content-color);
+    }
+}

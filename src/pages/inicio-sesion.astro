@@ -1,0 +1,27 @@
+---
+import Template from "../template/Template.astro";
+import Form, { type FormProps } from "../components/react/Form.tsx";
+
+const formConfig: FormProps = {
+    inputs: [
+        {
+            id: 'email', label: 'Correo', type: 'email', validator: 'email'
+        },
+        {
+            id: 'password', label: 'Contraseña', type: 'password', validator: 'password'
+        }
+    ],
+    refs: [
+        { text: 'Registro', href: '/registro' }
+    ],
+    title: 'Iniciar sesión',
+    uri: '',
+    method: 'POST',
+    redirect: '/blog'
+}
+---
+<Template includes={['form']}>
+    <section id="main" class="form-container">
+        <Form {...formConfig} client:only="react"/>
+    </section>
+</Template>
