@@ -65,6 +65,9 @@
     border-radius: 20px;
     place-self: anchor-center;
     top: 80%;
+    left: 0;
+    right: 0;
+    margin: auto;
 
     & > button {
         width: 20px;
