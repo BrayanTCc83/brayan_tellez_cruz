@@ -1,0 +1,56 @@
+---
+import Template from "../../../template/Template.astro";
+import Article from "../../../components/article/Article.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'ch' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const articulos = [
+    {
+        id: 1,
+        titulo: 'Construcción de un intérprete con Rust 1',
+        lenguaje: 'Rust',
+        duracion: 5,
+        autor: 'Brayan Téllez',
+        descripcion: 'Dedicamos un tiempo a la primera parte de la implementación',
+        langs: ['es']
+    },
+    {
+        id: 2,
+        titulo: 'Construcción de un intérprete con Rust 2',
+        lenguaje: 'Rust',
+        duracion: 5,
+        autor: 'Brayan Téllez',
+        descripcion: 'Hablamos sobre todos los objetos que contiene nuestro intérprete',
+        langs: ['es']
+    },
+    {
+        id: 3,
+        titulo: 'Implementación del protocolo MPEG-DASH desde 0',
+        lenguaje: 'JavaScript',
+        duracion: 5,
+        autor: 'Brayan Téllez',
+        descripcion: '',
+        langs: ['es']
+    }
+];
+const routes = [
+  { text: 'Brayan Téllez', href: '/' },
+  { text: 'Blog', href: '/blog' }
+];
+---
+<Template includes={['article']} lang={lang}>
+    <Breadcrumb routes={routes}/>
+    <section id="main">
+        {
+            articulos.map( articulo => <Article {...articulo} expectedLang={lang}/> )
+        }
+    </section>
+</Template>

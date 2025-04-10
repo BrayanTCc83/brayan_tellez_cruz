@@ -1,9 +1,13 @@
 ---
 import Header from "../components/Header.astro";
-const includes = Astro.props.includes ?? [];
+const { lang, includes } = { 
+	includes: [],
+	lang: 'es',
+	...Astro.props
+};
 ---
 
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -13,7 +17,7 @@ const includes = Astro.props.includes ?? [];
 		<title>Astro</title>
 	</head>
 	<body id="root">
-        <Header/>
+        <Header lang={lang}/>
         <slot/>
 	</body>
 </html>

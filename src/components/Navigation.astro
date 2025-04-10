@@ -2,23 +2,25 @@
 import User from "/assets/icons/User.svg?raw";
 import Blog from "/assets/icons/Blog.svg?raw";
 import Project from "/assets/icons/Project.svg?raw";
+
+const { lang } = Astro.props;
 ---
 
 <nav class="header-navigation">
     <ul id="items">
         <li>
-            <a href="/">
+            <a href={`/${lang ? lang : 'es'}/`}>
                 <Fragment set:html={User}/>Sobre mí
             </a>
         </li>
         <li>
-            <a href="/proyectos">
+            <a href={`/${lang ? lang : 'es'}/projects`}>
                 <Fragment set:html={Project}/>
                 Proyectos
             </a>
         </li>
         <li>
-            <a href="/blog">
+            <a href={`/${lang ? lang : 'es'}/blogs`}>
                 <Fragment set:html={Blog}/>
                 Blog
             </a>
@@ -29,7 +31,7 @@ import Project from "/assets/icons/Project.svg?raw";
         const anchors = Array.from(document.getElementById("items").children).map( li => li.children[0] );
         (
             currentUrl === '/' ? anchors[0]
-            : anchors.find(a => a.href.includes(currentUrl.split('/')[1]))
+            : anchors.find(a => a.href.includes(currentUrl))
         )?.classList.add('current');
     </script>
 </nav>

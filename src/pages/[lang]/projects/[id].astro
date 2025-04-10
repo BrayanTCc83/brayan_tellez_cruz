@@ -1,20 +1,20 @@
 ---
-import Carousel from "../../components/react/Carousel.tsx";
-import Comment from "../../components/conversation/Comment.astro";
+import Carousel from "../../../components/react/Carousel.tsx";
+import Comment from "../../../components/conversation/Comment.astro";
 import JavaScriptIcon from "/assets/icons/JavaScriptIcon.svg?raw";
 import TypeScriptIcon from "/assets/icons/TypeScriptIcon.svg?raw";
 import ReactIcon from "/assets/icons/ReactIcon.svg?raw";
-import Breadcrumb from "../../components/Breadcrumb.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
 
 export async function getStaticPaths() {
   return [
-    { params: { id: 'abc' } },
-    { params: { id: 'abcd' } },
-    { params: { id: 'abcde' } },
+    { params: { lang: 'es', id: 'abc' } },
+    { params: { lang: 'es', id: 'abcd' } },
+    { params: { lang: 'es', id: 'abcde' } },
   ];
 }
 
-const { id } = Astro.params;
+const { lang, id } = Astro.params;
 const { title, subtitle, description, date, author, images, cover, technologies, website, isPublic, code, projectUrl, objectives, clients, comments } = {
     title: 'Nombre del proyecto.',
     subtitle: 'Subtitilo o breve del proyecto.',
@@ -72,12 +72,12 @@ const { title, subtitle, description, date, author, images, cover, technologies,
 };
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Proyectos', href: '/proyectos' },
-  { text: title, href: `proyectos/${id}` }
+  { text: 'Proyectos', href: `${lang}/proyectos` },
+  { text: title, href: `${lang}/proyectos/${id}` }
 ];
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

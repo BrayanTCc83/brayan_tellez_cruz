@@ -1,5 +1,5 @@
 ---
-const { titulo, lenguaje, autor, descripcion, duracion, id } = Astro.props;
+const { titulo, lenguaje, autor, descripcion, duracion, id, langs, expectedLang } = Astro.props;
 ---
 
 <article>
@@ -10,5 +10,5 @@ const { titulo, lenguaje, autor, descripcion, duracion, id } = Astro.props;
         <span>{duracion} minutos</span>
         <p>Descripción:<br/> {descripcion}</p>
     </div>
-    <a href={`/blog/${id}`}></a>
+    <a href={`/${expectedLang in langs ? expectedLang : langs[0]}/blog/${id}`}></a>
 </article>
