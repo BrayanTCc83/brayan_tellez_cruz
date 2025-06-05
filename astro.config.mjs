@@ -1,23 +1,20 @@
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel/serverless';
 import react from '@astrojs/react';
-import node from '@astrojs/node';
 
-// https://astro.build/config
 export default defineConfig({
   output: 'server',
   integrations: [
-      react({
-          experimentalReactChildren: true,
-          include: ['**/react/*']
-      })
+    react({
+      experimentalReactChildren: true,
+      include: ['**/react/*']
+    })
   ],
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: vercel(),
   publicDir: "public",
   server: {
     fs: {
-      allow: ['../'], // Permite importar archivos fuera de src/
+      allow: ['../'],
     },
   },
 });
