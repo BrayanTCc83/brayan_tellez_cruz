@@ -3,26 +3,49 @@ import User from "/assets/icons/User.svg?raw";
 import Blog from "/assets/icons/Blog.svg?raw";
 import Project from "/assets/icons/Project.svg?raw";
 
-const { lang } = Astro.props;
+const { lang } = {
+    lang: 'es',
+    ...Astro.props
+};
+const options = {
+    'es': {
+        about: 'Sobre mí',
+        projects: 'Proyectos',
+        blogs: 'Publicaciones'
+    },
+    'en': {
+        about: 'About me',
+        projects: 'Projects',
+        blogs: 'Blogs'
+    }
+};
+const elems = (options as any)[lang ? lang: 'es'];
 ---
 
 <nav class="header-navigation">
     <ul id="items">
         <li>
             <a href={`/${lang ? lang : 'es'}/`}>
-                <Fragment set:html={User}/>Sobre mí
+                <Fragment set:html={User}/>
+                {elems.about}
             </a>
         </li>
         <li>
             <a href={`/${lang ? lang : 'es'}/projects`}>
                 <Fragment set:html={Project}/>
-                Proyectos
+                {elems.projects}
             </a>
         </li>
         <li>
             <a href={`/${lang ? lang : 'es'}/blogs`}>
                 <Fragment set:html={Blog}/>
-                Blog
+                {elems.blogs}
+            </a>
+        </li>
+        <li>
+            <a href={`/${lang ? lang : 'es'}/blogs`}>
+                <Fragment set:html={Blog}/>
+                {elems.blogs}
             </a>
         </li>
     </ul>

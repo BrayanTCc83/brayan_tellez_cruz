@@ -7,10 +7,8 @@ import Django from "/assets/icons/Django.svg?raw";
 import HTML from "/assets/icons/HTML.svg?raw";
 import CSS from "/assets/icons/CSS.svg?raw";
 import Navigation from "../../components/Navigation.astro";
-import ToggleDarkMode from "../../components/react/ToggleDarkMode.tsx";
 import Carousel from "../../components/react/Carousel";
-import Breadcrumb from "../../components/Breadcrumb.astro";
-import { AboutMe, MainProject } from "../../api/aboutme.ts";
+import { AboutMe, MainProject, MainProjectImages } from "../../api/aboutme.ts";
 import { API } from "../../api/base.ts";
 
 export async function getStaticPaths() {
@@ -24,6 +22,7 @@ export async function getStaticPaths() {
 const { lang } = Astro.params;
 const aboutme = await AboutMe({ lang });
 const project = await MainProject({ lang });
+const images = (await MainProjectImages()).map( img => `${API}${img}` );
 
 const name = 'Brayan Téllez Cruz'
 const credentials = aboutme.credentials;
@@ -33,14 +32,6 @@ const meta = {
 };
 const about_me = aboutme.content;
 const project_name = 'Lua';
-const images = [
-  `${API}/static/assets/projects/lua/lua_1.png`,
-  `${API}/static/assets/projects/lua/lua_2.png`,
-  `${API}/static/assets/projects/lua/lua_3.png`,
-  `${API}/static/assets/projects/lua/lua_4.png`,
-  `${API}/static/assets/projects/lua/lua_5.png`,
-  `${API}/static/assets/projects/lua/lua_6.png`
-];
 const routes = [
   { text: 'Brayan Téllez', href: '/' }
 ];
@@ -73,92 +64,18 @@ const routes = [
 </head>
 
 <body id="root">
-  <main>
-    <header>
-      <div>
-        <div id="foto_perfil">
-          <img src="/assets/images/me/brayan.jpg" alt="Foto de perfil" itemprop="image"/>
-          <img src="/assets/images/langs/JavaScript.png" alt="">
-        </div>
-        <div class="aside">
-          <div class="data-container">
-            <h1 itemprop="name">{name}</h1>
-            <h2 itemprop="jobTitle">{credentials}</h2>
-            <p>
-              {meta.description}
-            </p>
-          </div>
-          <div class="tags">
-            <a itemprop="sameAs" class={`tag button-lang linkedin`} href="https://www.linkedin.com/in/brayan-t%C3%A9llez-cruz-mx/">
-                <Fragment set:html={LinkedIn}/>
-                <span>LinkedIn</span>
-            </a>
-            <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx">
-                <Fragment set:html={Youtube}/>
-                <span>Youtube</span>
-            </a>
-            <a itemprop="sameAs" class={`tag button-lang github`} href="https://github.com/BrayanTCc83">
-                <Fragment set:html={GitHub}/>
-                <span>GitHub</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <Navigation lang={lang}/>
-      <ToggleDarkMode client:only="react"/>
-    </header>
-    <Breadcrumb routes={routes}/>
-    <section id="main" class="about-me" itemscope itemtype="https://schema.org/Person">
-      <div class="about">
-        <img src="/assets/images/me/brayan.jpg" alt="Foto de perfil" itemprop="image"/>
-        <h1 itemprop="name">{name}</h1>
-        <h2 itemprop="jobTitle">{credentials}</h2>
-      </div>
-      
-      <h3>Experiencia</h3>
-      <ul class="experience">
-        <li>
-          <img src="/assets/images/me/LogoMultimedia.png" alt="Logo Multimedia">
-          <p>
-            <strong>Laboratorio de Multimedia e Internet</strong><br>
-            Frontend (Agosto 2023 - Presente)
-          </p>
-        </li>
-        <li>
-          <img src="/assets/images/langs/JavaScript.png" alt="Mi logo">
-          <p>
-            <strong>Freelance</strong><br>
-            Proyectos personales y clientes (2022 - Presente)
-          </p>
-        </li>
-      </ul>
-
-      <h3>Sobre mí</h3>
-      <p>
-        <span>{about_me.header}</span>
-        <ul>
-          {
-            about_me.description.map( ({strong, text}) => <li><strong>{strong}: </strong>{text}</li> )
-          }
-        </ul>
-      </p>
-
-      <h3>Habilidades</h3>
-      <ul>
-        <li>HTML, CSS, JavaScript</li>
-        <li>React, Astro, Vite</li>
-      </ul>
-      
-      <h3>Proyecto destacado: {project_name}.</h3>
-      {
-        project.description.map( d => <p>{d}</p> )
-      }
-      <section itemprop="image">
-        <Carousel images={images} client:only="react"/>
-      </section>
-      <div class="tags">
-        <a class="cv" href="https://mmedia1.fi-b.unam.mx/lua/">Aplicación web Lua</a>
-      </div>
+  <header>
+    <div class="nav-sentinel"></div>
+    <Navigation lang={lang}/>
+  </header>
+  <section class="photo container" itemscope itemtype="https://schema.org/Person">
+    <img alt="Foto de perfil" itemprop="image"/>
+    <h2 itemprop="name">{name}</h1>
+    <h3 itemprop="jobTitle">{credentials}</h2>
+  </section>
+  <div class="techs container">
+    <h2>Habilidades</h2>
+    <ul>
       <div class="tags">
         <button class={`tag button-lang js`}>
             <Fragment set:html={JavaScript}/>
@@ -177,33 +94,102 @@ const routes = [
             <span>Django</span>
         </button>
       </div>
-
-      <h3>Trayectoria escolar</h3>
-      <ul class="experience">
-        <li>
-          <img src="/assets/images/me/unam.jpg" alt="Logo Multimedia">
-          <p>
-            <strong>UNAM</strong><br>
-            Universidad Nacional Autónoma de México - Facultad de Ingeniería.
-          </p>
-        </li>
-        <li>
-          <img src="/assets/images/me/cbtis.jpg" alt="Mi logo">
-          <p>
-            <strong>CBTIS 83</strong><br>
-            Centro de Bachiller Tecnológico Industrial y de Servicios No. 83 - Técnico en programación.
-          </p>
-        </li>
-      </ul>
-
-      <h3>Currículum</h3>
-      <div class="tags">
-        <a class="cv" href="/assets/pdf/Brayan Téllez Cruz CV EN.pdf">CV en Inglés</a>
-        <a class="cv" href="/assets/pdf/Brayan Téllez Cruz CV ES.pdf">CV en Español</a>
-      </div>
+    </ul>
+  </div>
+  <div class="main_project container">
+    <h2>Proyecto destacado: {project_name}.</h2>
+    {
+      project.description??[].map( d => <p>{d}</p> )
+    }
+    <section itemprop="image">
+      <Carousel images={images} client:only="react"/>
     </section>
-  </main>
+    <div class="tags">
+      <a class="cv" href="https://mmedia1.fi-b.unam.mx/lua/">Aplicación web Lua</a>
+    </div>
+    <div class="tags">
+      <button class={`tag button-lang js`}>
+          <Fragment set:html={JavaScript}/>
+          <span>JavaScript</span>
+      </button>
+      <button class={`tag button-lang html`}>
+          <Fragment set:html={HTML}/>
+          <span>HTML</span>
+      </button>
+      <button class={`tag button-lang css`}>
+          <Fragment set:html={CSS}/>
+          <span>CSS</span>
+      </button>
+      <button class={`tag button-lang django`}>
+          <Fragment set:html={Django}/>
+          <span>Django</span>
+      </button>
+    </div>
+  </div>
+  <div class="about container">
+    <h2>Sobre mí</h2>
+    <p>
+      <span>{about_me.header}</span>
+      <ul>
+        {
+          about_me.description.map( ({strong, text}) => <li><strong>{strong}: </strong>{text}</li> )
+        }
+      </ul>
+    </p>
+  </div>
+  <div class="videos container">
+
+  </div>
+  <div class="languages container">
+    <h2>Idiomas</h2>
+    <ul>
+      <div class="tags">
+        <button class={`tag button-lang js`}>
+            <Fragment set:html={JavaScript}/>
+            <span>ES - Nativo</span>
+        </button>
+        <button class={`tag button-lang html`}>
+            <Fragment set:html={HTML}/>
+            <span>EN - B 2</span>
+        </button>
+        <button class={`tag button-lang css`}>
+            <Fragment set:html={CSS}/>
+            <span>CH - HSK 2</span>
+        </button>
+      </div>
+    </ul>
+  </div>
+  <div class="hobbies container">
+
+  </div>
+  <div class="projects container">
+
+  </div>
+  <div class="education container">
+    <h2>Trayectoria escolar</h2>
+    <ul class="experience">
+      <li>
+        <img src="/assets/images/me/unam.jpg" alt="Logo Multimedia">
+        <p>
+          <strong>UNAM</strong><br>
+          Universidad Nacional Autónoma de México - Facultad de Ingeniería.
+        </p>
+      </li>
+      <li>
+        <img src="/assets/images/me/cbtis.jpg" alt="Mi logo">
+        <p>
+          <strong>CBTIS 83</strong><br>
+          Centro de Bachiller Tecnológico Industrial y de Servicios No. 83 - Técnico en programación.
+        </p>
+      </li>
+    </ul>
+  </div>
   <footer class="data">
+    <h3>Currículum</h3>
+    <div class="tags">
+      <a class="cv" href="/assets/pdf/Brayan Téllez Cruz CV EN.pdf">CV en Inglés</a>
+      <a class="cv" href="/assets/pdf/Brayan Téllez Cruz CV ES.pdf">CV en Español</a>
+    </div>
     <p>&copy; 2025 {name} - Todos los derechos reservados.</p>
     
     <div class="tags">

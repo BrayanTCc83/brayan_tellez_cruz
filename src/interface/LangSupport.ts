@@ -2,6 +2,11 @@ export interface ILangSupport {
     lang: string
 }
 
+export interface IAboutContentDescription {
+    strong: string
+    text: string
+}
+
 export interface IAbout {
     credentials: string
     meta: {
@@ -11,12 +16,7 @@ export interface IAbout {
     },
     content: {
         header: string
-        description: [
-            {
-                strong: string
-                text: string
-            }
-        ]
+        description: IAboutContentDescription[]
     }
 }
 

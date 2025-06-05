@@ -1,12 +1,9 @@
 ---
 import Navigation from "./Navigation.astro"
-import ToggleDarkMode from "./react/ToggleDarkMode.tsx"
 
 const { lang } = Astro.props;
 ---
 
 <header>
-    <img src="/assets/images/langs/JavaScript.png" alt="Nofound">
     <Navigation lang={lang}/>
-    <ToggleDarkMode client:only="react"/>
 </header>

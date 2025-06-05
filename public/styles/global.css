@@ -9,7 +9,7 @@
     padding: 0;
     font-size: 1em;
     box-sizing: border-box;
-    --main-color: rgb(65, 18, 92);
+    --main-color: rgb(39, 9, 58);
     --second-color: rgb(97, 70, 107);
     --third-color: rgb(155, 95, 175);
     --pale-color: rgb(201, 201, 201);
@@ -19,10 +19,11 @@
     --text-content-color: var(--light-color);
     --background-color: var(--dark-color);
     --shadow-color: rgba(5, 12, 17, 0.4);
-    --shadow-color-dark: rgba(46, 17, 53, 0.4);
-    --shadow-color-dark-deep: rgba(46, 17, 53, 0.8);
+    --shadow-color-dark: rgba(46, 17, 53, 0.25);
+    --shadow-color-dark-deep: rgba(46, 17, 53, 0.7);
     --error-color: rgb(151, 45, 50);
     --success-color: rgb(45, 151, 86);
+    --standart-size-fr: 25px;
     color: var(--text-content-color);
 }
 
@@ -33,9 +34,15 @@ html {
 
 body {
     position: relative;
-    width: 100%;
     height: 100%;
     background-color: var(--background-color);
+    width: fit-content;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(12, 75px);
+    grid-template-rows: auto;
+    gap: var(--standart-size-fr);
+    padding: var(--standart-size-fr);
 }
 
 body.light {
@@ -59,85 +66,71 @@ body.dark {
     }
 }
 
-header {
-    z-index: 5;
-    position: sticky;
-    background-color: var(--background-color);
-    top: 0;
-    padding: 0;
-    height: 100px;
-    width: 90%;
-    left: 5%;
-    font-size: 18px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    box-shadow: 0 0 5px var(--second-color);
-    padding: 10px 3em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    & > img {
-        width: 80px;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-}
-
 h1, h2, h3, h4, h5, h6 {
     height: fit-content;
     color: var(--text-heading-color);
     font-variant: small-caps;
 }
 
+header:has(div.nav-sentinel:hover) > .header-navigation {
+    background-color: red !important;
+}
+
+header {
+    position: relative;
+    grid-area: n;
+}
+
 nav.header-navigation {
-    background-color: transparent;
+    position: sticky;
+    top: var(--standart-size-fr);
+    z-index: 100;
+
+    overflow: hidden;
+    border-radius: var(--standart-size-fr);
+    background-color: var(--shadow-color);
+    border: none;
     & > ul {
+        height: 50px;
         display: flex;
         list-style: none;
-        gap: 1rem;
+        gap: var(--standart-size-fr);
 
         & > li svg {
-            width: 25px;
-            height: 25px;
+            width: var(--standart-size-fr);
+            height: var(--standart-size-fr);
             & * {
                 stroke: var(--text-content-color);
             }
         }
         & > li > a {
+            height: 50px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 15px;
             position: relative;
-            min-width: 100px;
-            text-align: center;
+            width: 275px;
             padding: 5px 10px;
-            border-radius: 8px;
             text-decoration: none;
+            color: var(--third-color);
+            border-radius: 25px;
 
-            &::after {
-                content: '';
-                position: absolute;
-                background-color: var(--third-color);
-                top: calc(100%);
-                left: 50%;
-                border-radius: 1px;
-                height: 2px;
-                width: 0%;
+            & > svg * {
+                stroke: var(--third-color);
                 transition: left ease-in-out 0.3s, width ease-in-out 0.3s;
             }
 
-            &:hover, &.current {
-                color: var(--third-color);
+            &:hover {
+                background-color: var(--shadow-color-dark);
+            }
 
-                &::after {
-                    left: 0%;
-                    width: 100%;
-                }
+            &.current {
+                color: var(--pale-color);
+                background-color: var(--main-color);
 
                 & > svg * {
-                    stroke: var(--third-color);
+                    stroke: var(--pale-color);
                 }
             }
         }
@@ -205,8 +198,8 @@ li {
     cursor: pointer;
 
     & > button {
-        width: 24px;
-        height: 24px;
+        width: var(--standart-size-fr);
+        height: var(--standart-size-fr);
         border-radius: 12px;
         border: none;
         cursor: pointer;
@@ -314,5 +307,19 @@ nav.breadcrumb {
                 display: none;
             }
         }
+    }
+}
+
+.container {
+    background-color: var(--shadow-color);
+    border-radius: 10px;
+    box-shadow: 0 3px 4px var(--shadow-color);
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+    &:hover {
+        background-color: var(--shadow-color-dark);
     }
 }
