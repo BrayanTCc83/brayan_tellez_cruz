@@ -3,14 +3,19 @@ import vercel from '@astrojs/vercel/serverless';
 import react from '@astrojs/react';
 
 export default defineConfig({
-  output: 'server',
+  output: 'hybrid',
   integrations: [
     react({
       experimentalReactChildren: true,
       include: ['**/react/*']
     })
   ],
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+    maxDuration: 8,
+  }),
   publicDir: "public",
   server: {
     fs: {
