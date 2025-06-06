@@ -1,0 +1,47 @@
+---
+import World from "/assets/icons/World.svg?raw";
+
+import MX from "/assets/flags/mx.svg?raw";
+import CH from "/assets/flags/ch.svg?raw";
+import UK from "/assets/flags/uk.svg?raw";
+
+const lang = Astro.props.lang;
+---
+<div class="language-controller">
+    <ul class="langs-container hide" id="langs-options">
+        <li>
+            <a class="tag" data-lang="es">
+                <Fragment set:html={MX}/>
+                <span>Español</span>
+            </a>
+        </li>
+        <li>
+            <a class="tag" data-lang="en">
+                <Fragment set:html={UK}/>
+                <span>English</span>
+            </a>
+        </li>
+        <li>
+            <a class="tag" data-lang="ch">
+                <Fragment set:html={CH}/>
+                <span>汉语</span>
+            </a>
+        </li>
+    </ul>
+    <button class={`tag`} id="langs">
+        <Fragment set:html={World}/>
+        <span>{lang}</span>
+    </button>
+</div>
+<script is:inline>
+    const langs = document.getElementById("langs");
+    const langsOptions = document.getElementById("langs-options");
+
+    langs.onclick = () => {
+        langsOptions.classList.toggle('hide');
+        const links = langsOptions.querySelectorAll('a');
+        links.forEach(link => 
+            link.href = `${location.origin}/${link.getAttribute('data-lang')}${location.pathname.substring(3)}`
+        );
+    }
+</script>

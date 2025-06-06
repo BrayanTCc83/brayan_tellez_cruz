@@ -58,7 +58,7 @@ const Form = ({ inputs, title, refs, uri, method, redirect }: FormProps): JSX.El
                 if(res.ok)
                     location.assign(redirect)
             })
-            .catch( err => console.log(err) );
+            .catch( _ => {});
     }
 
     useEffect(() => {

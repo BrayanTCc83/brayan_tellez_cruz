@@ -109,6 +109,17 @@ button.tag, a.tag {
     cursor: pointer;
 }
 
+.button-lang-rl {
+    padding: 5px 10px !important;
+    --color: black;
+    cursor: pointer;
+}
+
+.button-lang-rl:hover {
+    background-color: var(--color) !important;
+}
+
+
 .button-lang:hover {
     background-color: var(--color) !important;
     & * {

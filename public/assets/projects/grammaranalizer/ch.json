@@ -1,0 +1,13 @@
+{
+  "id": "grammaranalizer",
+  "name": "语法分析器",
+  "subname": "语法分析与生成工具。",
+  "description": [
+    "这是一个用 C 语言编写的程序，能够分析输入的文法，并确定其层级与分类。",
+    "目前支持的层级包括“正则文法”和“上下文无关文法”；在上下文无关文法的分类中，包含“简单”、“q”、“LL(1)” 和 “RR(1)”。"
+  ],
+  "technologies": [ "c" ],
+  "urlweb": null,
+  "urlgit": "https://github.com/BrayanTCc83/GrammarAnalizer.git",
+  "cover": "grammar_1.png"
+}

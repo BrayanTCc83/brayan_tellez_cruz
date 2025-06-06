@@ -6,6 +6,7 @@ export async function getStaticPaths() {
   return [
     { params: { lang: 'es', id: 1 } },
     { params: { lang: 'en', id: 2 } },
+    { params: { lang: 'ch', id: 3 } },
   ];
 }
 

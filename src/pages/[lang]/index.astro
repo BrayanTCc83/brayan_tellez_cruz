@@ -1,24 +1,36 @@
 ---
+import JavaScript from "/assets/icons/JavaScriptIcon.svg?raw";
 import LinkedIn from "/assets/icons/LinkedIn.svg?raw";
 import Youtube from "/assets/icons/Youtube.svg?raw";
 import GitHub from "/assets/icons/GitHub.svg?raw";
-import JavaScript from "/assets/icons/JavaScriptIcon.svg?raw";
 import Django from "/assets/icons/Django.svg?raw";
 import HTML from "/assets/icons/HTML.svg?raw";
 import CSS from "/assets/icons/CSS.svg?raw";
+
+import MX from "/assets/flags/mx.svg?raw";
+import CH from "/assets/flags/ch.svg?raw";
+import UK from "/assets/flags/uk.svg?raw";
+
+import AboutES from "../../data/es/translation.json";
+import AboutEN from "../../data/en/translation.json";
+import AboutCH from "../../data/ch/translation.json";
+
 import Navigation from "../../components/Navigation.astro";
+import LanguageController from "../../components/LanguageController.astro";
 import Carousel from "../../components/react/Carousel";
+
 import { AboutMe, MainProject, MainProjectImages } from "../../api/aboutme.ts";
-import { GetLatestVideos } from "../../api/youtube.ts";
 import { GetLatestProjects } from "../../api/projects.ts";
 import { getIconData } from "../../utils/getIconData.ts";
-import type { IYoutubeVideoItem } from "../../interface/ThirdAPI";
-import type { IProject, IAboutContentDescription } from "../../interface/LangSupport";
+import { GetLatestVideos } from "../../api/youtube.ts";
+
+import type { IAboutMeTranslation } from "../../interface/AppLangs.ts";
 
 export async function getStaticPaths() {
   return [
     { params: { lang: 'es' } },
     { params: { lang: 'en' } },
+    { params: { lang: 'ch' } },
   ];
 }
 
@@ -31,9 +43,10 @@ const projects = await GetLatestProjects({ lang });
 
 const name = 'Brayan Téllez Cruz'
 const credentials = aboutme.credentials;
+const translation: IAboutMeTranslation = lang === 'es' ? AboutES.about : lang === 'en' ? AboutEN.about : AboutCH.about;
 const meta = {
   ...aboutme.meta,
-  title: `Sobre mí - ${name}`
+  title: `${translation.title} - ${name}`
 };
 const about_me = aboutme.content;
 ---
@@ -69,47 +82,48 @@ const about_me = aboutme.content;
     <div class="nav-sentinel"></div>
     <Navigation lang={lang}/>
   </header>
+  <LanguageController lang={lang}/>
   <section class="photo container" itemscope itemtype="https://schema.org/Person">
     <img src="/assets/images/langs/Rust.png" alt="Foto de perfil" itemprop="image"/>
     <h2 itemprop="name">{name}</h1>
     <h3 itemprop="jobTitle">{credentials}</h2>
   </section>
   <div class="techs container">
-    <h2>Habilidades</h2>
+    <h2>{translation.skills}</h2>
     <ul>
       <div class="tags">
         <button class={`tag button-lang js`}>
-            <Fragment set:html={JavaScript}/>
-            <span>JavaScript</span>
+          <Fragment set:html={JavaScript}/>
+          <span>JavaScript</span>
         </button>
         <button class={`tag button-lang html`}>
-            <Fragment set:html={HTML}/>
-            <span>HTML</span>
+          <Fragment set:html={HTML}/>
+          <span>HTML</span>
         </button>
         <button class={`tag button-lang css`}>
-            <Fragment set:html={CSS}/>
-            <span>CSS</span>
+          <Fragment set:html={CSS}/>
+          <span>CSS</span>
         </button>
         <button class={`tag button-lang django`}>
-            <Fragment set:html={Django}/>
-            <span>Django</span>
+          <Fragment set:html={Django}/>
+          <span>Django</span>
         </button>
       </div>
     </ul>
   </div>
   <div class="main_project container">
-    <h2>{lang == 'es' ? 'Proyecto destacado': 'Main project'}: {mainproject.name}.</h2>
+    <h2>{translation.mainProject}: {mainproject.name}.</h2>
     <h3>{mainproject.subname}</h3>
     {
       mainproject.description??[].map( d => <p>{d}</p> )
     }
     <div class="tags">
       {
-        mainproject.technologies??[].map( tech => {
+        (mainproject.technologies??[]).map( tech => {
           const data = getIconData(tech);
           return <button class={`tag button-lang ${tech}`}>
-              <Fragment set:html={data.svg}/>
-              <span>{data.name}</span>
+            <Fragment set:html={data.svg}/>
+            <span>{data.name}</span>
           </button>
         })
       }
@@ -134,7 +148,7 @@ const about_me = aboutme.content;
     </div>
   </div>
   <div class="about container">
-    <h2>Sobre mí</h2>
+    <h2>{translation.about}</h2>
     <p>
       <span>{about_me.header}</span>
       <ul>
@@ -145,7 +159,7 @@ const about_me = aboutme.content;
     </p>
   </div>
   <div class="videos container">
-    <h2>Últimos vídeos</h2>
+    <h2>{translation.videos}</h2>
     <ul class="video-container">
       {
         latestVideos.items ?
@@ -170,26 +184,26 @@ const about_me = aboutme.content;
     </div>
   </div>
   <div class="languages container">
-    <h2>Idiomas</h2>
+    <h2>{translation.langs}</h2>
     <ul>
       <div class="tags">
-        <button class={`tag button-lang js`}>
-            <Fragment set:html={JavaScript}/>
+        <button class={`tag button-lang-rl`}>
+            <Fragment set:html={MX}/>
             <span>ES - Nativo</span>
         </button>
-        <button class={`tag button-lang html`}>
-            <Fragment set:html={HTML}/>
+        <button class={`tag button-lang-rl`}>
+            <Fragment set:html={UK}/>
             <span>EN - B 2</span>
         </button>
-        <button class={`tag button-lang css`}>
-            <Fragment set:html={CSS}/>
+        <button class={`tag button-lang-rl`}>
+            <Fragment set:html={CH}/>
             <span>CH - HSK 2</span>
         </button>
       </div>
     </ul>
   </div>
   <div class="hobbies container">
-    <h2>Hobbies</h2>
+    <h2>{translation.hobbies}</h2>
     <ul class="video-container">
       <li class="video">
         <a data-title={aboutme.hobbies['basketball']}>
@@ -218,7 +232,7 @@ const about_me = aboutme.content;
     </ul>
   </div>
   <div class="projects container">
-    <h2>Últimos proyectos</h2>
+    <h2>{translation.projects}</h2>
     {
       projects.map( project => 
         <a href={`/projects/${lang}/${project.id}`} class="project_tag" data-title={project.description[0]}>
@@ -230,11 +244,11 @@ const about_me = aboutme.content;
           <p>{project.subname}</p>
           <div class="tags">
             {
-              project.technologies??[].splice(-2).map( tech => {
+              (project.technologies??[]).splice(-2).map( tech => {
                 const data = getIconData(tech);
                 return <button class={`tag button-lang ${tech}`}>
-                    <Fragment set:html={data.svg}/>
-                    <span>{data.name}</span>
+                  <Fragment set:html={data.svg}/>
+                  <span>{data.name}</span>
                 </button>
               })
             }
@@ -244,7 +258,7 @@ const about_me = aboutme.content;
     }
   </div>
   <div class="education container">
-    <h2>Trayectoria escolar</h2>
+    <h2>{translation.schoolar}</h2>
     <ul class="experience">
       <li>
         <img src="/assets/images/me/unam.jpg" alt="Logo Multimedia">
@@ -285,13 +299,5 @@ const about_me = aboutme.content;
       </a>
     </div>
   </footer>
-  <script is:inline>
-    window.addEventListener("scroll", function () {
-      let header = document.querySelector("header");
-      if(this.window.scrollY > 50) {
-        header.classList.add('scroll-active');
-      }
-    });
-  </script>
 </body>
 </html>

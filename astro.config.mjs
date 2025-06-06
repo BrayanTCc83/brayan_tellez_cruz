@@ -3,7 +3,7 @@ import vercel from '@astrojs/vercel/serverless';
 import react from '@astrojs/react';
 
 export default defineConfig({
-  output: 'server',
+  output: import.meta.env.DEV ? 'hybrid' : 'server',
   integrations: [
     react({
       experimentalReactChildren: true,

@@ -78,13 +78,13 @@ header:has(div.nav-sentinel:hover) > .header-navigation {
 }
 
 header {
-    position: relative;
+    position: sticky;
+    top: var(--standart-size-fr);
     grid-area: n;
 }
 
 nav.header-navigation {
-    position: sticky;
-    top: var(--standart-size-fr);
+    position: relative;
     z-index: 100;
 
     overflow: hidden;
@@ -134,6 +134,42 @@ nav.header-navigation {
                     stroke: var(--pale-color);
                 }
             }
+        }
+    }
+}
+
+div.language-controller {
+    position: fixed;
+    width: 100px;
+    height: 50px;
+    background-color: var(--shadow-color-dark-deep);
+    border-radius: var(--standart-size-fr);
+    bottom: var(--standart-size-fr);
+    right: var(--standart-size-fr);
+    cursor: pointer;
+
+    & > button {
+        cursor: pointer;
+        & svg * {
+            stroke: var(--text-content-color);
+        }
+    }
+
+    & > .langs-container {
+        position: absolute;
+        bottom: calc(100% + 10px);
+        right: 0;
+        list-style: none;
+        border-radius: 10px;
+        background-color: var(--shadow-color-dark-deep);
+        overflow: hidden;
+
+        & > li:hover {
+            background-color: var(--shadow-color-black);
+        }
+
+        &.hide {
+            display: none;
         }
     }
 }

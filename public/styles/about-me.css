@@ -233,6 +233,7 @@ ul.video-container {
     overflow: hidden;
     align-items: center;
     justify-content: center;
+    padding: 15px;
 
     & > img {
         width: 100%;

@@ -14,7 +14,6 @@ const Carousel = ({ images }: CarouselProps): React.JSX.Element => {
         let target:HTMLElement|null = e.target as HTMLElement;
         while(target && (target as HTMLElement).tagName !== 'BUTTON') {
             target = (target as HTMLElement).parentElement;
-            console.log(target?.tagName)
         }
         
         const index = (target as HTMLButtonElement)?.getAttribute('aria-colindex');
