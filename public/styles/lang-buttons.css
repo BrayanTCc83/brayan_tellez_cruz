@@ -8,6 +8,12 @@
     --html-color: #E34F26;
     --css-color: #1572B6;
     --django-color: #092E20;
+    --py-color: #FFD43B;
+    --c-color: #A8B9CC;
+    --cpp-color: #00599C;
+    --csharp-color: #68217A;
+    --godot-color: #478CBF;
+    --react-color: #68217A;
 }
 
 button.tag, a.tag {
@@ -71,6 +77,30 @@ button.tag, a.tag {
 
 .django, .django * {
     --color: var(--django-color);
+}
+
+.c, .c * {
+    --color: var(--c-color);
+}
+
+.cpp, .cpp * {
+    --color: var(--cpp-color);
+}
+
+.csharp, .csharp * {
+    --color: var(--csharp-color);
+}
+
+.py, .py * {
+    --color: var(--py-color);
+}
+
+.react, .react * {
+    --color: var(--react-color);
+}
+
+.godot, .godot * {
+    --color: var(--godot-color);
 }
 
 .button-lang, .button-lang * {

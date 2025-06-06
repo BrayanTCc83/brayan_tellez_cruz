@@ -1,1 +1,0 @@
-export const API = "https:/brayantellez.com/api";

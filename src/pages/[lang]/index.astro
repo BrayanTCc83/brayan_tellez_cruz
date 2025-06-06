@@ -9,7 +9,9 @@ import CSS from "/assets/icons/CSS.svg?raw";
 import Navigation from "../../components/Navigation.astro";
 import Carousel from "../../components/react/Carousel";
 import { AboutMe, MainProject, MainProjectImages } from "../../api/aboutme.ts";
-import { API } from "../../api/base.ts";
+import { GetLatestVideos } from "../../api/youtube.ts";
+import { GetLatestProjects } from "../../api/projects.ts";
+import { getIconData } from "../../utils/getIconData.ts";
 
 export async function getStaticPaths() {
   return [
@@ -20,8 +22,10 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 const aboutme = await AboutMe({ lang });
-const project = await MainProject({ lang });
-const images = (await MainProjectImages()).map( img => `${API}${img}` );
+const mainproject = await MainProject({ lang });
+const images = await MainProjectImages();
+const latestVideos = await GetLatestVideos();
+const projects = await GetLatestProjects({ lang });
 
 const name = 'Brayan Téllez Cruz'
 const credentials = aboutme.credentials;
@@ -68,7 +72,7 @@ const routes = [
     <Navigation lang={lang}/>
   </header>
   <section class="photo container" itemscope itemtype="https://schema.org/Person">
-    <img alt="Foto de perfil" itemprop="image"/>
+    <img src="/assets/images/me/brayan.jpg" alt="Foto de perfil" itemprop="image"/>
     <h2 itemprop="name">{name}</h1>
     <h3 itemprop="jobTitle">{credentials}</h2>
   </section>
@@ -96,33 +100,39 @@ const routes = [
     </ul>
   </div>
   <div class="main_project container">
-    <h2>Proyecto destacado: {project_name}.</h2>
+    <h2>{lang == 'es' ? 'Proyecto destacado': 'Main project'}: {mainproject.name}.</h2>
+    <h3>{mainproject.subname}</h3>
     {
-      project.description??[].map( d => <p>{d}</p> )
+      mainproject.description??[].map( d => <p>{d}</p> )
     }
+    <div class="tags">
+      {
+        mainproject.technologies.map( tech => {
+          const data = getIconData(tech);
+          return <button class={`tag button-lang ${tech}`}>
+              <Fragment set:html={data.svg}/>
+              <span>{data.name}</span>
+          </button>
+        })
+      }
+    </div>
     <section itemprop="image">
       <Carousel images={images} client:only="react"/>
     </section>
     <div class="tags">
-      <a class="cv" href="https://mmedia1.fi-b.unam.mx/lua/">Aplicación web Lua</a>
-    </div>
-    <div class="tags">
-      <button class={`tag button-lang js`}>
-          <Fragment set:html={JavaScript}/>
-          <span>JavaScript</span>
-      </button>
-      <button class={`tag button-lang html`}>
-          <Fragment set:html={HTML}/>
-          <span>HTML</span>
-      </button>
-      <button class={`tag button-lang css`}>
-          <Fragment set:html={CSS}/>
-          <span>CSS</span>
-      </button>
-      <button class={`tag button-lang django`}>
-          <Fragment set:html={Django}/>
-          <span>Django</span>
-      </button>
+      {
+        mainproject.urlweb ? 
+          <a class="cv" href={mainproject.urlweb}>{lang == 'es' ? 'Aplicación web': 'Web app'} {mainproject.name}</a>
+        : null
+      }
+      {
+        mainproject.urlgit ?
+          <a href={mainproject.urlgit} class={`tag button-lang github`}>
+            <Fragment set:html={GitHub}/>
+            <span>Repositorio</span>
+          </a>
+        : null
+      }
     </div>
   </div>
   <div class="about container">
@@ -137,7 +147,25 @@ const routes = [
     </p>
   </div>
   <div class="videos container">
-
+    <h2>Últimos vídeos</h2>
+    <ul class="video-container">
+      {latestVideos.items.map( video => (
+        <li class="video">
+          <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`} target="_blank" data-title={video.snippet.title}>
+            <img
+              src={video.snippet.thumbnails.high.url}
+              alt={video.snippet.channelTitle}
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="tags">
+      <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx">
+        <Fragment set:html={Youtube}/>
+        <span>Ver más</span>
+      </a>
+    </div>
   </div>
   <div class="languages container">
     <h2>Idiomas</h2>
@@ -159,10 +187,59 @@ const routes = [
     </ul>
   </div>
   <div class="hobbies container">
-
+    <h2>Hobbies</h2>
+    <ul class="video-container">
+      <li class="video">
+        <a data-title={aboutme.hobbies['basketball']}>
+          <img
+            src={'/assets/images/hobbies/basketball.png'}
+            alt={'Basketball'}
+          />
+        </a>
+      </li>
+      <li class="video">
+        <a data-title={aboutme.hobbies['cooking']}>
+          <img
+            src={'/assets/images/hobbies/cooking.png'}
+            alt={'Cooking'}
+          />
+        </a>
+      </li>
+      <li class="video">
+        <a data-title={aboutme.hobbies['reading']}>
+          <img
+            src={'/assets/images/hobbies/reading.png'}
+            alt={'Reading'}
+          />
+        </a>
+      </li>
+    </ul>
   </div>
   <div class="projects container">
-
+    <h2>Últimos proyectos</h2>
+    {
+      projects.map( project => 
+        <a href={`/projects/${lang}/${project.id}`} class="project_tag" data-title={project.description[0]}>
+          <h3>{project.name}</h3>
+          <img
+            src={`/assets/projects/${project.id}/${project.cover}`}
+            alt={project.id}
+          />
+          <p>{project.subname}</p>
+          <div class="tags">
+            {
+              project.technologies.splice(-2).map( tech => {
+                const data = getIconData(tech);
+                return <button class={`tag button-lang ${tech}`}>
+                    <Fragment set:html={data.svg}/>
+                    <span>{data.name}</span>
+                </button>
+              })
+            }
+          </div>
+        </a> 
+      )
+    }
   </div>
   <div class="education container">
     <h2>Trayectoria escolar</h2>

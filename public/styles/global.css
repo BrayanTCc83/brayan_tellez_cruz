@@ -19,6 +19,7 @@
     --text-content-color: var(--light-color);
     --background-color: var(--dark-color);
     --shadow-color: rgba(5, 12, 17, 0.4);
+    --shadow-color-black: rgba(0, 0, 0, 0.95);
     --shadow-color-dark: rgba(46, 17, 53, 0.25);
     --shadow-color-dark-deep: rgba(46, 17, 53, 0.7);
     --error-color: rgb(151, 45, 50);

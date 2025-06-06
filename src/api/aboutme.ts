@@ -1,41 +1,38 @@
-import { API } from "./base";
-
-import type { IAbout, IAboutContentDescription, ILangSupport, IMainProject } from "../interface/LangSupport";
+import type { IAbout, ILangSupport, IProject } from "../interface/LangSupport";
 
 export const AboutMe = async ({ lang }: ILangSupport): Promise<IAbout> => {
-    return fetch(`${API}/about?lang=${lang}`)
+    return fetch(`${import.meta.env.API}/api/about/${lang}`)
         .then( res => res.ok ? res.json() : {error: res.statusText} )
-        .catch( err => {
-            console.error(err);
-            return {
-                credentials: '',
-                content: {
-                    description: [] as IAboutContentDescription[],
-                    header: ''
-                },
-                meta: {
-                    description: '',
-                    image: '',
-                    url: ''
-                }
-            } as IAbout;
-        });
+        .catch( _ => ({
+            content: {
+                description: [],
+                header: ''
+            },
+            credentials: '',
+            meta: {
+                description: '',
+                image: '',
+                url: ''
+            },
+            hobbies: {}
+        }) as IAbout);
 }
 
-export const MainProject = async ({ lang }: ILangSupport): Promise<IMainProject> => {
-    return fetch(`${API}/mainproject?lang=${lang}`)
+export const MainProject = async ({ lang }: ILangSupport): Promise<IProject> => {
+    return fetch(`${import.meta.env.API}/api/mainproject/${lang}`)
         .then( res => res.ok ? res.json() : {error: res.statusText} )
-        .catch( err => {
-            console.error(err);
-            return [];
-        });
+        .catch( _ => ({
+            description: [],
+            name: '',
+            subname: '',
+            technologies: [],
+            urlgit: '',
+            urlweb: ''
+        }) as unknown as IProject);
 }
 
 export const MainProjectImages = async (): Promise<string[]> => {
-    return fetch(`${API}/mainproject/images`)
+    return fetch(`${import.meta.env.API}/api/mainproject/images`)
         .then( res => res.ok ? res.json() : {error: res.statusText} )
-        .catch( err => {
-            console.error(err);
-            return [];
-        });
+        .catch( err => []);
 }
