@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { BLOG_URL, INDEX_URL, PROJECT_URL, USER_URL } from '../../router/routes';
+import { BLOG_URL, INDEX_URL, PROJECT_URL, USER_URL } from '../../router/routes.ts';
 
 import STATUS from '../../status/statuscode';
 

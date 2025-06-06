@@ -34,5 +34,5 @@ export const MainProject = async ({ lang }: ILangSupport): Promise<IProject> => 
 export const MainProjectImages = async (): Promise<string[]> => {
     return fetch(`${import.meta.env.API}/api/mainproject/images`)
         .then( res => res.ok ? res.json() : {error: res.statusText} )
-        .catch( err => []);
+        .catch( _ => []);
 }
