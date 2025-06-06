@@ -13,7 +13,7 @@ import { GetLatestVideos } from "../../api/youtube.ts";
 import { GetLatestProjects } from "../../api/projects.ts";
 import { getIconData } from "../../utils/getIconData.ts";
 import type { IYoutubeVideoItem } from "../../interface/ThirdAPI";
-import type { IProject } from "../../interface/LangSupport";
+import type { IProject, IAboutContentDescription } from "../../interface/LangSupport";
 
 export async function getStaticPaths() {
   return [
@@ -139,7 +139,7 @@ const about_me = aboutme.content;
       <span>{about_me.header}</span>
       <ul>
         {
-          about_me.description??[].map( ({strong, text}) => <li><strong>{strong}: </strong>{text}</li> )
+          about_me.description.map( ({strong, text}) => <li><strong>{strong}: </strong>{text}</li>)
         }
       </ul>
     </p>
@@ -147,16 +147,20 @@ const about_me = aboutme.content;
   <div class="videos container">
     <h2>Últimos vídeos</h2>
     <ul class="video-container">
-      {latestVideos.items??([] as IYoutubeVideoItem[]).map( video => (
-        <li class="video">
-          <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`} target="_blank" data-title={video.snippet.title}>
-            <img
-              src={video.snippet.thumbnails.high.url}
-              alt={video.snippet.channelTitle}
-            />
-          </a>
-        </li>
-      ))}
+      {
+        latestVideos.items ?
+          latestVideos.items.map( video => (
+            <li class="video">
+              <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`} target="_blank" data-title={video.snippet.title}>
+                <img
+                  src={video.snippet.thumbnails.high.url}
+                  alt={video.snippet.channelTitle}
+                />
+              </a>
+            </li>
+          ))
+        : null
+      }
     </ul>
     <div class="tags">
       <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx">
@@ -216,7 +220,7 @@ const about_me = aboutme.content;
   <div class="projects container">
     <h2>Últimos proyectos</h2>
     {
-      projects??([] as IProject[]).map( project => 
+      projects.map( project => 
         <a href={`/projects/${lang}/${project.id}`} class="project_tag" data-title={project.description[0]}>
           <h3>{project.name}</h3>
           <img
