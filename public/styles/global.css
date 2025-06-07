@@ -81,16 +81,23 @@ header {
     position: sticky;
     top: var(--standart-size-fr);
     grid-area: n;
+    padding: 0;
+    z-index: 100;
 }
 
 nav.header-navigation {
     position: relative;
     z-index: 100;
-
     overflow: hidden;
     border-radius: var(--standart-size-fr);
     background-color: var(--shadow-color);
+    transition: background-color 0.2s ease-in-out;
     border: none;
+
+    &.scrolled {
+        background-color: var(--shadow-color-black);
+    }
+
     & > ul {
         height: 50px;
         display: flex;
@@ -294,7 +301,8 @@ footer.data {
 }
 
 nav.breadcrumb {
-    padding: 20px 10%;
+    z-index: 99;
+    padding: 0 var(--standart-size-fr);
 
     & > ul {
         display: flex;

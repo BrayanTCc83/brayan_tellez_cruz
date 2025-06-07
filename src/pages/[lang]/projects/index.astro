@@ -1,69 +1,27 @@
 ---
 import Template from "../../../template/Template.astro";
-import JavaScriptIcon from "/assets/icons/JavaScriptIcon.svg?raw"
-import TypeScriptIcon from "/assets/icons/TypeScriptIcon.svg?raw"
-import ReactIcon from "/assets/icons/ReactIcon.svg?raw"
 import Article from "../../../components/project/Article.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
+import LanguageController from "../../../components/LanguageController.astro";
+import { GetAllProjects } from "../../../api/projects";
 
 export async function getStaticPaths() {
   return [
     { params: { lang: 'es' } },
     { params: { lang: 'en' } },
+    { params: { lang: 'ch' } },
   ];
 }
 
 const { lang } = Astro.params;
-const projects = [
-    {
-        id: 'abc',
-        title: 'Proyecto',
-        description: `
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime, deleniti beatae, at quidem sit illum laudantium nostrum commodi quia ullam praesentium, ipsum veritatis adipisci! Ipsa in minima quis sunt ratione.
-        Modi, unde expedita! Debitis iure maiores est minima tempore dolorum pariatur, facere iste repudiandae tenetur magnam, similique quae? Neque autem numquam tempore ab! Necessitatibus, delectus veniam? Itaque modi tenetur adipisci.`,
-        date: new Date('15-02-2025'),
-        technologies: [
-            { icon: JavaScriptIcon, lang: 'JavaScript', style: 'js' },
-            { icon: TypeScriptIcon, lang: 'TypeScript', style: 'ts' },
-            { icon: ReactIcon, lang: 'React', style: 'react' }
-        ],
-        images: []
-    },
-    {
-        id: 'abcd',
-        title: 'Proyecto',
-        description: `
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime, deleniti beatae, at quidem sit illum laudantium nostrum commodi quia ullam praesentium, ipsum veritatis adipisci! Ipsa in minima quis sunt ratione.
-        Modi, unde expedita! Debitis iure maiores est minima tempore dolorum pariatur, facere iste repudiandae tenetur magnam, similique quae? Neque autem numquam tempore ab! Necessitatibus, delectus veniam? Itaque modi tenetur adipisci.`,
-        date: new Date('15-02-2025'),
-        technologies: [
-            { icon: JavaScriptIcon, lang: 'JavaScript', style: 'js' },
-            { icon: TypeScriptIcon, lang: 'TypeScript', style: 'ts' },
-            { icon: ReactIcon, lang: 'React', style: 'react' }
-        ],
-        images: []
-    },
-    {
-        id: 'abcde',
-        title: 'Proyecto',
-        description: `
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime, deleniti beatae, at quidem sit illum laudantium nostrum commodi quia ullam praesentium, ipsum veritatis adipisci! Ipsa in minima quis sunt ratione.
-        Modi, unde expedita! Debitis iure maiores est minima tempore dolorum pariatur, facere iste repudiandae tenetur magnam, similique quae? Neque autem numquam tempore ab! Necessitatibus, delectus veniam? Itaque modi tenetur adipisci.`,
-        date: new Date('15-02-2025'),
-        technologies: [
-            { icon: JavaScriptIcon, lang: 'JavaScript', style: 'js' },
-            { icon: TypeScriptIcon, lang: 'TypeScript', style: 'ts' },
-            { icon: ReactIcon, lang: 'React', style: 'react' }
-        ],
-        images: []
-    }
-];
+const projects = await GetAllProjects({ lang });
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
   { text: 'Proyectos', href: '/proyectos' }
 ];
 ---
-<Template includes={['projectcard', 'lang-buttons']} lang={lang}>
+<Template includes={['projects', 'projectcard', 'lang-buttons']} lang={lang}>
+    <LanguageController lang={lang}/>
     <Breadcrumb routes={routes}/>
     <section id="main">
         {

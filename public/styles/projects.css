@@ -1,0 +1,25 @@
+body {
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-template-areas:
+        "n n n n n n n n n n n n"
+        "b b b b f f f f f f f f"
+        "p p p p p p p p p p p p";
+}
+
+header {
+    grid-area: n;
+    height: fit-content;
+}
+
+section#main {
+    grid-area: p;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb {
+    position: sticky;
+    top: 100px;
+    grid-area: b;
+}

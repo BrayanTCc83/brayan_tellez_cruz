@@ -3,7 +3,27 @@ import Navigation from "./Navigation.astro"
 
 const { lang } = Astro.props;
 ---
-
 <header>
     <Navigation lang={lang}/>
 </header>
+<div id="scroll-sentinel" style="position: absolute; top: 75px; height: 1px;"></div>
+<script is:inline>
+    const nav = document.querySelector(".header-navigation");
+    const sentinel = document.getElementById('scroll-sentinel');
+
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+        if (!entry.isIntersecting) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+        },
+        {
+        root: null,
+        threshold: 0,
+        }
+    );
+
+    observer.observe(sentinel);
+</script>

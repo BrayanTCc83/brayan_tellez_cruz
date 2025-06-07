@@ -2,6 +2,7 @@
 import User from "/assets/icons/User.svg?raw";
 import Blog from "/assets/icons/Blog.svg?raw";
 import Project from "/assets/icons/Project.svg?raw";
+import Learn from "/assets/icons/Learn.svg?raw";
 
 const { lang } = {
     lang: 'es',
@@ -51,9 +52,9 @@ const elems = (options as any)[lang ? lang: 'es'];
             </a>
         </li>
         <li>
-            <a href={`/${lang ? lang : 'es'}/blogs`}>
-                <Fragment set:html={Blog}/>
-                {elems.blogs}
+            <a href={`/${lang ? lang : 'es'}/learn`}>
+                <Fragment set:html={Learn}/>
+                {elems.learn}
             </a>
         </li>
     </ul>

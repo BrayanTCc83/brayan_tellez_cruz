@@ -36,4 +36,5 @@ export interface IProject {
     urlgit?: string
     urlweb?: string
     cover: string
+    date?: string
 }

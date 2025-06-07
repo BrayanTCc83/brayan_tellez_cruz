@@ -1,36 +1,46 @@
 ---
-const { id, title, date, description, technologies } = {
+import { GetProjectImages } from "../../api/projects";
+import type {IProject} from "../../interface/LangSupport";
+import { getIconData } from "../../utils/getIconData";
+
+const { id, name, date, description, technologies }: IProject = {
     id: '',
-    title: '',
-    date: new Date(),
-    description: '',
-    technologies: [],
+    name: '',
+    date: '',
+    description: [] as string[],
+    technologies: [] as string[],
+    subname: '',
+    cover: '',
     ...Astro.props
 };
+const images = (await GetProjectImages({ id })).splice(-3);
 ---
-<article class="project-card">
+<article class="project-card container">
     <div class="images-container">
-        <img src="" alt="Not found"/>
-        <img src="" alt="Not found"/>
-        <img src="" alt="Not found"/>
+        <img src={images[0]} alt="Not found"/>
+        <img src={images[1]} alt="Not found"/>
+        <img src={images[2]} alt="Not found"/>
     </div>
     <main>
-        <h2>{title}</h2>
+        <h2>{name}</h2>
         <span>Fecha de realización: {date}</span>
         <p>
             <b>Descripción:</b><br>
-            {description}
+            {
+                (description??[]).map( d => <p>{d}</p>)
+            }
         </p>
         <a href={`/proyectos/${id}`}>Detalles</a>
     </main>
     <footer>
         {
-            technologies.map( ({ lang, icon, style }) =>
-                <button class={`tag button-lang ${style}`}>
-                    <Fragment set:html={icon}/>
-                    <span>{lang}</span>
+            technologies.map( tech => {
+                const data = getIconData(tech);
+                return <button class={`tag button-lang ${tech}`}>
+                    <Fragment set:html={data.svg}/>
+                    <span>{data.name}</span>
                 </button>
-            )
+            })
         }
     </footer>
 </article>

@@ -15,7 +15,6 @@ import AboutES from "../../data/es/translation.json";
 import AboutEN from "../../data/en/translation.json";
 import AboutCH from "../../data/ch/translation.json";
 
-import Navigation from "../../components/Navigation.astro";
 import LanguageController from "../../components/LanguageController.astro";
 import Carousel from "../../components/react/Carousel";
 
@@ -25,6 +24,7 @@ import { getIconData } from "../../utils/getIconData.ts";
 import { GetLatestVideos } from "../../api/youtube.ts";
 
 import type { IAboutMeTranslation } from "../../interface/AppLangs.ts";
+import Header from "../../components/Header.astro";
 
 export async function getStaticPaths() {
   return [
@@ -78,10 +78,7 @@ const about_me = aboutme.content;
 </head>
 
 <body id="root">
-  <header>
-    <div class="nav-sentinel"></div>
-    <Navigation lang={lang}/>
-  </header>
+  <Header lang={lang}/>
   <LanguageController lang={lang}/>
   <section class="photo container" itemscope itemtype="https://schema.org/Person">
     <img src="/assets/images/langs/Rust.png" alt="Foto de perfil" itemprop="image"/>

@@ -84,7 +84,6 @@ section#main {
 
 .project-card {
     display: grid;
-    border: 2px solid var(--main-color);
     border-radius: 10px;
     gap: 20px;
 
