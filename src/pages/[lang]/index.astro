@@ -46,7 +46,7 @@ const credentials = aboutme.credentials;
 const translation: IAboutMeTranslation = lang === 'es' ? AboutES.about : lang === 'en' ? AboutEN.about : AboutCH.about;
 const meta = {
   ...aboutme.meta,
-  title: `${translation.title} - ${name}`
+  title: `${name} | ${translation.title}`
 };
 const about_me = aboutme.content;
 ---
