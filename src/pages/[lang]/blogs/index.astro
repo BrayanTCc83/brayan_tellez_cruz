@@ -9,6 +9,7 @@ export async function getStaticPaths() {
   return [
     { params: { lang: 'es' } },
     { params: { lang: 'en' } },
+    { params: { lang: 'ch' } },
   ];
 }
 
@@ -23,8 +24,8 @@ const routes = [
     <LanguageController lang={lang}/>
     <Breadcrumb routes={routes}/>
     <section id="main">
-        {
-            articulos.map( articulo => <Article {...articulo} expectedLang={lang}/> )
-        }
+      {
+        articulos.map( articulo => <Article {...articulo} expectedLang={lang}/> )
+      }
     </section>
 </Template>
