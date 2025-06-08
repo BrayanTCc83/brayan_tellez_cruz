@@ -1,0 +1,9 @@
+{
+    "id": "grammar-analizer-part-1",
+    "lang": "es",
+    "title": "Creando un analizador gramatical (Parte 1)",
+    "description": "Plantearemos los objetivos del proyecto y el diseño del analizador.",
+    "duration": 5,
+    "technology": "C",
+    "author": "Brayan Téllez Cruz"
+}

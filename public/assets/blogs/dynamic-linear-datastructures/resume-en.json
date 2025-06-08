@@ -1,0 +1,9 @@
+{
+    "id": "dynamic-linear-datastructures",
+    "lang": "en",
+    "title": "Dynamic Linear Data Structures",
+    "description": "Will explain differences between linear data structures that exists and provide examples for it implementation.",
+    "duration": 20,
+    "technology": "C",
+    "author": "Brayan Téllez Cruz"
+}

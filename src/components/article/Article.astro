@@ -1,14 +1,32 @@
 ---
-const { titulo, lenguaje, autor, descripcion, duracion, id, langs, expectedLang } = Astro.props;
+import MX from "/assets/flags/mx.svg?raw";
+import CH from "/assets/flags/ch.svg?raw";
+import UK from "/assets/flags/uk.svg?raw";
+
+import type { IBlogResume } from "../../interface/Blog";
+
+const { title, author, description, duration, lang, technology, id }: IBlogResume = {
+    id: '',
+    description: '',
+    duration: 0,
+    lang: '',
+    technology: '',
+    title: '',
+    author: '',
+    ...Astro.props
+};
 ---
 
-<article>
-    <img src={`/assets/images/langs/${lenguaje}.png`} alt="Lenguaje no reconocido">
+<article class="container">
+    <img src={`/assets/images/langs/${technology}.png`} alt="Lenguaje no reconocido">
     <div>
-        <h2>{titulo}</h2>
-        <h3 class="author">{autor}</h3>
-        <span>{duracion} minutos</span>
-        <p>Descripción:<br/> {descripcion}</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
+        <b>{author}</b>
+        <span>{duration} minutos</span>
     </div>
-    <a href={`/${expectedLang in langs ? expectedLang : langs[0]}/blog/${id}`}></a>
+    <button class="tag lang">
+        <Fragment set:html={ lang === 'es' ? MX : lang === 'en' ? UK : CH }/>
+    </button>
+    <a href={`/${lang}/blog/${id}`}></a>
 </article>
