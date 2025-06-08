@@ -1,0 +1,94 @@
+---
+import type { ILearnFlow } from "../../interface/Learn";
+const flow: ILearnFlow[] = Astro.props.flow ?? [];
+
+const childrenMap = new Map<number, number[]>();
+const parentCount = new Map<number, number>();
+
+flow.forEach(node => {
+  node.next.forEach(childId => {
+    if (!childrenMap.has(node.id)) childrenMap.set(node.id, []);
+    childrenMap.get(node.id)?.push(childId);
+    parentCount.set(childId, (parentCount.get(childId) ?? 0) + 1);
+  });
+});
+
+const roots = flow.filter(n => !parentCount.has(n.id)).map(n => n.id);
+
+const nodePositions = new Map<number, { x: number, y: number }>();
+const levelWidth = 200;
+const levelHeight = 120;
+let nextY = 0;
+
+function layout(id: number, depth: number): number {
+  const children = childrenMap.get(id) ?? [];
+  if (children.length === 0) {
+    const y = nextY++;
+    nodePositions.set(id, { x: depth * levelWidth, y: y * levelHeight });
+    return y;
+  }
+  const childYs = children.map(childId => layout(childId, depth + 1));
+  const avgY = childYs.reduce((a, b) => a + b, 0) / childYs.length;
+  nodePositions.set(id, { x: depth * levelWidth, y: avgY * levelHeight });
+  return avgY;
+}
+
+roots.forEach(rootId => layout(rootId, 0));
+
+let maxX = 0;
+let maxY = 0;
+nodePositions.forEach(pos => {
+    if (pos.x > maxX) maxX = pos.x;
+    if (pos.y > maxY) maxY = pos.y;
+});
+
+const svgWidth = maxX + 60;
+const svgHeight = maxY + 60;
+---
+<section class="graph-container">
+    <svg width={svgWidth} height={svgHeight}>
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#f3e3f3" />
+            </marker>
+        </defs>
+        {
+            flow.map(node => {
+                const from = nodePositions.get(node.id);
+                if (!from) return null;
+                return node.next.map(toId => {
+                const to = nodePositions.get(toId);
+                if (!to) return null;
+
+                const x1 = from.x + 30;
+                const y1 = from.y + 30;
+                const x2 = to.x;
+                const y2 = to.y + 30;
+                const dx = (x2 - x1) / 2;
+
+                return (
+                    <path
+                    d={`M${x1},${y1} C${x1 + dx},${y1} ${x2 - dx},${y2} ${x2},${y2}`}
+                    class="arrow"
+                    />
+                );
+                });
+            })
+        }
+    </svg>
+
+  {flow.map(node => {
+    const pos = nodePositions.get(node.id);
+    if (!pos) return null;
+
+    return (
+      <a href={node.video} target="_blank" class="node" style={`top: ${pos.y}px; left: ${pos.x}px`}>
+        <div class="tooltip">
+          <strong>{node.concept}</strong>
+          <br />
+          <small>{node.abs}</small>
+        </div>
+      </a>
+    );
+  })}
+</section>

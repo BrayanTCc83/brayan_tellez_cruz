@@ -1,0 +1,8 @@
+{
+    "id": "datastructures",
+    "lang": "es",
+    "title": "Estructuras de datos.",
+    "description": "Las estructuras de datos son formas de organizar y almacenar la información en un programa de manera que sea más fácil y eficiente accederla, modificarla o recorrerla. Son fundamentales en el desarrollo de software porque permiten resolver problemas de forma eficiente en términos de tiempo y memoria.<br><br><b>Estructuras Estáticas:</b><br>Son aquellas cuyo tamaño se define al momento de su creación y no puede modificarse en tiempo de ejecución. Son simples y eficientes, pero menos flexibles.<br><br><b>Estructuras Dinámicas:</b><br>Estas estructuras se pueden ajustar en tiempo de ejecución. Utilizan punteros o referencias para gestionar la memoria de forma flexible.",
+    "url": "https://www.youtube.com/playlist?list=PLZ5Uvn-ndEmQd109eqmJ1OciLnMD5THEf",
+    "git": "https://github.com/BrayanTCc83/Estructuras.git"
+}

@@ -1,0 +1,106 @@
+body {
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-template-areas:
+        "n n n n n n n n n n n n"
+        "b b b b f f f f f f f f"
+        "p p p p p p p p p p p p";
+}
+
+header {
+    grid-area: n;
+    height: fit-content;
+}
+
+section#main {
+    grid-area: p;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb {
+    position: sticky;
+    top: 100px;
+    grid-area: b;
+}
+
+article {
+    position: relative;
+    align-items: center;
+    
+    & > h2, & > p {
+        width: 100%;
+    }
+
+    & > button {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        border-radius: 10px !important;
+        min-width: fit-content !important;
+        background-color: var(--shadow-color) !important;
+    }
+}
+
+.graph-container {
+    margin: 50px 0;
+    position: relative;
+    height: fit-content;
+
+    & .node {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: #d8cfcf;
+        border-radius: 50%;
+        border: 2px solid white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+    }
+
+    & .node:hover {
+        transform: scale(1.1);
+        z-index: 2;
+    }
+
+    & a {
+        text-decoration: none;
+    }
+
+    & .tooltip {
+        position: relative;
+        background: rgba(0, 0, 0, 0.9);
+        color: pink;
+        padding: 12px;
+        border-radius: 10px;
+        max-width: 300px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        font-size: 0.85rem;
+    }
+
+    & .node:hover .tooltip {
+        opacity: 1;
+    }
+
+    & svg {
+        position: relative;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        overflow: visible;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    & .arrow {
+        stroke: #f3e3f3;
+        stroke-width: 2;
+        marker-end: url(#arrowhead);
+        fill: none;
+    }
+}

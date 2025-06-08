@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "video": "https://youtu.be/UdC4hVRHckk?si=V0DHgvDBUzZ8ZRkn",
+    "concept": "Introducción a las estructuras de datos",
+    "abs": "Panorama general de las estructuras de datos en programación.",
+    "next": [2, 10]
+  },
+  {
+    "id": 2,
+    "video": "https://youtu.be/1I8B4jxeb1A?si=UWS9Alki1_0I_i7v",
+    "concept": "Arreglos",
+    "abs": "Cómo se usan los arreglos como base de estructuras de datos.",
+    "next": [3, 4, 5, 9]
+  },
+  {
+    "id": 3,
+    "video": "https://youtu.be/IhWifTl--dk?si=-a67TXfuTnNKXJOt",
+    "concept": "Pilas (estáticas)",
+    "abs": "Implementación de pilas con arreglos.",
+    "next": []
+  },
+  {
+    "id": 4,
+    "video": "https://youtu.be/WnOy2FgwlHU?si=osG6rMKa-MPPYPvH",
+    "concept": "Colas (estáticas)",
+    "abs": "Colas implementadas con arreglos.",
+    "next": [7]
+  },
+  {
+    "id": 5,
+    "video": "https://youtu.be/GxSggy6zn1Q?si=UsHKKSu6QlVrdrD1",
+    "concept": "Listas desordenadas (estáticas)",
+    "abs": "Cómo funcionan listas sin orden dentro de arreglos.",
+    "next": [6]
+  },
+  {
+    "id": 6,
+    "video": "https://youtu.be/v1Z33XeQi7o?si=gYPcwLrVsg6IpiW9",
+    "concept": "Listas ordenadas (estáticas)",
+    "abs": "Implementación de listas ordenadas con estructuras estáticas.",
+    "next": [8]
+  },
+  {
+    "id": 7,
+    "video": "https://youtu.be/GyXb24t4eaA?si=e_COg1EpIsccMSw3",
+    "concept": "Colas circulares (estáticas)",
+    "abs": "Uso de índices circulares para optimizar colas.",
+    "next": []
+  },
+  {
+    "id": 8,
+    "video": "https://youtu.be/dPEQw-x0VPY?si=BkgTkx12jmH1BAgm",
+    "concept": "Listas circulares (estáticas)",
+    "abs": "Aplicaciones y estructura de listas circulares.",
+    "next": []
+  },
+  {
+    "id": 9,
+    "video": "https://youtu.be/fXA29LAwyZ4?si=s9bzLa5W8nHbiV34",
+    "concept": "Conjuntos de Bits (BitSet)",
+    "abs": "Representación eficiente de conjuntos con bits.",
+    "next": []
+  },
+  {
+    "id": 10,
+    "video": "https://youtu.be/ub0mPQpTGKc?si=BstWkkJgt5qaTITW",
+    "concept": "¿Qué son los nodos? (NodoSimple)",
+    "abs": "Concepto de nodo y su aplicación en listas dinámicas.",
+    "next": [11,12]
+  },
+  {
+    "id": 11,
+    "video": "https://youtu.be/J6SIsqxgf60?si=iHcibFP36Yn_64N0",
+    "concept": "Pilas (basadas en nodos)",
+    "abs": "Uso de nodos para construir pilas dinámicas.",
+    "next": []
+  },
+  {
+    "id": 12,
+    "video": "https://youtu.be/sNEoO_zTi84?si=It9IlhcxNvV7LWSbwz",
+    "concept": "Colas (basadas en nodos)",
+    "abs": "Estructuras dinámicas de colas usando nodos.",
+    "next": []
+  }
+]

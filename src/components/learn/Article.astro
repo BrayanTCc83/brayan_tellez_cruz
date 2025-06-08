@@ -1,0 +1,38 @@
+---
+import Youtube from "/assets/icons/Youtube.svg?raw";
+import Github from "/assets/icons/GitHub.svg?raw";
+import MX from "/assets/flags/mx.svg?raw";
+import CH from "/assets/flags/ch.svg?raw";
+import UK from "/assets/flags/uk.svg?raw";
+
+import Flow from "./Flow.astro";
+
+import type { ILearnConcept } from "../../interface/Learn";
+
+const { title, lang, description, flow, url, git }: ILearnConcept = {
+    title: '',
+    description: '',
+    flow: [],
+    url: '',
+    id: '',
+    lang: '',
+    git: '',
+    ...Astro.props
+};
+---
+<article class="container">
+    <h2>{title}</h2>
+    <p set:html={description}></p>
+    <Flow flow={flow}/>
+    <button class="tag lang">
+        <Fragment set:html={ lang === 'es' ? MX : lang === 'en' ? UK : CH }/>
+    </button>
+    <a itemprop="sameAs" target="_blank" class={`tag button-lang react`} href={url}>
+        <Fragment set:html={Youtube}/>
+        <span>Playlist</span>
+    </a>
+    <a itemprop="sameAs" target="_blank" class={`tag button-lang github`} href={git}>
+        <Fragment set:html={Github}/>
+        <span>Repositorio</span>
+    </a>
+</article>
