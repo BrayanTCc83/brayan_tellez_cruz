@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
-const { lang, includes } = { 
+const { lang, includes, title } = { 
+	title: '',
 	includes: [],
 	lang: 'es',
 	...Astro.props
@@ -14,7 +15,7 @@ const { lang, includes } = {
 		<meta name="generator" content={Astro.generator} />
         <link rel="stylesheet" href="/styles/global.css">
 		{ includes.map( ( i: string ) => <link rel="stylesheet" href={`/styles/${i}.css`} set:html/> ) }
-		<title>Astro</title>
+		<title>{title}</title>
 	</head>
 	<body id="root">
         <Header lang={lang}/>

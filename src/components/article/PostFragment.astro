@@ -1,10 +1,10 @@
 ---
-    const { image, position, caption, text } = Astro.props;
+    const { image, position, caption, text, id } = Astro.props;
+    console.log(image, id);
 ---
-
 <div class="fragment">
     <figure class={position}>
-        <img src=`/assets/images/langs/${image}.png` alt="No encontrado">
+        <img src=`/assets/blogs/${id}/${image}` alt="No encontrado">
         <figcaption>{caption}</figcaption>
     </figure>
     <p>{text}</p>

@@ -28,5 +28,5 @@ const { title, author, description, duration, lang, technology, id }: IBlogResum
     <button class="tag lang">
         <Fragment set:html={ lang === 'es' ? MX : lang === 'en' ? UK : CH }/>
     </button>
-    <a href={`/${lang}/blog/${id}`}></a>
+    <a href={`/${lang}/blogs/${id}`}></a>
 </article>

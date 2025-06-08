@@ -17,7 +17,7 @@ const { lang } = Astro.params;
 const projects = await GetAllProjects({ lang });
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Proyectos', href: '/proyectos' }
+  { text: 'Proyectos', href: `/${lang}/projects` }
 ];
 ---
 <Template includes={['projects', 'projectcard', 'lang-buttons']} lang={lang}>

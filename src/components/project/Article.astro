@@ -3,6 +3,7 @@ import { GetProjectImages } from "../../api/projects";
 import type {IProject} from "../../interface/LangSupport";
 import { getIconData } from "../../utils/getIconData";
 
+const { lang } = Astro.params;
 const { id, name, date, description, technologies }: IProject = {
     id: '',
     name: '',
@@ -30,7 +31,7 @@ const images = (await GetProjectImages({ id })).splice(-3);
                 (description??[]).map( d => <p>{d}</p>)
             }
         </p>
-        <a href={`/proyectos/${id}`}>Detalles</a>
+        <a href={`/${lang}/projects/${id}`}>Detalles</a>
     </main>
     <footer>
         {

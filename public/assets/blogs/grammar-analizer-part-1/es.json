@@ -1,0 +1,17 @@
+{
+    "title": "Creando un analizador gramatical (Parte 1)",
+    "subtitle": "Objetivos del proyecto y el diseño del analizador.",
+    "duration": 5,
+    "creation_date": "08-06-2025",
+    "update_date": "08-06-2025",
+    "author": "Brayan Téllez Cruz",
+    "poster": "poster.png",
+    "fragments": [
+        {
+            "image": "poster.png", 
+            "position": "right",
+            "caption": "Figura 4: Ejemplo",
+            "text": "Contenido incompleto"
+        }
+    ]
+}

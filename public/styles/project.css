@@ -1,6 +1,36 @@
+body {
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-template-areas:
+        "n n n n n n n n n n n n"
+        "b b b b f f f f f f f f"
+        "p p p p p p p p p p p p";
+}
+
 header {
+    grid-area: n;
+    height: fit-content;
+}
+
+#main {
+    grid-area: p;
+    margin: 0;
+    padding: 0;
+    display: flex;
     flex-direction: column;
-    height: max-content;
+    gap: 20px;
+    margin: auto;
+    width: max(975px, 50vw);
+}
+
+.breadcrumb {
+    position: sticky;
+    top: 100px;
+    grid-area: b;
+}
+
+article.container {
+    flex-direction: row;
 }
 
 main > article {
@@ -9,7 +39,7 @@ main > article {
     gap: 20px;
     padding: 40px;
     margin: auto;
-    width: max(600px, 56%);
+    width: 100%;
 }
 
 div.techs {
@@ -39,10 +69,10 @@ figure {
 
 .comment {
     flex: 0 0 auto;
-    border: 2px solid var(--main-color);
     border-radius: 10px;
     overflow: hidden;
     width: 400px;
+    flex-direction: column !important;
 
     & > header {
         padding: 10px;
@@ -56,7 +86,6 @@ figure {
         width: 100%;
         box-shadow: none;
         border-radius: 0;
-        background-color: var(--background-color);
         border-bottom: 2px solid var(--second-color);
 
         & > img {
