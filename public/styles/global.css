@@ -403,7 +403,7 @@ nav.breadcrumb {
 
 @media screen and (max-width: 600px) {
     body {
-        grid-template-columns: repeat(4, 90px);
+        grid-template-columns: repeat(4, 1fr);
     }
     nav.header-navigation > ul > li > a {
         width: 80px;
