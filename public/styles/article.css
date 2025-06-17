@@ -75,18 +75,21 @@ article {
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 800px) {
+@media screen and (min-width: 451px) and (max-width: 800px) {
+    body {
+        width: 100%;
+    }
+
     section#main {
-        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
         justify-content: center;
     }
 
     article.container {
-        flex-direction: column;
+        max-width: 270px;
+        align-items: center;
         & > img {
             border-radius: 8px;
-            width: 250px;
-            height: 250px;
+            width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
         }
@@ -98,24 +101,20 @@ article {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) and (max-width: 800px) {
     section#main {
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
+}
 
-    article.container {
-        flex-direction: row;
-        & > img {
-            border-radius: 8px;
-            width: 200px;
-            height: 200px;
-            aspect-ratio: 1;
-            object-fit: cover;
-        }
+@media screen and (min-width: 451px) and (max-width: 600px) {
+    section#main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-        & > button {
-            top: 15px;
-            left: 15px;
-        }
+@media screen and (max-width: 450px) {
+    section#main {
+        grid-template-columns: repeat(1, 1fr);
     }
 }

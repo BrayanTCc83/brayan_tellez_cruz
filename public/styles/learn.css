@@ -104,3 +104,13 @@ article {
         fill: none;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .graph-container {
+        width: 200%;
+        scale: 0.5;
+        height: 450px;
+        margin: -100px 0;
+        overflow: auto;
+    }
+}
