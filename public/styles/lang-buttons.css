@@ -127,3 +127,31 @@ button.tag, a.tag {
         fill: var(--background-color) !important;
     }
 }
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    .button-lang.tag {
+        min-width: fit-content;
+        & > span {
+            display: none;
+        }
+    }
+    .button-lang-rl {
+        & > span > b {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .button-lang.tag {
+        min-width: fit-content;
+        & > span {
+            display: none;
+        }
+    }
+    .button-lang-rl {
+        & > span > b {
+            display: none;
+        }
+    }
+}

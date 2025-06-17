@@ -36,25 +36,25 @@ const elems = (options as any)[lang ? lang: 'es'];
         <li>
             <a href={`/${lang ? lang : 'es'}/`}>
                 <Fragment set:html={User}/>
-                {elems.about}
+                <span>{elems.about}</span>
             </a>
         </li>
         <li>
             <a href={`/${lang ? lang : 'es'}/projects`}>
                 <Fragment set:html={Project}/>
-                {elems.projects}
+                <span>{elems.projects}</span>
             </a>
         </li>
         <li>
             <a href={`/${lang ? lang : 'es'}/blogs`}>
                 <Fragment set:html={Blog}/>
-                {elems.blogs}
+                <span>{elems.blogs}</span>
             </a>
         </li>
         <li>
             <a href={`/${lang ? lang : 'es'}/learn`}>
                 <Fragment set:html={Learn}/>
-                {elems.learn}
+                <span>{elems.learn}</span>
             </a>
         </li>
     </ul>

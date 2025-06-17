@@ -1,15 +1,3 @@
-body {
-    grid-template-areas:
-        "n n n n n n n n n n n n"
-        ". p p p p m m m m m m ."
-        ". e e e e m m m m m m ."
-        ". t t t t t t t t t t ."
-        ". a a a a a a v v v v ."
-        ". l l l l l l v v v v ."
-        ". h h h h o o o o o o ."
-        "r r r r r r r r r r r r";
-}
-
 #main {
     display: flex;
     flex-direction: column;
@@ -223,11 +211,6 @@ ul.video-container {
     border-radius: 10px;
     display: grid;
     grid-template-columns: 200px calc(100% - 225px);
-    grid-template-areas:
-        "n n"
-        "i d"
-        "i t"
-        "a a";
     align-items: center;
     gap: var(--standart-size-fr);
     overflow: hidden;
@@ -266,5 +249,100 @@ ul.video-container {
         content: attr(data-title);
         background-color: var(--shadow-color-black);
         color: var(--second-color);
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    body {
+        grid-template-areas:
+            "n n n n n n n n n n n n"
+            ". p p p p m m m m m m ."
+            ". e e e e m m m m m m ."
+            ". t t t t t t t t t t ."
+            ". a a a a a a v v v v ."
+            ". l l l l l l v v v v ."
+            ". h h h h o o o o o o ."
+            "r r r r r r r r r r r r";
+    }
+    .project_tag {
+        grid-template-areas:
+            "n n"
+            "i d"
+            "t t"
+            "a a";
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1250px) {
+    body {
+        grid-template-areas:
+            "n n n n n n n n n n"
+            "p p p p m m m m m m"
+            "e e e e m m m m m m"
+            "t t t t t t t t t t"
+            "a a a a a a v v v v"
+            "l l l l l l v v v v"
+            "h h h h o o o o o o"
+            "r r r r r r r r r r";
+    }
+    .project_tag {
+        grid-template-areas:
+            "n n"
+            "i d"
+            "t t"
+            "a a";
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    body {
+        grid-template-areas:
+            "n n n n n n n n n"
+            "p p p p e e e e e"
+            "p p p p l l l l l"
+            "m m m m m m m m m"
+            "t t t t t t t t t"
+            "a a a a a a a a a"
+            "v v v v h h h h h"
+            "o o o o o o o o o"
+            "r r r r r r r r r";
+    }
+    .projects.container > div {
+        display: flex;
+        flex-direction: row;
+        & img {
+            width: 100%;
+        }
+    }
+    .project_tag {
+        grid-template-areas:
+            "n n"
+            "i i"
+            "d d"
+            "t t"
+            "a a";
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        grid-template-areas:
+            "n n n n"
+            "p p p p"
+            "e e e e"
+            "m m m m"
+            "t t t t"
+            "l l l l"
+            "v v v v"
+            "a a a a"
+            "h h h h"
+            "o o o o"
+            "r r r r";
+    }
+    .project_tag {
+        grid-template-areas:
+            "n n"
+            "i d"
+            "t t";
     }
 }

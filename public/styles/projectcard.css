@@ -2,84 +2,6 @@ section#main {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-
-    & > .project-card:nth-child(3n + 1) {
-        grid-template-columns: 460px 1fr;
-        grid-template-rows: auto auto;
-        grid-template-areas:
-            "i m"
-            "i f";
-
-        & > .images-container {
-            width: 460px;
-            aspect-ratio: 1;
-
-            & > img {
-                width: 300px;
-            }
-
-            & > img:nth-child(1) {
-                animation: image_base_1 8s ease-in-out 0s infinite normal;
-            }
-        
-            & > img:nth-child(2) {
-                animation: image_base_2 8s ease-in-out 0s infinite normal;
-            }
-        
-            & > img:nth-child(3) {
-                animation: image_base_3 8s ease-in-out 0s infinite normal;
-            }
-        }
-    }
-
-    & > .project-card:nth-child(3n + 2) {
-        height: fit-content;
-        width: calc(50% - 10px);
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, max-content);
-        grid-template-areas:
-            "m"
-            "f"
-            "i";
-    }
-
-    & > .project-card:nth-child(3n + 3) {
-        height: fit-content;
-        width: calc(50% - 10px);
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, max-content);
-        grid-template-areas:
-            "i"
-            "m"
-            "f";
-    }
-    
-    & > .project-card:nth-child(3n + 2),
-    & > .project-card:nth-child(3n + 3) {
-        & > .images-container {
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            width: 100%;
-            height: calc(400px * calc(6/9));
-
-            & > img {
-                width: 400px;
-            }
-
-            & > img:nth-child(1) {
-                animation: image_alt_1 8s ease-in-out 0s infinite normal;
-            }
-        
-            & > img:nth-child(2) {
-                animation: image_alt_2 8s ease-in-out 0s infinite normal;
-            }
-        
-            & > img:nth-child(3) {
-                animation: image_alt_3 8s ease-in-out 0s infinite normal;
-            }
-        }
-    }
 }
 
 .project-card {
@@ -287,5 +209,163 @@ section#main {
     0%, 100% {
         left: 100%;
         opacity: 0;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    section#main {
+        & > .project-card:nth-child(3n + 1) {
+            grid-template-columns: 460px 1fr;
+            grid-template-rows: auto auto;
+            grid-template-areas:
+                "i m"
+                "i f";
+        }
+
+        & > .project-card:nth-child(3n + 2) {
+            height: fit-content;
+            width: calc(50% - 10px);
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, max-content);
+            grid-template-areas:
+                "m"
+                "f"
+                "i";
+        }
+
+        & > .project-card:nth-child(3n + 3) {
+            height: fit-content;
+            width: calc(50% - 10px);
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, max-content);
+            grid-template-areas:
+                "i"
+                "m"
+                "f";
+        }
+
+        & > .project-card:nth-child(3n + 1) {
+            & > .images-container {
+                width: 460px;
+                aspect-ratio: 1;
+
+                & > img {
+                    width: 300px;
+                }
+
+                & > img:nth-child(1) {
+                    animation: image_base_1 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(2) {
+                    animation: image_base_2 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(3) {
+                    animation: image_base_3 8s ease-in-out 0s infinite normal;
+                }
+            }
+        }
+        
+        & > .project-card:nth-child(3n + 2),
+        & > .project-card:nth-child(3n + 3) {
+            & > .images-container {
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                width: 100%;
+                height: calc(400px * calc(6/9));
+
+                & > img {
+                    width: 400px;
+                }
+
+                & > img:nth-child(1) {
+                    animation: image_alt_1 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(2) {
+                    animation: image_alt_2 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(3) {
+                    animation: image_alt_3 8s ease-in-out 0s infinite normal;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    section#main {
+        & > .project-card:nth-child(n) {
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: auto auto;
+            grid-template-areas:
+                "i m"
+                "i f";
+        }
+
+        & > .project-card:nth-child(n) {
+            & > .images-container {
+                width: 280px;
+                aspect-ratio: 1;
+
+                & > img {
+                    width: 200px;
+                }
+
+                & > img:nth-child(1) {
+                    animation: image_base_1 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(2) {
+                    animation: image_base_2 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(3) {
+                    animation: image_base_3 8s ease-in-out 0s infinite normal;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    section#main {
+        & > .project-card:nth-child(n) {
+            grid-template-columns: auto auto;
+            grid-template-areas:
+                "i i"
+                "m m"
+                "f f";
+        }
+
+        & > .project-card:nth-child(n) {
+            & > .images-container {
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                width: 100%;
+                height: calc(400px * calc(6/9));
+
+                & > img {
+                    width: 280px;
+                }
+
+                & > img:nth-child(1) {
+                    animation: image_alt_1 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(2) {
+                    animation: image_alt_2 8s ease-in-out 0s infinite normal;
+                }
+            
+                & > img:nth-child(3) {
+                    animation: image_alt_3 8s ease-in-out 0s infinite normal;
+                }
+            }
+        }
     }
 }

@@ -186,15 +186,15 @@ const about_me = aboutme.content;
       <div class="tags">
         <button class={`tag button-lang-rl`}>
             <Fragment set:html={MX}/>
-            <span>ES - Nativo</span>
+            <span><b>ES - </b>Nativo</span>
         </button>
         <button class={`tag button-lang-rl`}>
             <Fragment set:html={UK}/>
-            <span>EN - B 2</span>
+            <span><b>EN - </b>B 2</span>
         </button>
         <button class={`tag button-lang-rl`}>
             <Fragment set:html={CH}/>
-            <span>CH - HSK 2</span>
+            <span><b>CH - </b>HSK 2</span>
         </button>
       </div>
     </ul>
@@ -230,6 +230,7 @@ const about_me = aboutme.content;
   </div>
   <div class="projects container">
     <h2>{translation.projects}</h2>
+    <div>
     {
       projects.map( project => 
         <a href={`/projects/${lang}/${project.id}`} class="project_tag" data-title={project.description[0]}>
@@ -253,6 +254,7 @@ const about_me = aboutme.content;
         </a> 
       )
     }
+    </div>
   </div>
   <div class="education container">
     <h2>{translation.schoolar}</h2>

@@ -23,7 +23,3 @@ section#main {
     top: 100px;
     grid-area: b;
 }
-
-article.container {
-    flex-direction: row;
-}
