@@ -14,6 +14,7 @@ export const AboutMe = async ({ lang }: ILangSupport): Promise<IAbout> => {
                 image: '',
                 url: ''
             },
+            skills: {},
             hobbies: {}
         }) as IAbout);
 }
