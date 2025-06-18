@@ -18,9 +18,9 @@ export const GetOrSaveYoutubeResponseCache = async <T,>(key: string, url: string
     const cached:CachedTTL<T> | null | undefined = YoutubeCache.get(key);
     if(cached && CacheValidateTTL<T>(cached)) {
         if((cached.data as any).error) {
-            throw cached;
+            throw cached.data;
         }
-        return cached;
+        return cached.data;
     }
 
     const res = await fetch(url);

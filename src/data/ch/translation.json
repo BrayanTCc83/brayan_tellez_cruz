@@ -1,13 +1,13 @@
 {
     "about": {
-        "title": "Sobre mí",
-        "schoolar": "Trayectoria escolar",
-        "mainProject": "Proyecto destacado",
-        "skills": "Habilidades",
-        "about": "Sobre mí",
-        "langs": "Idiomas",
-        "videos": "Últimos vídeos",
-        "hobbies": "Pasatiempos",
-        "projects": "Proyectos recientes"
+        "title": "关于我",
+        "schoolar": "学习经历",
+        "mainProject": "重点项目",
+        "skills": "技能",
+        "about": "关于我",
+        "langs": "语言",
+        "videos": "最新视频",
+        "hobbies": "爱好",
+        "projects": "近期项目"
     }
 }

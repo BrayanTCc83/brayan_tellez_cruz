@@ -1,11 +1,14 @@
 ---
-import JavaScript from "/assets/icons/JavaScriptIcon.svg?raw";
 import LinkedIn from "/assets/icons/LinkedIn.svg?raw";
 import Youtube from "/assets/icons/Youtube.svg?raw";
 import GitHub from "/assets/icons/GitHub.svg?raw";
-import Django from "/assets/icons/Django.svg?raw";
-import HTML from "/assets/icons/HTML.svg?raw";
-import CSS from "/assets/icons/CSS.svg?raw";
+
+import Learn from "/assets/icons/Learn1.svg?raw";
+import Teach from "/assets/icons/Teach.svg?raw";
+import Idea from "/assets/icons/Idea.svg?raw";
+import Talk from "/assets/icons/Talk.svg?raw";
+import Heart from "/assets/icons/Heart.svg?raw";
+import Computer from "/assets/icons/Computer.svg?raw";
 
 import MX from "/assets/flags/mx.svg?raw";
 import CH from "/assets/flags/ch.svg?raw";
@@ -82,29 +85,37 @@ const about_me = aboutme.content;
   <Header lang={lang}/>
   <LanguageController lang={lang}/>
   <section class="photo container" itemscope itemtype="https://schema.org/Person">
-    <img src="/assets/images/langs/Rust.png" alt="Foto de perfil" itemprop="image"/>
+    <img src="/assets/images/me/brayan.jpg" alt="Foto de perfil" itemprop="image"/>
     <h2 itemprop="name">{name}</h1>
     <h3 itemprop="jobTitle">{credentials}</h2>
   </section>
   <div class="techs container">
     <h2>{translation.skills}</h2>
     <ul>
-      <div class="tags">
-        <button class={`tag button-lang js`}>
-          <Fragment set:html={JavaScript}/>
-          <span>JavaScript</span>
+      <div class="skills-container">
+        <button class={`skill`}>
+          <Fragment set:html={Learn}/>
+          <span>{aboutme.skills['learn']}</span>
         </button>
-        <button class={`tag button-lang html`}>
-          <Fragment set:html={HTML}/>
-          <span>HTML</span>
+        <button class={`skill`}>
+          <Fragment set:html={Teach}/>
+          <span>{aboutme.skills['teach']}</span>
         </button>
-        <button class={`tag button-lang css`}>
-          <Fragment set:html={CSS}/>
-          <span>CSS</span>
+        <button class={`skill`}>
+          <Fragment set:html={Talk}/>
+          <span>{aboutme.skills['talk']}</span>
         </button>
-        <button class={`tag button-lang django`}>
-          <Fragment set:html={Django}/>
-          <span>Django</span>
+        <button class={`skill`}>
+          <Fragment set:html={Idea}/>
+          <span>{aboutme.skills['idea']}</span>
+        </button>
+        <button class={`skill stroke`}>
+          <Fragment set:html={Heart}/>
+          <span>{aboutme.skills['empathy']}</span>
+        </button>
+        <button class={`skill`}>
+          <Fragment set:html={Computer}/>
+          <span>{aboutme.skills['technology']}</span>
         </button>
       </div>
     </ul>
@@ -206,7 +217,7 @@ const about_me = aboutme.content;
       <li class="video">
         <a data-title={aboutme.hobbies['basketball']}>
           <img
-            src={'/assets/images/hobbies/basketball.png'}
+            src={'/assets/images/hobbies/basketball.jpg'}
             alt={'Basketball'}
           />
         </a>
@@ -214,7 +225,7 @@ const about_me = aboutme.content;
       <li class="video">
         <a data-title={aboutme.hobbies['cooking']}>
           <img
-            src={'/assets/images/hobbies/cooking.png'}
+            src={'/assets/images/hobbies/cook.jpg'}
             alt={'Cooking'}
           />
         </a>
@@ -222,7 +233,15 @@ const about_me = aboutme.content;
       <li class="video">
         <a data-title={aboutme.hobbies['reading']}>
           <img
-            src={'/assets/images/hobbies/reading.png'}
+            src={'/assets/images/hobbies/books.jpg'}
+            alt={'Reading'}
+          />
+        </a>
+      </li>
+      <li class="video">
+        <a data-title={aboutme.hobbies['coding']}>
+          <img
+            src={'/assets/images/hobbies/code.jpg'}
             alt={'Reading'}
           />
         </a>

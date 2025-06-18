@@ -1,13 +1,13 @@
 {
     "about": {
-        "title": "About me",
-        "schoolar": "Schoolar history",
-        "mainProject": "Main project",
+        "title": "About Me",
+        "schoolar": "Academic Background",
+        "mainProject": "Main Project",
         "skills": "Skills",
-        "about": "About me",
+        "about": "About Me",
         "langs": "Languages",
-        "videos": "Latest videos",
+        "videos": "Latest Videos",
         "hobbies": "Hobbies",
-        "projects": "Mos recient projects"
+        "projects": "Recent Projects"
     }
 }

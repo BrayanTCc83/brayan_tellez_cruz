@@ -30,9 +30,18 @@
       }
     ]
   },
+  "skills": {
+    "teach": "Amor por compartir el conocimiento.",
+    "learn": "Disfrute de aprender nuevas habilidades.",
+    "talk": "Facilidad de comunicación con terceros.",
+    "empathy": "Capacidad para empatizar y comprender a otros.",
+    "technology": "Entendimiento de las tecnologías digitales.",
+    "idea": "Desarrollo e implementación de nuevas ideas."
+  },
   "hobbies": {
     "basketball": "Disfruto de jugar baloncesto por las tardes, ocasionalmente participo en algunas ligas locales.",
     "reading": "Me encanta leer diferentes libros constantemente, disfruto de las novelas históricas y de ciencia ficción.",
-    "cooking": "Cocinar me parece una actividad relajante y muy disfrutable, probar nuevos platillos, mezclar ingredientes, es mágico."
+    "cooking": "Cocinar me parece una actividad relajante y muy disfrutable, probar nuevos platillos, mezclar ingredientes, es mágico.",
+    "coding": "Disfruto de estar haciendo proyectos personales todo el tiempo, probando nuevas tecnologías e investigando más sobre mis intereses."
   }
 }

@@ -17,11 +17,14 @@ export interface IAbout {
         description: string
         image: string
         url: string
-    },
+    }
     content: {
         header: string
         description: IAboutContentDescription[]
-    },
+    }
+    skills: {
+        [prop: string]: string
+    }
     hobbies: {
         [prop: string]: string
     }

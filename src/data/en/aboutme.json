@@ -30,9 +30,18 @@
       }
     ]
   },
+  "skills": {
+    "teach": "Passion for sharing knowledge.",
+    "learn": "Enjoyment in learning new skills.",
+    "talk": "Ease in communicating with others.",
+    "empathy": "Ability to empathize and understand others.",
+    "technology": "Understanding of digital technologies.",
+    "idea": "Development and implementation of new ideas."
+  },
   "hobbies": {
-    "basketball": "I enjoy to practice basketball sometimes at afternoon.",
-    "reading": "I like to read books about a lot of themes.",
-    "cooking": "I love to cook."
+    "basketball": "I enjoy playing basketball in the afternoons and occasionally participate in local leagues.",
+    "reading": "I love constantly reading different books; I particularly enjoy historical and science fiction novels.",
+    "cooking": "Cooking is a relaxing and very enjoyable activity for me. Trying new dishes and mixing ingredients feels magical.",
+    "coding": "I enjoy working on personal projects all the time, testing new technologies, and researching topics I'm passionate about."
   }
 }

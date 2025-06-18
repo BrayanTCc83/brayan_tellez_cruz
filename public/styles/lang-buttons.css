@@ -127,6 +127,60 @@ button.tag, a.tag {
     }
 }
 
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.skill {
+    text-decoration: none;
+    display: flex;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    gap: 5px;
+    min-width: 100px;
+    min-height: 50px;
+    height: fit-content;
+    border-radius: 15px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+
+    & > svg {
+        width: 40px;
+        height: 40px;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+
+    & > span {
+        display: block;
+        margin: 0 10px;
+        font-weight: bold;
+        line-height: normal;
+    }
+
+    &:hover {
+        background-color: black;
+    }
+}
+
+.skill:not(.stroke) {
+    & svg, & path {
+        fill: white;
+    }
+}
+
+.skill.stroke {
+    & svg, & path {
+        stroke: white;
+    }
+}
+
 @media screen and (min-width: 600px) and (max-width: 800px) {
     .button-lang.tag {
         min-width: fit-content;
