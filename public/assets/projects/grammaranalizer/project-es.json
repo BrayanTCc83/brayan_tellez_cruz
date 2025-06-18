@@ -2,11 +2,14 @@
     "title": "Analizador gramatical",
     "subtitle": "Analizador y generador de gramáticas.",
     "description": [
-        "Consta de un programa en C que permite analizar y determinar el nivel y clasificación de una gramática que reciba como entrada.",
-        "Dentro de los niveles están 'Regular' y 'Libre de contexto', mientras que en las clasificaciones dentro de libres de contexto existen 'Simple', 'q', 'LL(1)' y 'RR(1)' hasta el momento."
+        "Este proyecto busca no solo mejorar mi comprensión sobre las de gramáticas regulares y libres de contexto y la construcción de compiladores e intérpretes, sino también servir como herramienta para que otras personas puedan hacerlo también, es por ello que el código es completamente líbre y abierto, se encuentra disponible directamente en github.",
+        "Consta de un programa desarrollado en C y compilado con GCC y Make que realiza la lectura de archivos de texto que deben tener un formato muy concreto, indicado de forma \"Terminal -> Producciones\", así para cada una de las reglas que conforman el lenguaje.",
+        "Dentro de las gramáticas existen diferentes niveles según su complejidad, pero este proyecto se enfocará en 'Regulares' y 'Libres de contexto', dentro de libres de contexto existen 'Simple', 'q' y 'LL(1)', etc. Pero solo estas están implementadas hasta el momento, sin embargo, estaré realizando actualizaciones periodicas agregando soporte a más gramáticas y funcionalidades extras como la derivación de gramáticas de tipos diferentes a partir de una entrada, el desarrollo del mismo estará cubierto en <a href=\"/es/blogs\">mis blogs</a>.",
+        "El desarrollo de este proyecto es libre y abierto, así que sientete libre de hacer forks o hacerme 'pull request' si encuentras algún bug o característica a mejorar, el conocimiento es de caracter universal y es nuestro deber democratizarlo."
     ],
     "author": "Brayan Téllez Cruz",
     "date": "08-06-2025",
+    "realization": "01-Ene-2025 y actualmente en curso",
     "cover": "grammar_1.png",
     "technologies": [ "c" ],
     "website": "https://www.brayantellez.com/es/projects",
@@ -17,7 +20,9 @@
         "Mejorar mi comprensión sobre el funcionamiento de una gramática.",
         "Identificar las características únicas de los diferentes tipos de gramáticas.",
         "Automatizar cálculos de conjuntos de selección de gramáticas.",
-        "Automatizar limpieza y generación de gramáticas equivalentes a partir de una entrada."
+        "Automatizar limpieza y generación de gramáticas equivalentes a partir de una entrada.",
+        "Ayudar a las personas a comprender de mejor manera el funcionamiento de los lenguajes.",
+        "Apoyar a los nuevos desarrolladores en la contrucción de lenguajes y compiladores."
     ],
     "clients": [],
     "comments": []

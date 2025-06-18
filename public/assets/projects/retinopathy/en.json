@@ -1,0 +1,12 @@
+{
+  "id": "retinopathy",
+  "name": "Diabetic Retinopathy",
+  "subname": "CRUD for a medically focused company, eye image analysis, and diagnosis of possible associated problems.",
+  "description": [
+    "This CRUD was commissioned by a company whose goal is to analyze eye problems (seeking diabetic retinopathies) through AI and proprietary algorithms. As for my part, I developed the CRUD to support interaction between two roles: specialists and administrators. The former are responsible for diagnosis and improving the algorithm, while the latter manage user accounts."
+  ],
+  "technologies": [ "html", "css", "js", "react", "csharp" ],
+  "urlweb": null,
+  "urlgit": null,
+  "cover": "inicio_sesion.png"
+}

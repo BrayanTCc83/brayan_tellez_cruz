@@ -2,6 +2,7 @@ export interface IClient {
   name: string
   logotipe: string
   description: string
+  portal?: string
 }
 
 export interface IComment {
@@ -26,4 +27,5 @@ export interface IProjectFull {
   objectives: string[]
   clients: IClient[]
   comments: IComment[]
+  realization: string
 }

@@ -1,4 +1,5 @@
 {
+    "id": "lua",
     "title": "Lua",
     "subtitle": "Aplicación web de cursos.",
     "description": [
@@ -8,7 +9,8 @@
     ],
     "author": "Brayan Téllez Cruz",
     "date": "08-06-2025",
-    "cover": "grammar_1.png",
+    "realization": "01-Ene-2024 al 30-Abr-2025",
+    "cover": "lua_1.png",
     "technologies": [ "html", "css", "js", "django" ],
     "website": "https://www.brayantellez.com/es/projects",
     "isPublic": true,
@@ -20,23 +22,11 @@
     ],
     "clients": [
         {
-        "name": "Germán Lugo",
-        "logotipe": "/assets/images/clients/german.png",
-        "description": "Breve descripción del cliente."
+            "name": "LMI",
+            "logotipe": "/assets/images/clients/LabMei.png",
+            "description": "Laboratorio de Multimedia e Internet de la facultad de ingeniería de la UNAM.",
+            "portal": "https://mmedia1.fi-b.unam.mx/"
         }
     ],
-    "comments": [
-        {
-            "image": "/assets/images/clients/german.png",
-            "name": "Germán Lugo",
-            "puntuation": 9,
-            "comment": "Comentarios del proyecto."
-        },
-        {
-            "image": "/assets/images/clients/german.png",
-            "name": "Germán Lugo",
-            "puntuation": 9,
-            "comment": "Comentarios del proyecto."
-        }
-    ]
+    "comments": []
 }

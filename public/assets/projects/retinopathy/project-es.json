@@ -1,0 +1,26 @@
+{
+    "title": "Retinopatía diabética",
+    "subtitle": "CRUD para empresa con fines médicos.",
+    "description": [
+        "Este CRUD fue encargado para una empresa cuyo objetivo es realizar el análisis de problemas oculares (en busca de retinopatías diabéticas) a través de IA y algoritmos de su creación, en lo que a mi concierne, desarrollé el CRUD para la interacción en dos roles, especialistas y administrativos, los primeros con la facultad de diagnosticar y seguir mejorando el algoritmo, mientras los segundos administraban a los usuarios.",
+        "La aplicación incluye un login para el incio de sesión, así como dos secciones, la de pacientes dónde pueden registrar nuevos usuarios; y de usuarios donde los administradores pueden crear nuevos usuarios, editar la información y permisos de los ya existentes y eliminarlos.",
+        "Las tecnología principal en este proyecto fue ReactJS, la desición de esta tecnología no fue elección mía sino directamente petición por parte de quién necesitaba la aplicación, principalmente por el uso de una suite de componentes que deseaban emplear, en concreto <a href=\"https://mui.com/material-ui/\">Material UI </a>.",
+        "En este proyecto fuí subcontratado exclusivamente para realizar la implementación del frontend, por lo que el trato no fue directo con la empresa para la cual se entregó la aplicación, sino mediante un tercero."
+    ],
+    "author": "Brayan Téllez Cruz",
+    "date": "17-06-2025",
+    "realization": "01-Nov-2025",
+    "cover": "grammar_1.png",
+    "technologies": [ "html", "css", "js", "react", "csharp" ],
+    "website": null,
+    "isPublic": false,
+    "code": null,
+    "projectUrl": null,
+    "objectives": [
+        "Brindar una plataforma visual para el entrenamiento y revisión de resultados del algoritmo de IA.",
+        "Crear un sistema para administración de usuarios con roles específicos.",
+        "Proveer de un CRUD sencillo para agregar pacientes y ver las imagenes asociadas."
+    ],
+    "clients": [],
+    "comments": []
+}

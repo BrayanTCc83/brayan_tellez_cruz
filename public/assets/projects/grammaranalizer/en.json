@@ -3,8 +3,7 @@
     "name": "Grammar Analizer",
     "subname": "Analizer and generator of grammars.",
     "description": [
-        "Consta de un programa en C que permite analizar y determinar el nivel y clasificación de una gramática que reciba como entrada.",
-        "Dentro de los niveles están 'Regular' y 'Libre de contexto', mientras que en las clasificaciones dentro de libres de contexto existen 'Simple', 'q', 'LL(1)' y 'RR(1)' hasta el momento."
+        "Consta de un programa en C que permite analizar y determinar el nivel y clasificación de una gramática que reciba como entrada. Dentro de los niveles están 'Regular' y 'Libre de contexto', mientras que en las clasificaciones dentro de libres de contexto existen 'Simple', 'q', 'LL(1)' y 'RR(1)' hasta el momento."
     ],
     "technologies": [ "c" ],
     "urlweb": null,

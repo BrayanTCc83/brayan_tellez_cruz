@@ -223,7 +223,8 @@ section#main {
         }
 
         & > .project-card:nth-child(3n + 2) {
-            height: fit-content;
+            justify-content: space-between;
+            align-items: stretch;
             width: calc(50% - 10px);
             grid-template-columns: 1fr;
             grid-template-rows: repeat(3, max-content);
@@ -234,7 +235,8 @@ section#main {
         }
 
         & > .project-card:nth-child(3n + 3) {
-            height: fit-content;
+            justify-content: space-between;
+            align-items: stretch;
             width: calc(50% - 10px);
             grid-template-columns: 1fr;
             grid-template-rows: repeat(3, max-content);

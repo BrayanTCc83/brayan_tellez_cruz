@@ -1,0 +1,29 @@
+{
+  "title": "Grammar Analyzer",
+  "subtitle": "Grammar analyzer and generator.",
+  "description": [
+    "This project aims not only to improve my understanding of regular and context-free grammars, and the construction of compilers and interpreters, but also to serve as a tool for others to learn as well. That’s why the code is completely free and open source, and it is available directly on GitHub.",
+    "It consists of a program developed in C and compiled using GCC and Make. It reads text files that must follow a specific format: 'Terminal -> Productions', one for each rule that defines the language.",
+    "Grammars are classified into different levels based on their complexity, but this project focuses on 'Regular' and 'Context-Free' grammars. Within context-free grammars, categories like 'Simple', 'q', and 'LL(1)' are currently implemented. Updates will be made periodically to support more grammar types and extra features like deriving alternative grammar types from input. The development process is documented in <a href=\"/en/blogs\">my blogs</a>.",
+    "The development of this project is free and open, so feel free to fork it or send me a pull request if you find a bug or have an idea for improvement. Knowledge is universal, and it's our duty to make it accessible to all."
+  ],
+  "author": "Brayan Téllez Cruz",
+  "date": "06-08-2025",
+  "realization": "Jan 01, 2025 – currently in progress",
+  "cover": "grammar_1.png",
+  "technologies": ["c"],
+  "website": "https://www.brayantellez.com/en/projects",
+  "isPublic": true,
+  "code": "https://github.com/BrayanTCc83/GrammarAnalizer.git",
+  "projectUrl": null,
+  "objectives": [
+    "Improve my understanding of how grammars work.",
+    "Identify the unique characteristics of different grammar types.",
+    "Automate the calculation of grammar selection sets.",
+    "Automate the cleaning and generation of equivalent grammars from an input.",
+    "Help people better understand how languages work.",
+    "Support new developers in building languages and compilers."
+  ],
+  "clients": [],
+  "comments": []
+}

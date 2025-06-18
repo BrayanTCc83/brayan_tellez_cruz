@@ -1,0 +1,26 @@
+{
+  "title": "糖尿病视网膜病变",
+  "subtitle": "为一家医疗公司开发的 CRUD 系统。",
+  "description": [
+    "该 CRUD 系统由一家致力于通过人工智能和自研算法分析眼部问题（如糖尿病视网膜病变）的公司委托开发。我的任务是开发供两类用户角色使用的界面：专家和管理员。专家负责诊断和算法改进，管理员则负责用户管理。",
+    "该应用包含登录功能，并分为两个主要部分：患者模块（用于注册新患者）和用户模块（管理员可创建、编辑用户信息与权限，或删除用户）。",
+    "本项目的主要技术是 ReactJS。选择该技术并非出自我本人，而是客户的要求，因为他们希望使用特定的组件库，特别是 <a href=\"https://mui.com/material-ui/\">Material UI</a>。",
+    "在本项目中，我是被第三方外包聘请，专注于前端开发，因此并未与最终客户直接接触，而是通过第三方进行沟通。"
+  ],
+  "author": "Brayan Téllez Cruz",
+  "date": "2025年6月17日",
+  "realization": "2025年11月1日",
+  "cover": "grammar_1.png",
+  "technologies": [ "html", "css", "js", "react", "csharp" ],
+  "website": null,
+  "isPublic": false,
+  "code": null,
+  "projectUrl": null,
+  "objectives": [
+    "提供一个可视化平台用于训练和查看 AI 算法结果。",
+    "创建一个具有角色权限的用户管理系统。",
+    "提供一个简洁的 CRUD 系统用于添加患者并查看相关图像。"
+  ],
+  "clients": [],
+  "comments": []
+}

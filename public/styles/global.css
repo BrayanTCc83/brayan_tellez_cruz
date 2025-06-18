@@ -295,7 +295,9 @@ footer.data {
     color: var(--main-color);
 
     & .tags {
+        display: flex;
         gap: 15px;
+        flex-direction: row;
     }
 }
 

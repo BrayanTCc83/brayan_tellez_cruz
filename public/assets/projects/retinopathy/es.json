@@ -1,0 +1,12 @@
+{
+    "id": "retinopathy",
+    "name": "Retinopatía diabética",
+    "subname": "CRUD para empresa con fines médicos, análisis de imágenes oculares y diagnóstico sobre posibles problemas asociados a las mismas.",
+    "description": [
+        "Este CRUD fue encargado para una empresa cuyo objetivo es realizar el análisis de problemas oculares (en busca de retinopatías diabéticas) a través de IA y algoritmos de su creación, en lo que a mi concierne, desarrollé el CRUD para la interacción en dos roles, especialistas y administrativos, los primeros con la facultad de diagnosticar y seguir mejorando el algoritmo, mientras los segundos administraban a los usuarios."
+    ],
+    "technologies": [ "html", "css", "js", "react", "csharp" ],
+    "urlweb": null,
+    "urlgit": null,
+    "cover": "inicio_sesion.png"
+}

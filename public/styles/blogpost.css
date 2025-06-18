@@ -43,8 +43,7 @@ h1 {
     width: 100%;
     text-align: center;
     color: var(--main-color);
-    border-bottom: 6px solid var(--main-color);
-    border-radius: 6px;
+    border-bottom: 1px solid var(--main-color);
 }
 
 h2 {

@@ -1,0 +1,32 @@
+{
+  "id": "lua",
+  "title": "Lua",
+  "subtitle": "Web-based course application.",
+  "description": [
+    "Lua is an internal course platform for the Faculty of Engineering. The goal is to complete its deployment during the first half of 2025. It is built as a JavaScript-based SPA, with a custom implementation (developed by me) of the MPEG-DASH protocol for low-latency adaptive video streaming.",
+    "The platform includes session management, shopping cart, order handling, and an admin section to create users, modify their permissions, approve or reject course requests, manage course users, and view logs. It also includes a course creation system, topic/resource management, user profiles, administrator impersonation, and video streaming playback.",
+    "While my main responsibility was frontend development and backend integration, I also implemented and fixed some backend features."
+  ],
+  "author": "Brayan Téllez Cruz",
+  "date": "06-08-2025",
+  "realization": "Jan 01, 2024 to Apr 30, 2025",
+  "cover": "lua_1.png",
+  "technologies": [ "html", "css", "js", "django" ],
+  "website": "https://www.brayantellez.com/es/projects",
+  "isPublic": true,
+  "code": null,
+  "projectUrl": "https://mmedia1.fi-b.unam.mx/lua",
+  "objectives": [
+    "Build a course application for the UNAM Faculty of Engineering to serve as a complementary tool to in-class learning.",
+    "Complete my social service within the faculty."
+  ],
+  "clients": [
+    {
+      "name": "LMI",
+      "logotipe": "/assets/images/clients/LabMei.png",
+      "description": "Multimedia and Internet Laboratory of the UNAM Faculty of Engineering.",
+      "portal": "https://mmedia1.fi-b.unam.mx/"
+    }
+  ],
+  "comments": []
+}

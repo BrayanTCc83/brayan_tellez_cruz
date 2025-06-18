@@ -1,7 +1,6 @@
 .carousel-tablist {
     display: flex;
     border-radius: 10px;
-    border: 2px solid var(--main-color);
     width: 100%;
     aspect-ratio: 16/10;
     overflow: hidden;
@@ -93,9 +92,10 @@
         position: absolute;
         width: 100%;
         aspect-ratio: 16/10;
-        object-fit: cover;
+        object-fit: contain;
         transition: left 0.5s ease-in-out;
         z-index: 1;
+        background-color: black;
 
         &.active {
             top: 0;

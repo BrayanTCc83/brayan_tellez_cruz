@@ -1,0 +1,32 @@
+{
+  "id": "lua",
+  "title": "Lua",
+  "subtitle": "课程网页应用。",
+  "description": [
+    "Lua 是工程学院的内部课程平台，目标是在 2025 年上半年完成部署。该平台使用 JavaScript 构建为单页应用（SPA），并由我自行实现了 MPEG-DASH 协议以实现低延迟的自适应视频流播放。",
+    "该平台包括会话管理、购物车、订单处理、管理员后台，可用于创建用户、修改权限、批准或拒绝课程申请、管理课程用户及查看日志。还包括课程创建系统、主题和资源管理、用户资料、管理员身份冒充功能，以及在线视频播放。",
+    "尽管我主要负责前端开发和与后端的集成，我也为后端实现并修复了部分功能。"
+  ],
+  "author": "Brayan Téllez Cruz",
+  "date": "2025年6月8日",
+  "realization": "2024年1月1日 到 2025年4月30日",
+  "cover": "lua_1.png",
+  "technologies": [ "html", "css", "js", "django" ],
+  "website": "https://www.brayantellez.com/es/projects",
+  "isPublic": true,
+  "code": null,
+  "projectUrl": "https://mmedia1.fi-b.unam.mx/lua",
+  "objectives": [
+    "为墨西哥国立自治大学（UNAM）工程学院开发一个课程平台，作为课堂教学的辅助工具。",
+    "在学院内完成我的社会服务。"
+  ],
+  "clients": [
+    {
+      "name": "LMI",
+      "logotipe": "/assets/images/clients/LabMei.png",
+      "description": "UNAM 工程学院多媒体与互联网实验室。",
+      "portal": "https://mmedia1.fi-b.unam.mx/"
+    }
+  ],
+  "comments": []
+}

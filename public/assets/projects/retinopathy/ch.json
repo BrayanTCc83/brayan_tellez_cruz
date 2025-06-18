@@ -1,0 +1,12 @@
+{
+  "id": "retinopathy",
+  "name": "糖尿病视网膜病变",
+  "subname": "为一家医疗公司开发的 CRUD 系统，用于眼部图像分析和相关问题的诊断。",
+  "description": [
+    "该 CRUD 系统由一家致力于通过人工智能和自研算法分析眼部问题（如糖尿病视网膜病变）的公司委托开发。我的工作是开发支持两个角色（专家和管理员）交互的系统。专家负责诊断并不断优化算法，而管理员则负责管理用户账户。"
+  ],
+  "technologies": [ "html", "css", "js", "react", "csharp" ],
+  "urlweb": null,
+  "urlgit": null,
+  "cover": "inicio_sesion.png"
+}

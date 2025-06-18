@@ -1,4 +1,10 @@
 ---
+import LinkedIn from "/assets/icons/LinkedIn.svg?raw";
+import Youtube from "/assets/icons/Youtube.svg?raw";
+import GitHub from "/assets/icons/GitHub.svg?raw";
+
+import Icon from "/assets/logotipe/icon_bpp_colour.svg?raw";
+
 import Carousel from "../../../components/react/Carousel.tsx";
 import Comment from "../../../components/conversation/Comment.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
@@ -8,17 +14,18 @@ import Header from "../../../components/Header.astro";
 
 import { GetProject, GetProjectImages } from "../../../api/projects";
 import { getIconData } from "../../../utils/getIconData";
+import LanguageController from "../../../components/LanguageController.astro";
 
 export async function getStaticPaths() {
   return Projects.flatMap( id => [ 'es', 'en', 'ch' ].map( lang => ({ params: { lang, id: id } })) );
 }
 
 const { lang, id } = Astro.params;
-const { title, subtitle, description, date, author, cover, technologies, website, isPublic, code, projectUrl, objectives, clients, comments } = await GetProject({ lang, id });
+const { title, subtitle, description, date, author, cover, technologies, website, isPublic, code, projectUrl, objectives, clients, comments, realization } = await GetProject({ lang, id });
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Proyectos', href: `${lang}/proyectos` },
-  { text: title, href: `${lang}/proyectos/${id}` }
+  { text: 'Proyectos', href: `/${lang}/projects` },
+  { text: title, href: `/${lang}/projects/${id}` }
 ];
 const images = await GetProjectImages({ id });
 ---
@@ -54,9 +61,30 @@ const images = await GetProjectImages({ id });
 <body id="root">
     <Header lang={lang}/>
     <Breadcrumb routes={routes}/>
+    <LanguageController lang={lang}/>
     <main id="main">
-        <h1 itemprop="headline">{title}</h1>
+        <h1 itemprop="headline">
+            <Fragment set:html={Icon}/>
+            {title}
+        </h1>
         <h2>{subtitle}</h2>
+        <div class="profile">
+            <p>
+                {
+                    lang === 'es' ? 'Este proyecto fue realizado: ' : 'This project was made at:'
+                }
+                <b>{ realization }</b>
+                <br>
+            </p>
+            <article>
+                <p>
+                    <b>Brayan Téllez Cruz</b>
+                    <br>
+                    <span>Frontent Developer</span>
+                </p>
+                <img src="/assets/images/me/brayan.jpg" alt="">
+            </article>
+        </div>
         <article itemscope itemtype="https://schema.org/CreativeWork">
             <meta itemprop="name" content={title} />
             <meta itemprop="author" content={author} />
@@ -66,7 +94,7 @@ const images = await GetProjectImages({ id });
             <h3>Sobre el proyecto.</h3>
             <p itemprop="description">
                 {
-                    (description??[]).map(d => <p>{d}</p>)
+                    (description??[]).map(d => <p set:html={d}></p>)
                 }
             </p>
 
@@ -92,19 +120,6 @@ const images = await GetProjectImages({ id });
                 </> : null
             }
 
-            {
-                comments.length > 0 ?
-                    <section>
-                        <h3>Comentarios</h3>
-                        <div class="comments-container">
-                            {
-                                comments.map( comment => <Comment {...comment}/> )
-                            }
-                        </div>
-                    </section>
-                :null
-            }
-
             <section>
                 <h3>Tecnologías utilizadas</h3>
                 <div class="techs">
@@ -119,15 +134,29 @@ const images = await GetProjectImages({ id });
                     }
                 </div>
             </section>
-
+            {
+                comments.length > 0 ?
+                    <section>
+                        <h3>Comentarios</h3>
+                        <div class="comments-container">
+                            {
+                                comments.map( comment => <Comment {...comment}/> )
+                            }
+                        </div>
+                    </section>
+                :null
+            }
             {
                 clients.length > 0 ?
                     <section>
                         <h3>Clientes</h3>
-                        <div class="techs">
+                        <div class="clients">
                             {
-                                clients.map( ({ description, logotipe, name }) =>
+                                clients.map( ({ description, logotipe, name, portal }) =>
                                     <figure title={description}>
+                                        {
+                                            portal ? <a target="_blank" href={portal}></a> : null
+                                        }
                                         <img src={logotipe} alt="Logotipo del cliente no encontrada."/>
                                         <figcaption>{name}</figcaption>
                                     </figure>
@@ -142,6 +171,23 @@ const images = await GetProjectImages({ id });
             </footer>
         </article>
     </main>
-    <article id="main">
+    <footer class="data">
+        <p>&copy; 2025 Brayan Téllez Cruz - Todos los derechos reservados.</p>
+        
+        <div class="tags">
+        <a itemprop="sameAs" class={`tag button-lang linkedin`} href="https://www.linkedin.com/in/brayan-t%C3%A9llez-cruz-mx/">
+            <Fragment set:html={LinkedIn}/>
+            <span>LinkedIn</span>
+        </a>
+        <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx">
+            <Fragment set:html={Youtube}/>
+            <span>Youtube</span>
+        </a>
+        <a itemprop="sameAs" class={`tag button-lang github`} href="https://github.com/BrayanTCc83">
+            <Fragment set:html={GitHub}/>
+            <span>GitHub</span>
+        </a>
+        </div>
+    </footer>
 </body>
 </html>

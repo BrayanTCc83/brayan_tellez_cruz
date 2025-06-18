@@ -1,0 +1,26 @@
+{
+  "title": "Diabetic Retinopathy",
+  "subtitle": "CRUD for a medically focused company.",
+  "description": [
+    "This CRUD was commissioned by a company whose objective is to analyze eye problems (searching for diabetic retinopathies) using AI and proprietary algorithms. My role was to develop the CRUD interface for two user roles: specialists and administrators. The former are responsible for diagnostics and improving the algorithm, while the latter manage users.",
+    "The application includes a login for session initiation, and two main sections: a patient section to register new patients, and a user section where administrators can create, edit, update permissions, and delete users.",
+    "The main technology used in this project was ReactJS. This choice was not mine, but rather a requirement from the client, who wanted to use a specific component suite—specifically <a href=\"https://mui.com/material-ui/\">Material UI</a>.",
+    "In this project, I was subcontracted solely for the frontend implementation, so I did not work directly with the company receiving the application, but through a third party."
+  ],
+  "author": "Brayan Téllez Cruz",
+  "date": "17-06-2025",
+  "realization": "01-Nov-2025",
+  "cover": "grammar_1.png",
+  "technologies": [ "html", "css", "js", "react", "csharp" ],
+  "website": null,
+  "isPublic": false,
+  "code": null,
+  "projectUrl": null,
+  "objectives": [
+    "Provide a visual platform for training and reviewing results from the AI algorithm.",
+    "Create a user management system with role-based access.",
+    "Offer a simple CRUD to add patients and view associated images."
+  ],
+  "clients": [],
+  "comments": []
+}
