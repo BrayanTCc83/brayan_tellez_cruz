@@ -253,7 +253,7 @@ const about_me = aboutme.content;
     <div>
     {
       projects.map( project => 
-        <a href={`/projects/${lang}/${project.id}`} class="project_tag" data-title={project.description[0]}>
+        <a href={`/${lang}/projects/${project.id}`} class="project_tag" data-title={project.description[0]}>
           <h3>{project.name}</h3>
           <img
             src={`/assets/projects/${project.id}/${project.cover}`}
