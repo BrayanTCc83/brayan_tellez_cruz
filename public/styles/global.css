@@ -299,6 +299,7 @@ footer.data {
 
 nav.breadcrumb {
     z-index: 99;
+    padding: 0 var(--standart-size-fr);
 
     & > ul {
         display: flex;
