@@ -1,0 +1,53 @@
+---
+import Youtube from "/assets/icons/Youtube.svg?raw";
+import Github from "/assets/icons/GitHub.svg?raw";
+
+import LanguageController from "../../../../components/LanguageController.astro";
+import Flow from "../../../../components/learn/Flow.astro";
+import Template from "../../../../template/Template.astro";
+import Learns from "../../../../../public/assets/learn/learn.json";
+
+import { GetLearn } from "../../../../api/learn";
+
+import type { ILearnConcept } from "../../../../interface/Learn";
+
+export async function getStaticPaths() {
+    return Learns.flatMap( ({id}) => ['es','en','ch'].flatMap(lang => ({ params: { lang, id } })) );
+}
+
+const { lang, id } = Astro.params;
+const learn: ILearnConcept = await GetLearn({ lang, id });
+---
+<Template includes={['learn', 'learn-cover', 'lang-buttons', 'blog_post']} lang={lang} title={`Brayan Téllez | ${learn.title}`}>
+    <LanguageController lang={lang}/>
+    <aside class="container">
+        <h3>Temario.</h3>
+        <ul>
+            <li>
+                <a class="current" href={`/${lang}/learn/${id}`}>{learn.themes.text}</a>
+            </li>
+            {
+                learn.themes.themes.map( theme => 
+                    <li>
+                        <a href={`/${lang}/learn/${id}/${theme.id}`}>{theme.text}</a>
+                    </li>
+                )
+            }
+        </ul>
+    </aside>
+    <main>
+        <h1>{learn.title}</h1>
+        <p set:html={learn.description}></p>
+        <Flow flow={learn.flow}/>
+    </main>
+    <footer>
+        <a itemprop="sameAs" target="_blank" class={`tag button-lang react`} href={learn.url}>
+            <Fragment set:html={Youtube}/>
+            <span>Lista de reproducción</span>
+        </a>
+        <a itemprop="sameAs" target="_blank" class={`tag button-lang github`} href={learn.git}>
+            <Fragment set:html={Github}/>
+            <span>Repositorio</span>
+        </a>
+    </footer>
+</Template>

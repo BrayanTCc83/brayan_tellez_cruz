@@ -16,6 +16,9 @@ section#main {
     grid-area: p;
     margin: 0;
     padding: 0;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
 }
 
 .breadcrumb {
@@ -27,6 +30,20 @@ section#main {
 article {
     position: relative;
     align-items: center;
+    gap: 10px;
+
+    & > a {
+            border: 1px solid transparent;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 10px;
+            width: max-content;
+            &:hover {
+                color: var(--second-color);
+                border-color: var(--second-color);
+            }
+        }
     
     & > h2, & > p {
         width: 100%;

@@ -10,7 +10,7 @@ import LearnCH from "../../../data/ch/translation.json";
 
 import { GetAllLearn } from "../../../api/learn";
 
-import type { ILearnConcept } from "../../../interface/Learn.ts";
+import type { ILearnAbstract } from "../../../interface/Learn.ts";
 import type { ILearnTranslation } from "../../../interface/AppLangs";
 
 export async function getStaticPaths() {
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const articulos: ILearnConcept[] = await GetAllLearn({ lang });
+const articulos: ILearnAbstract[] = await GetAllLearn({ lang });
 
 const translate: ILearnTranslation = lang === 'es' ? LearnES.learn : lang === 'en' ? LearnEN.learn : LearnCH.learn;
 const routes = [

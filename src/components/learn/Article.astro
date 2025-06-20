@@ -5,19 +5,16 @@ import MX from "/assets/flags/mx.svg?raw";
 import CH from "/assets/flags/ch.svg?raw";
 import UK from "/assets/flags/uk.svg?raw";
 
-import Flow from "./Flow.astro";
-
-import type { ILearnConcept } from "../../interface/Learn";
+import type { ILearnAbstract } from "../../interface/Learn";
 import type { ILearnTranslation } from "../../interface/AppLangs";
 
-const { title, lang, description, flow, url, git, translate }: ILearnConcept & { translate: ILearnTranslation } = {
+const { title, lang, themes, resume, git, id }: ILearnAbstract & { translate: ILearnTranslation } = {
     title: '',
-    description: '',
-    flow: [],
-    url: '',
+    resume: '',
+    git: '',
     id: '',
     lang: '',
-    git: '',
+    themes: [],
     translate: {
         playlist: '',
         repository: '',
@@ -28,17 +25,15 @@ const { title, lang, description, flow, url, git, translate }: ILearnConcept & {
 ---
 <article class="container">
     <h2>{title}</h2>
-    <p set:html={description}></p>
-    <Flow flow={flow}/>
+    <p set:html={resume}></p>
+    <b>Brayan Téllez Cruz</b>
+    <b>Temas: {themes.length + 1}</b>
     <button class="tag lang">
         <Fragment set:html={ lang === 'es' ? MX : lang === 'en' ? UK : CH }/>
     </button>
-    <a itemprop="sameAs" target="_blank" class={`tag button-lang react`} href={url}>
-        <Fragment set:html={Youtube}/>
-        <span>{translate.playlist}</span>
-    </a>
+    <a href={`/${lang}/learn/${id}`}>Detalles</a>
     <a itemprop="sameAs" target="_blank" class={`tag button-lang github`} href={git}>
         <Fragment set:html={Github}/>
-        <span>{translate.repository}</span>
+        <span>Repositorio</span>
     </a>
 </article>

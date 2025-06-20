@@ -1,0 +1,120 @@
+body {
+    grid-template-areas:
+        "n n n n n n n n n n n n"
+        "m m m m m m m m m a a a"
+        "f f f f f f f f f . . .";
+}
+
+aside {
+    grid-area: a;
+    padding: var(--standart-size-fr);
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+
+    & ul {
+        list-style: none;
+    }
+    & a {
+        text-decoration: none;
+
+        &.current {
+            font-weight: bold;
+            color: var(--main-color);
+        }
+    }
+}
+
+main {
+    grid-area: m;
+    display: flex;
+    flex-direction: column;
+    gap: var(--standart-size-fr);
+
+    & > h1 {
+        text-align: center;
+    }
+}
+
+footer {
+    grid-area: f;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    align-items: center;
+    justify-self: center;
+    gap: 100px;
+
+    & > button {
+        background-color: transparent;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--main-color);
+        }
+    }
+}
+
+figure.img {
+    margin: var(--standart-size-fr);
+    align-self: center;
+    justify-self: center;
+    width: 350px;
+    & > figcaption {
+        margin-top: 10px;
+        text-align: center;
+        color: var(--second-color);
+    }
+    & > img {
+        width: 100%;
+    }
+}
+
+figure.video {
+    margin: var(--standart-size-fr);
+    align-self: center;
+    justify-self: center;
+    width: 80%;
+    & > figcaption {
+        margin-top: 10px;
+        text-align: center;
+        color: var(--second-color);
+    }
+
+    & > iframe {
+        aspect-ratio: 16/9;
+        border-radius: 10px;
+        width: 100%;
+        border: none;
+    }
+}
+
+div.code {
+    width: 80%;
+    align-self: center;
+    justify-self: center;
+    margin: var(--standart-size-fr);
+    display: flex;
+    flex-direction: column-reverse;
+
+    & > pre:hover + span {
+        background-color: var(--shadow-color-dark);
+    }
+
+    & > span {
+        display: block;
+        width: fit-content;
+        padding: 10px var(--standart-size-fr);
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        margin-left: 10px;
+        background-color: var(--shadow-color);
+    }
+}
+
+p {
+    text-align: justify;
+}

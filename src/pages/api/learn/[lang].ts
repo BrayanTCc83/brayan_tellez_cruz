@@ -1,14 +1,12 @@
 import type { APIContext, APIRoute } from 'astro';
 
 import STATUS from '../../../status/statuscode';
+import Learns from '../../../../public/assets/learn/learn.json';
+
 import type { ILearnConcept } from '../../../interface/Learn';
 
 export async function getStaticPaths() {
-  return [
-    { params: { lang: 'es', id: 1 } },
-    { params: { lang: 'en', id: 2 } },
-    { params: { lang: 'ch', id: 3 } },
-  ];
+    return Learns.flatMap( ({id}) => ['es','en','ch'].flatMap(lang => ({ params: { lang, id } })) );
 }
 
 export const GET: APIRoute = async ({ params, url }: APIContext) => {
@@ -19,19 +17,16 @@ export const GET: APIRoute = async ({ params, url }: APIContext) => {
     
     const content: ILearnConcept[] = [];
     for(const b of learn) {
-        const blog = `${url.origin}/assets/learn/${b}/${lang}.json`;
-        content.push(
-            await fetch(blog)
-                .then(res => res.json())
-                .catch(_ => 
-                    fetch(`${url.origin}/assets/learn/${b}/es.json`)
-                        .then(res =>  res.json())
-                )
-                .catch(_ => ({}))
-        );
-        content[content.length - 1].flow = await fetch(`${url.origin}/assets/learn/${b}/flow.json`)
+        const blog = `${url.origin}/assets/learn/${b.id}/introduction-${lang}.json`;
+        const learnTheme = await fetch(blog)
             .then(res => res.json())
-            .catch(_ => []);
+            .catch(_ => 
+                fetch(`${url.origin}/assets/learn/${b.id}/introduction-es.json`)
+                    .then(res =>  res.json())
+            )
+            .catch(_ => ({}));
+        learnTheme.themes = b.themes;
+        content.push( learnTheme );
     }
 
     return new Response(

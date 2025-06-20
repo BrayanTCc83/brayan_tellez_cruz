@@ -1,0 +1,67 @@
+---
+import LanguageController from "../../../../components/LanguageController.astro";
+import Template from "../../../../template/Template.astro";
+
+import Learns from "../../../../../public/assets/learn/learn.json";
+import { GetTheme } from "../../../../api/learn";
+
+export async function getStaticPaths() {
+    return Learns.flatMap( ({id, themes}) => themes.flatMap( lesson => ['es','en','ch'].flatMap(lang => ({ params: { lang, id, lesson } }))) );
+}
+
+const { lang, id, lesson } = Astro.params;
+const theme = await GetTheme({ lang, id, lesson });
+---
+<Template includes={['learn-cover', 'lang-buttons', 'blog_post']} lang={lang} title={`Brayan Téllez | ${theme.title}`}>
+    <LanguageController lang={lang}/>
+    <aside class="container">
+        <h3>Temario.</h3>
+        <ul>
+            <li>
+                <a href={`/${lang}/learn/${id}`}>{theme.themes.text}</a>
+            </li>
+            {
+                theme.themes.themes.map( theme => 
+                    <li>
+                        <a class={theme.id === lesson ? 'current': ''} href={`/${lang}/learn/${id}/${theme.id}`}>{theme.text}</a>
+                    </li>
+                )
+            }
+        </ul>
+    </aside>
+    <main>
+        <h1>{theme.title}</h1>
+        <p>{theme.resume}</p>
+        {
+            Object.entries(theme.sections).map( ([ key, { section, content, content_under, extra } ]) => <div id={key}>
+                <h3>{ section }</h3>
+                <p>{ content }</p>
+                {
+                    extra ? extra.map( ({ type, ...rest }) => {
+                        return type === 'img' ?
+                            <figure class="img">
+                                <img src={(rest as any).src} alt="Image not found">
+                                <figcaption>{(rest as any).caption}</figcaption>
+                            </figure>
+                        : type === 'video' ? 
+                            <figure class="video">
+                                <iframe src={(rest as any).src}></iframe>
+                                <figcaption>{(rest as any).caption}</figcaption>
+                            </figure>
+                        : type === 'code' ?
+                            <div class="code">
+                                <pre class="container">{(rest as any).code}</pre>
+                                <span>{(rest as any).lang}</span>
+                            </div>
+                        : null
+                    }) : null
+                }
+                { content_under ?  <p>{content_under}</p>: null }
+            </div>)
+        }
+    </main>
+    <footer>
+        <button class="lang container">Anterior</button>
+        <button class="lang container">Siguiente</button>
+    </footer>
+</Template>
