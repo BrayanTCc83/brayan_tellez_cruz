@@ -8,8 +8,9 @@ import UK from "/assets/flags/uk.svg?raw";
 import Flow from "./Flow.astro";
 
 import type { ILearnConcept } from "../../interface/Learn";
+import type { ILearnTranslation } from "../../interface/AppLangs";
 
-const { title, lang, description, flow, url, git }: ILearnConcept = {
+const { title, lang, description, flow, url, git, translate }: ILearnConcept & { translate: ILearnTranslation } = {
     title: '',
     description: '',
     flow: [],
@@ -17,6 +18,11 @@ const { title, lang, description, flow, url, git }: ILearnConcept = {
     id: '',
     lang: '',
     git: '',
+    translate: {
+        playlist: '',
+        repository: '',
+        title: ''
+    },
     ...Astro.props
 };
 ---
@@ -29,10 +35,10 @@ const { title, lang, description, flow, url, git }: ILearnConcept = {
     </button>
     <a itemprop="sameAs" target="_blank" class={`tag button-lang react`} href={url}>
         <Fragment set:html={Youtube}/>
-        <span>Playlist</span>
+        <span>{translate.playlist}</span>
     </a>
     <a itemprop="sameAs" target="_blank" class={`tag button-lang github`} href={git}>
         <Fragment set:html={Github}/>
-        <span>Repositorio</span>
+        <span>{translate.repository}</span>
     </a>
 </article>

@@ -7,7 +7,41 @@
         "about": "关于我",
         "langs": "语言",
         "videos": "最新视频",
-        "hobbies": "爱好",
-        "projects": "近期项目"
+        "hobbies": "兴趣爱好",
+        "projects": "最近项目",
+        "web": "访问网站"
+    },
+    "projects": {
+        "title": "项目",
+        "date": "完成日期",
+        "description": "描述",
+        "details": "详情"
+    },
+    "blogs": {
+        "title": "文章",
+        "time": "分钟"
+    },
+    "learn": {
+        "title": "与我一起学习",
+        "repository": "代码仓库",
+        "playlist": "播放列表"
+    },
+    "project_details": {
+        "section": "项目",
+        "date": "该项目完成于",
+        "about": "关于该项目。",
+        "galery": "图集。",
+        "objectives": "项目目标。",
+        "links": "链接。",
+        "technlologies": "使用的技术。",
+        "comments": "评论。",
+        "clients": "客户。",
+        "publish": "发布日期 "
+    },
+    "blog_post": {
+        "section": "博客",
+        "duration": "阅读时间",
+        "publish": "创建日期",
+        "time": "分钟"
     }
 }

@@ -5,29 +5,54 @@ import GitHub from "/assets/icons/GitHub.svg?raw";
 
 import Icon from "/assets/logotipe/icon_bpp_colour.svg?raw";
 
-import Carousel from "../../../components/react/Carousel.tsx";
+import LanguageController from "../../../components/LanguageController.astro";
 import Comment from "../../../components/conversation/Comment.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
+import Carousel from "../../../components/react/Carousel.tsx";
 
 import Projects from "../../../../public/assets/projects/projects.json";
 import Header from "../../../components/Header.astro";
 
+import ProjectDetailsES from "../../../data/es/translation.json";
+import ProjectDetailsEN from "../../../data/en/translation.json";
+import ProjectDetailsCH from "../../../data/ch/translation.json";
+
 import { GetProject, GetProjectImages } from "../../../api/projects";
 import { getIconData } from "../../../utils/getIconData";
-import LanguageController from "../../../components/LanguageController.astro";
+
+import type { IProjectDetailsTranslation } from "../../../interface/AppLangs";
 
 export async function getStaticPaths() {
   return Projects.flatMap( id => [ 'es', 'en', 'ch' ].map( lang => ({ params: { lang, id: id } })) );
 }
 
 const { lang, id } = Astro.params;
-const { title, subtitle, description, date, author, cover, technologies, website, isPublic, code, projectUrl, objectives, clients, comments, realization } = await GetProject({ lang, id });
+const {
+    title,
+    subtitle,
+    description,
+    date,
+    author,
+    cover,
+    technologies,
+    website,
+    isPublic,
+    code,
+    projectUrl,
+    objectives,
+    clients,
+    comments,
+    realization
+} = await GetProject({ lang, id });
+const images = await GetProjectImages({ id });
+
+const translate: IProjectDetailsTranslation = lang === 'es' ? ProjectDetailsES.project_details 
+    : lang === 'en' ? ProjectDetailsEN.project_details : ProjectDetailsCH.project_details;
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Proyectos', href: `/${lang}/projects` },
+  { text: translate.section, href: `/${lang}/projects` },
   { text: title, href: `/${lang}/projects/${id}` }
 ];
-const images = await GetProjectImages({ id });
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -70,9 +95,7 @@ const images = await GetProjectImages({ id });
         <h2>{subtitle}</h2>
         <div class="profile">
             <p>
-                {
-                    lang === 'es' ? 'Este proyecto fue realizado: ' : 'This project was made at:'
-                }
+                {translate.date}:
                 <b>{ realization }</b>
                 <br>
             </p>
@@ -91,37 +114,37 @@ const images = await GetProjectImages({ id });
             <meta itemprop="datePublished" content={date} />
             <meta itemprop="image" content={cover}/>
 
-            <h3>Sobre el proyecto.</h3>
+            <h3>{translate.about}</h3>
             <p itemprop="description">
                 {
                     (description??[]).map(d => <p set:html={d}></p>)
                 }
             </p>
 
-            <h3>Galería.</h3>
+            <h3>{translate.galery}</h3>
             <section itemprop="image">
                 <Carousel images={images} client:only="react"/>
             </section>
 
             <section>
-                <h3>Objetivos del proyecto.</h3>
+                <h3>{translate.objectives}</h3>
                 <ul>
                     { objectives.map( objective => <li>{objective}</li> ) }
                 </ul>
             </section>
     
             {
-                isPublic ? <>
-                    <h3>Enlaces</h3>
+                isPublic ? <section>
+                    <h3>{translate.links}</h3>
                     <ul>
                         {code ? <li><a href={code}>Código en GitHub</a></li> : null}
                         {projectUrl ? <li><a href={projectUrl}>Ver Proyecto</a></li> : null}
                     </ul>
-                </> : null
+                </section> : null
             }
 
             <section>
-                <h3>Tecnologías utilizadas</h3>
+                <h3>{translate.technlologies}</h3>
                 <div class="techs">
                     {
                         technologies.map( tech => {
@@ -137,7 +160,7 @@ const images = await GetProjectImages({ id });
             {
                 comments.length > 0 ?
                     <section>
-                        <h3>Comentarios</h3>
+                        <h3>{translate.comments}</h3>
                         <div class="comments-container">
                             {
                                 comments.map( comment => <Comment {...comment}/> )
@@ -149,7 +172,7 @@ const images = await GetProjectImages({ id });
             {
                 clients.length > 0 ?
                     <section>
-                        <h3>Clientes</h3>
+                        <h3>{translate.clients}</h3>
                         <div class="clients">
                             {
                                 clients.map( ({ description, logotipe, name, portal }) =>
@@ -167,7 +190,7 @@ const images = await GetProjectImages({ id });
                 :null
             }
             <footer>
-              <p>Publicado el <time datetime={date} itemprop="datePublished">{date}</time> por <span itemprop="author">{author}</span>.</p>
+              <p>{translate.publish}<time datetime={date} itemprop="datePublished">{date}</time>. <span itemprop="author">{author}</span>.</p>
             </footer>
         </article>
     </main>

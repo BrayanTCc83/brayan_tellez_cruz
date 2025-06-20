@@ -5,6 +5,12 @@ import Breadcrumb from "../../../components/Breadcrumb.astro";
 import { GetAllBlogs } from "../../../api/blogs.ts";
 import LanguageController from "../../../components/LanguageController.astro";
 
+import BlogsES from "../../../data/es/translation.json";
+import BlogsEN from "../../../data/en/translation.json";
+import BlogsCH from "../../../data/ch/translation.json";
+
+import type { IBlogsTranslation } from "../../../interface/AppLangs";
+
 export async function getStaticPaths() {
   return [
     { params: { lang: 'es' } },
@@ -15,17 +21,19 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 const articulos = await GetAllBlogs({ lang });
+
+const translation: IBlogsTranslation = lang === 'es' ? BlogsES.blogs: lang === 'en' ? BlogsEN.blogs : BlogsCH.blogs;
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Blog', href: '/blog' }
+  { text: translation.title, href: '/blog' }
 ];
 ---
-<Template includes={['article', 'blogs', 'lang-buttons']} lang={lang} title={`Brayan Téllez | Publicaciones`}>
+<Template includes={['article', 'blogs', 'lang-buttons']} lang={lang} title={`Brayan Téllez | ${translation.title}`}>
     <LanguageController lang={lang}/>
     <Breadcrumb routes={routes}/>
     <section id="main">
       {
-        articulos.map( articulo => <Article {...articulo} expectedLang={lang}/> )
+        articulos.map( articulo => <Article {...articulo} time={translation.time} expectedLang={lang}/> )
       }
     </section>
 </Template>

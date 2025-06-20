@@ -4,7 +4,15 @@ import PostFragment from "../../../components/article/PostFragment.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 
 import Blogs from "../../../../public/assets/blogs/blogs.json";
+
+import BlogPostES from "../../../data/es/translation.json";
+import BlogPostEN from "../../../data/en/translation.json";
+import BlogPostCH from "../../../data/ch/translation.json";
+
 import { GetBlog } from "../../../api/blogs";
+
+import type { IBlogPostTranslation } from "../../../interface/AppLangs";
+import LanguageController from "../../../components/LanguageController.astro";
 
 export async function getStaticPaths() {
   return Blogs.flatMap( id => [ 'es', 'en', 'ch' ].map( lang => ({ params: { lang, id: id.id } })) );
@@ -12,14 +20,17 @@ export async function getStaticPaths() {
 
 const { lang, id } = Astro.params;
 const { title, subtitle, creation_date, update_date, author, duration, poster, fragments } = await GetBlog({ lang, id });
+
+const translation: IBlogPostTranslation = lang === 'es' ? BlogPostES.blog_post : lang === 'en' ? BlogPostEN.blog_post : BlogPostCH.blog_post;
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Blog', href: `/${lang}/blogs` },
-  { text: title, href: `/${lang}/blog/${id}` }
+  { text: translation.section, href: `/${lang}/blogs` },
+  { text: title, href: `/${lang}/blogs/${id}` }
 ];
 ---
-<Template includes={['blogpost']} lang={lang} title={`Brayan Téllez | ${title}`}>
+<Template includes={['lang-buttons', 'blogpost']} lang={lang} title={`Brayan Téllez | ${title}`}>
     <Breadcrumb routes={routes}/>
+    <LanguageController lang={lang}/>
     <article id="main" itemscope itemtype="https://schema.org/BlogPosting">
         <h1 itemprop="headline">{title}</h1>
         <meta itemprop="datePublished" content={creation_date}>
@@ -30,8 +41,8 @@ const routes = [
         <div itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">{author}</span>
         </div>
-        <span class="extra">Duración de lectura: {duration} minutos.</span>
-        <span class="extra">Fecha de creación: {update_date}.</span>
+        <span class="extra">{translation.duration}: {duration} {translation.time}.</span>
+        <span class="extra">{translation.publish}: {update_date}.</span>
 
         <meta itemprop="timeRequired" content={`PT${duration}M`}>
         <img src={`/assets/blogs/${id}/${poster}`} alt="No encontrado" class="poster">

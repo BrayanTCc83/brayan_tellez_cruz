@@ -5,7 +5,7 @@ import UK from "/assets/flags/uk.svg?raw";
 
 import type { IBlogResume } from "../../interface/Blog";
 
-const { title, author, description, duration, lang, technology, id }: IBlogResume = {
+const { title, author, description, duration, lang, technology, id, time }: IBlogResume & { time: string } = {
     id: '',
     description: '',
     duration: 0,
@@ -13,6 +13,7 @@ const { title, author, description, duration, lang, technology, id }: IBlogResum
     technology: '',
     title: '',
     author: '',
+    time: '',
     ...Astro.props
 };
 ---
@@ -23,7 +24,7 @@ const { title, author, description, duration, lang, technology, id }: IBlogResum
         <h2>{title}</h2>
         <p>{description}</p>
         <b>{author}</b>
-        <span>{duration} minutos</span>
+        <span>{duration} {time}</span>
     </div>
     <button class="tag lang">
         <Fragment set:html={ lang === 'es' ? MX : lang === 'en' ? UK : CH }/>

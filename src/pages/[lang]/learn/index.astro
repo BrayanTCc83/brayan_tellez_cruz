@@ -4,8 +4,14 @@ import Article from "../../../components/learn/Article.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import LanguageController from "../../../components/LanguageController.astro";
 
-import type { ILearnConcept } from "../../../interface/Learn.ts";
+import LearnES from "../../../data/es/translation.json";
+import LearnEN from "../../../data/en/translation.json";
+import LearnCH from "../../../data/ch/translation.json";
+
 import { GetAllLearn } from "../../../api/learn";
+
+import type { ILearnConcept } from "../../../interface/Learn.ts";
+import type { ILearnTranslation } from "../../../interface/AppLangs";
 
 export async function getStaticPaths() {
   return [
@@ -17,17 +23,19 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 const articulos: ILearnConcept[] = await GetAllLearn({ lang });
+
+const translate: ILearnTranslation = lang === 'es' ? LearnES.learn : lang === 'en' ? LearnEN.learn : LearnCH.learn;
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Blog', href: '/learn' }
+  { text: translate.title, href: '/learn' }
 ];
 ---
-<Template includes={['learn', 'lang-buttons']} lang={lang} title={`Brayan Téllez | Aprende conmigo`}>
+<Template includes={['learn', 'lang-buttons']} lang={lang} title={`Brayan Téllez | ${translate.title}`}>
     <LanguageController lang={lang}/>
     <Breadcrumb routes={routes}/>
     <section id="main">
       {
-        articulos.map( articulo => <Article {...articulo}/> )
+        articulos.map( articulo => <Article {...articulo} translate={translate}/> )
       }
     </section>
 </Template>

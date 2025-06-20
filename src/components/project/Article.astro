@@ -1,10 +1,12 @@
 ---
 import { GetProjectImages } from "../../api/projects";
-import type {IProject} from "../../interface/LangSupport";
 import { getIconData } from "../../utils/getIconData";
 
+import type { IProjectsTranslation } from "../../interface/AppLangs";
+import type { IProject } from "../../interface/LangSupport";
+
 const { lang } = Astro.params;
-const { id, name, date, description, technologies }: IProject = {
+const { id, name, date, description, technologies, translation }: IProject & { translation: IProjectsTranslation } = {
     id: '',
     name: '',
     date: '',
@@ -12,6 +14,12 @@ const { id, name, date, description, technologies }: IProject = {
     technologies: [] as string[],
     subname: '',
     cover: '',
+    translation: {
+        date: '',
+        description: '',
+        details: '',
+        title: ''
+    },
     ...Astro.props
 };
 const images = (await GetProjectImages({ id })).splice(-3);
@@ -24,14 +32,14 @@ const images = (await GetProjectImages({ id })).splice(-3);
     </div>
     <main>
         <h2>{name}</h2>
-        <span>Fecha de realización: {date}</span>
+        <span>{translation.date}: {date}</span>
         <p>
-            <b>Descripción:</b><br>
+            <b>{translation.description}:</b><br>
             {
                 (description??[]).map( d => <p>{d}</p>)
             }
         </p>
-        <a href={`/${lang}/projects/${id}`}>Detalles</a>
+        <a href={`/${lang}/projects/${id}`}>{translation.details}</a>
     </main>
     <footer>
         {

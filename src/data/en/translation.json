@@ -1,13 +1,47 @@
 {
     "about": {
-        "title": "About Me",
-        "schoolar": "Academic Background",
-        "mainProject": "Main Project",
+        "title": "About me",
+        "schoolar": "Academic background",
+        "mainProject": "Highlighted project",
         "skills": "Skills",
-        "about": "About Me",
+        "about": "About me",
         "langs": "Languages",
-        "videos": "Latest Videos",
+        "videos": "Latest videos",
         "hobbies": "Hobbies",
-        "projects": "Recent Projects"
+        "projects": "Recent projects",
+        "web": "Go to website"
+    },
+    "projects": {
+        "title": "Projects",
+        "date": "Date of completion",
+        "description": "Description",
+        "details": "Details"
+    },
+    "blogs": {
+        "title": "Posts",
+        "time": "minutes"
+    },
+    "learn": {
+        "title": "Learn with me",
+        "repository": "Repository",
+        "playlist": "Playlist"
+    },
+    "project_details": {
+        "section": "Projects",
+        "date": "This project was created",
+        "about": "About the project.",
+        "galery": "Gallery.",
+        "objectives": "Project objectives.",
+        "links": "Links.",
+        "technlologies": "Technologies used.",
+        "comments": "Comments.",
+        "clients": "Clients.",
+        "publish": "Published on "
+    },
+    "blog_post": {
+        "section": "Blogs",
+        "duration": "Reading time",
+        "publish": "Creation date",
+        "time": "minutes"
     }
 }

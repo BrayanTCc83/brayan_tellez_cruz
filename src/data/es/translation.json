@@ -8,6 +8,40 @@
         "langs": "Idiomas",
         "videos": "Últimos vídeos",
         "hobbies": "Pasatiempos",
-        "projects": "Proyectos recientes"
+        "projects": "Proyectos recientes",
+        "web": "Ir a la web"
+    },
+    "projects": {
+        "title": "Proyectos",
+        "date": "Fecha de realización",
+        "description": "Descripción",
+        "details": "Detalles"
+    },
+    "blogs": {
+        "title": "Publicaciones",
+        "time": "minutos"
+    },
+    "learn": {
+        "title": "Aprende conmigo",
+        "repository": "Repositorio",
+        "playlist": "Lista de reproducción"
+    },
+    "project_details": {
+        "section": "Proyectos",
+        "date": "Este proyecto fue realizado",
+        "about": "Sobre el proyecto.",
+        "galery": "Galería.",
+        "objectives": "Objetivos del proyecto.",
+        "links": "Enlaces.",
+        "technlologies": "Tecnologías utilizadas.",
+        "comments": "Comentarios.",
+        "clients": "Clientes.",
+        "publish": "Publicado el "
+    },
+    "blog_post": {
+        "section": "Blogs",
+        "duration": "Duración de lectura",
+        "publish": "Fecha de creación",
+        "time": "minutos"
     }
 }

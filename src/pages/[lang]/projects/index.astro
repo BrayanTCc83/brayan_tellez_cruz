@@ -3,7 +3,14 @@ import Template from "../../../template/Template.astro";
 import Article from "../../../components/project/Article.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import LanguageController from "../../../components/LanguageController.astro";
+
+import ProjectsES from "../../../data/es/translation.json";
+import ProjectsEN from "../../../data/en/translation.json";
+import ProjectsCH from "../../../data/ch/translation.json";
+
 import { GetAllProjects } from "../../../api/projects";
+
+import type { IProjectsTranslation } from "../../../interface/AppLangs";
 
 export async function getStaticPaths() {
   return [
@@ -15,17 +22,19 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 const projects = await GetAllProjects({ lang });
+
+const translation: IProjectsTranslation = lang === 'es' ? ProjectsES.projects : lang === 'en' ? ProjectsEN.projects : ProjectsCH.projects;
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
-  { text: 'Proyectos', href: `/${lang}/projects` }
+  { text: translation.title, href: `/${lang}/projects` }
 ];
 ---
-<Template includes={['projects', 'projectcard', 'lang-buttons']} lang={lang} title={`Brayan Téllez | Proyectos`}>
+<Template includes={['projects', 'projectcard', 'lang-buttons']} lang={lang} title={`Brayan Téllez | ${translation.title}`}>
     <LanguageController lang={lang}/>
     <Breadcrumb routes={routes}/>
     <section id="main">
-        {
-            projects.map( project => <Article {...project}/> )
-        }
+      {
+        projects.map( project => <Article translation={translation} {...project}/> )
+      }
     </section>
 </Template>
