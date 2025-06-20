@@ -6,7 +6,7 @@ const { routes } = {
     ...Astro.props
 };
 ---
-<nav class="breadcrumb">
+<nav class="breadcrumb" id="breadcrumb">
     <ul>
         {
             routes.map( ({ text, href }) =>
@@ -17,3 +17,25 @@ const { routes } = {
         }
     </ul>
 </nav>
+<div id="scroll-sentinel-breadcrumb" style="position: absolute; top: 75px; height: 1px;"></div>
+<script is:inline>
+    const breadcrumb = document.querySelector("#breadcrumb");
+    const sentinelBreadcrumb = document.getElementById('scroll-sentinel-breadcrumb');
+    console.log(breadcrumb);
+
+    const observerBreadcrumb = new IntersectionObserver(
+        ([entry]) => {
+            if (!entry.isIntersecting) {
+                breadcrumb.classList.add('scrolled');
+            } else {
+                breadcrumb.classList.remove('scrolled');
+            }
+        },
+        {
+            root: null,
+            threshold: 0
+        }
+    );
+
+    observerBreadcrumb.observe(sentinelBreadcrumb);
+</script>

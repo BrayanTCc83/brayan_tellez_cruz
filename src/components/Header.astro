@@ -13,15 +13,15 @@ const { lang } = Astro.props;
 
     const observer = new IntersectionObserver(
         ([entry]) => {
-        if (!entry.isIntersecting) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
+            if (!entry.isIntersecting) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         },
         {
-        root: null,
-        threshold: 0,
+            root: null,
+            threshold: 0
         }
     );
 

@@ -93,10 +93,6 @@ nav.header-navigation {
     transition: background-color 0.2s ease-in-out;
     border: none;
 
-    &.scrolled {
-        background-color: var(--shadow-color-black);
-    }
-
     & > ul {
         height: 50px;
         display: flex;
@@ -303,7 +299,6 @@ footer.data {
 
 nav.breadcrumb {
     z-index: 99;
-    padding: 0 var(--standart-size-fr);
 
     & > ul {
         display: flex;
@@ -412,5 +407,17 @@ nav.breadcrumb {
         & > span {
             display: none;
         }
+    }
+}
+
+nav.header-navigation.scrolled {
+    background-color: var(--shadow-color-black) !important;
+}
+
+nav.breadcrumb.scrolled > ul {
+    background-color: var(--shadow-color-black) !important;
+    
+    & > li {
+        background-color: transparent;
     }
 }
