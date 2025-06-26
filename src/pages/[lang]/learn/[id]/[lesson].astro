@@ -3,6 +3,7 @@ import LanguageController from "../../../../components/LanguageController.astro"
 import Template from "../../../../template/Template.astro";
 
 import Learns from "../../../../../public/assets/learn/learn.json";
+import type { ITable, ICode, IMedia } from "../../../../interface/Learn";
 import { GetTheme } from "../../../../api/learn";
 
 export async function getStaticPaths() {
@@ -35,28 +36,46 @@ const theme = await GetTheme({ lang, id, lesson });
         {
             Object.entries(theme.sections).map( ([ key, { section, content, content_under, extra } ]) => <div id={key}>
                 <h3>{ section }</h3>
-                <p>{ content }</p>
+                <p><Fragment set:html={ content }/></p>
                 {
                     extra ? extra.map( ({ type, ...rest }) => {
                         return type === 'img' ?
                             <figure class="img">
-                                <img src={(rest as any).src} alt="Image not found">
-                                <figcaption>{(rest as any).caption}</figcaption>
+                                <img src={(rest as IMedia).src} alt="Image not found">
+                                <figcaption>{(rest as IMedia).caption}</figcaption>
                             </figure>
                         : type === 'video' ? 
                             <figure class="video">
-                                <iframe src={(rest as any).src}></iframe>
-                                <figcaption>{(rest as any).caption}</figcaption>
+                                <iframe src={(rest as IMedia).src}></iframe>
+                                <figcaption>{(rest as IMedia).caption}</figcaption>
                             </figure>
                         : type === 'code' ?
                             <div class="code">
-                                <pre class="container">{(rest as any).code}</pre>
-                                <span>{(rest as any).lang}</span>
+                                <pre class="container">{(rest as ICode).code}</pre>
+                                <span>{(rest as ICode).lang}</span>
                             </div>
+                        : type === 'table' ?
+                            <table>
+                                <thead>
+                                    {
+                                        (rest as ITable).headers.map( h => <th>{h}</th> )
+                                    }
+                                </thead>
+                                <tbody>
+                                    {
+                                        (rest as ITable).rows.map( r => <tr>
+                                            {
+                                                r.map( c => <td>{c}</td> )
+                                            }
+                                        </tr> )
+                                    }
+                                </tbody>
+                                <caption>{(rest as ITable).caption}</caption>
+                            </table>
                         : null
                     }) : null
                 }
-                { content_under ?  <p>{content_under}</p>: null }
+                { content_under ?  <p><Fragment set:html={ content_under }/></p>: null }
             </div>)
         }
     </main>

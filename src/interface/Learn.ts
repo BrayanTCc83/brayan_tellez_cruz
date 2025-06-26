@@ -38,11 +38,18 @@ export interface ICode {
     lang: string
 }
 
+export interface ITable {
+    type: string
+    headers: string[],
+    rows: string[][],
+    caption: string
+}
+
 export interface ISection {
     [key: string]: {
         section: string
         content: string
-        extra: Array<IMedia|ICode>
+        extra: Array<IMedia|ICode|ITable>
         content_under?: string
     }
 }
