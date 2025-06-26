@@ -12,8 +12,35 @@ export async function getStaticPaths() {
 
 const { lang, id, lesson } = Astro.params;
 const theme = await GetTheme({ lang, id, lesson });
+
+const title = `Brayan Téllez | ${theme.title}`;
+const description = theme.resume;
+const url = `https://tusitio.com/${lang}/learn/${id}/${lesson}`;
+const image = '/assets/logotipe/Logo Bpp Colored.png';
 ---
-<Template includes={['learn-cover', 'lang-buttons', 'blog_post']} lang={lang} title={`Brayan Téllez | ${theme.title}`}>
+<Template
+    includes={['learn-cover', 'lang-buttons', 'blog_post']}
+    lang={lang}
+    title={`Brayan Téllez | ${theme.title}`}
+    seo={{
+        title,
+        description,
+        og: {
+            type: "article",
+            title,
+            description,
+            url,
+            image
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            image
+        },
+        canonical: url
+    }}
+>
     <LanguageController lang={lang}/>
     <aside class="container">
         <h3>Temario.</h3>
