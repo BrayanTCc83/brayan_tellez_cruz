@@ -99,6 +99,8 @@ div.code {
     margin: var(--standart-size-fr);
     display: flex;
     flex-direction: column-reverse;
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.5;
 
     & > pre:hover + span {
         background-color: var(--shadow-color-dark);
@@ -117,4 +119,38 @@ div.code {
 
 p {
     text-align: justify;
+}
+
+dl > * {
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.5;
+}
+dt {
+    font-weight: bold;
+}
+
+.center {
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.5;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    word-spacing: 1em;
+}
+
+table {
+    max-width: 80%;
+    align-self: center;
+    justify-self: center;
+    margin: var(--standart-size-fr) auto;
+
+    & > thead {
+        background-color: var(--shadow-color);
+    }
+
+    & > caption {
+        margin-top: 10px;
+        text-align: center;
+        color: var(--second-color);
+    }
 }

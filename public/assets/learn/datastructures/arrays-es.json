@@ -4,7 +4,62 @@
     "lang": "es",
     "title": "Arreglos.",
     "resume": "Resumen de arreglos",
-    "sections": [
-        
-    ]
+    "sections": {
+        "what-are" : {
+            "section": "¿Qué son los arreglos?",
+            "content": "Los arreglos son la estructura <b>no primitiva</b> (es decir que no es un dato) más básica que existe, su configuración es una representación de datos de un mismo tipo contiguos (uno en la posición inmediatamente siguiente al otro) en la memoria RAM. Podemos identificar los componentes de un  arreglo como:<br/><dl><dt>Dirección.</dt><dd>Es decir la posición dentro de la RAM en la que se está alojado el arreglo, sin importar el número de datos, siempre deberemos tener en consideración la ubicación del primer dato.</dd><dt>Tipo.</dt><dd>Este nos indicará el espacio que ocupará cada dato del arreglo en memoria, siendo el mínimo estandarizado de 8 bits, es decir 1 byte.</dd><dt>Tamaño.</dt><dd>Necesitamos saber con cuantos elementos cuenta nuestro arreglo para poder saber en donde inicia y termina, es necesario para evitar cualquier tipo de desbordamiento, en este caso <i>out bounding</i>, es decir salir de los límites.</dd><dt>Identificador.</dt><dd>Nos permite referenciar a nuestro arreglo dentro de nuestros programas. Debemos recordar que tanto este como el tamaño y el tipo, al momento de compilar \"dejan de existir\", pues terminan sirviendo simplemente como interpretaciones a tomar en cuenta y el identificador es remplazado por la dirección asignada al arreglo (no reservado en ejecución).</dd></dl>",
+            "extra": [
+                {
+                    "type": "img",
+                    "src": "/assets/learn/datastructures/images/RAM.png",
+                    "caption": "Figura 1: Representación de un arreglo dentro de la memoria RAM."
+                }
+            ]
+        },
+        "c-implementation": {
+            "section": "Implementación.",
+            "content": "Dentro de lenguaje C, la estructura a seguir para la definición de un arreglo consta de lo siguiente:<br/><span class=\"center\">tipo identificador[ tamaño ] = { ...datos };</span><br/>Bajo las siguientes consideraciones:<ul><li>El tamaño debe ser un entero positivo.</li><li>El tipo puede ser un tipo primitivo, una unión, enumeración o registro (struct).</li><li>La asignación de datos puede omitirse si se definió un tamaño y viceversa pero no ambos a la vez.</li><li>Si se define un tamaño y se realiza la asignación de datos, el número de ellos debe coincidir con el tamaño.</li></ul><br/>Podemos ver la implementación de ellos en lenguaje C.",
+            "extra": [
+                {
+                    "type": "code",
+                    "lang": "C",
+                    "code": "int main() {\n\t// Definición de un arreglo de 5 números enteros de 32 bits.\n\tint numeros[5] = { 1, 2, 3, 4, 5 };\n\n\t//Definición de un arreglo de 10 caracteres.\n\tchar caracteres[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L' };\n\n\t// Definición de un arreglo de 10 reales de 64 bits.\n\tfloat reales[10];\n\n\treturn 0;\n}"
+                }
+            ],
+            "content_under": "Para acceder a la información o modificarla necesitamos hacer uso del operador [], con el nos posicionamos en el \"offset\" (desplazamiento relativo al origen del arreglo) deseado y podemos modificar o extraer el dato."
+        },
+        "efficiency": {
+            "section": "Eficiencia.",
+            "content": "Los arreglos como estructura de datos tienen grandes ventajas y desventajas, entre las ventajas tenemos:<ul><li>Alta eficiencia en la consulta y modificación de información.</li><li>Facilidad de uso e implementación nativa (no requiere librerías, ni siquiera las estándar).</li><li>Conceptos fáciles de enternder y aplicar.</li></ul><br/>Pero por otro lado: <ul><li>Poco eficiente para búsquedas de elementos en concreto.</li><li>Poco flexibles, al ser definidos no podemos cambiar su tamaño.</li><li>Si necesitamos más espacio necesitamos reservar un segmento contiguo completo con la nueva capacidad deseada.</li><li>Poco eficiente uso de memoria, en caso de usar menos memoria de la reservada, estamos desperdiciando espacio.</li></ul>",
+            "extra": [
+                {
+                    "type": "table",
+                    "headers": [ "Tipo de consulta", "Eficiencia temporal", "Razón" ],
+                    "rows": [
+                        [ "Inserción", "O(n)", "Debe reservar el nuevo espacio necesario y mover todos los datos." ],
+                        [ "Búsqueda", "O(n)", "En el peor de los casos debe recorrer todo el arreglo para encontrar la coincidencia." ],
+                        [ "Eliminación", "O(n)", "Debe extraer el dato y mover a los huecos el resto de datos." ],
+                        [ "Consulta", "O(1)", "Está indexado, así que es muy rápido acceder a un dato concreto." ]
+                    ],
+                    "caption": "Tabla 1: Comparación de eficiencia temporal de las diferentes consultas a una estructura de datos."
+                }
+            ]
+        },
+        "conclusion": {
+            "section": "Conclusión.",
+            "content": "Por su fácil implementación y concepto, los arreglos son la estructura de datos por excelencia cuando inicias en el mundo de la programación, sin embargo saber cuales son sus limitaciones y aprender sobre otras que tengan características diferentes (mejores unas, peores otras) y sobre todo aplicarlas en el momento correcto, es una de las grandes habilidades que debe tener un desarrollador..",
+            "extra": [
+                {
+                    "type": "video",
+                    "src": "https://www.youtube.com/embed/7FIBvLUwReo?si=sszbQnGDV0CFNd0z",
+                    "caption": "Vídeo 1: Introducción a los arreglos."
+                },
+                {
+                    "type": "video",
+                    "src": "https://www.youtube.com/embed/1I8B4jxeb1A?si=ctIj-zpXIkd0-7J7",
+                    "caption": "Vídeo 2: Arreglos como estructuras de datos."
+                }
+            ]
+        }
+    }
 }
