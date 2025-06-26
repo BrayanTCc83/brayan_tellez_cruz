@@ -3,7 +3,7 @@
     "lesson": "arrays",
     "lang": "es",
     "title": "Arreglos.",
-    "resume": "Resumen de arreglos",
+    "resume": "Una exploración sobre los arreglos en lenguaje C y su uso como estructuras de datos, así como ventajas y desventajas.",
     "sections": {
         "what-are" : {
             "section": "¿Qué son los arreglos?",
