@@ -1,0 +1,114 @@
+{
+    "id": "datastructures",
+    "lesson": "static-lists",
+    "lang": "es",
+    "title": "Listas Estáticas",
+    "resume": "Una aproximación a las estructuras de datos, con enfoque en las listas. Definición e implementación de listas estáticas dentro del lenguaje C.",
+    "sections": {
+        "data-structs": {
+            "section": "Estructuras de datos.",
+            "content": "Dentro de las estructuras de datos, podemos distinguir dos grandes grupos: las estructuras lineales y las no lineales. Las primeras reciben su nombre porque los datos están conectados únicamente con el elemento siguiente (y/o anterior), lo que hace que su tamaño crezca de forma lineal. Las segundas, en cambio, pueden formar relaciones con más de un único elemento, lo que permite un crecimiento no lineal.<br/>También podemos clasificarlas según su implementación base: ya sea con arreglos o con nodos. Un <b><a href=\"./arrays\">arreglo</a></b> es estático, por lo que las estructuras implementadas con ellos tienen poca (o nula) flexibilidad, ya que poseen un tamaño inicial bien definido y, por tanto, un espacio en memoria fijo. En cambio, las estructuras basadas en nodos son mucho más flexibles, pues pueden reservar o liberar espacio en tiempo de ejecución. Por ello, haremos la distinción entre estructuras estáticas y dinámicas, respectivamente.",
+            "extra": [
+                {
+                    "type": "table",
+                    "caption": "Tabla 1: Diferencias entre estructuras lineales y no lineales.",
+                    "headers": [ "Característica", "Lineales", "No lineales" ],
+                    "rows": [
+                        [ "Tienen relación directa con más de un sucesor", "No", "Sí" ],
+                        [ "Tienen relación directa con más de un predecesor", "No", "Solo grafos" ],
+                        [ "El espacio en memoria crece de forma lineal", "Sí", "No" ],
+                        [ "Ordenada", "Sí", "No necesariamente" ],
+                        [ "Ejemplos", "Listas, pilas, colas, conjuntos, tablas hash (con resolución de colisiones por reubicación)", "Grafos, árboles, tablas hash (co n resolución de colisiones por listas enlazadas)" ]
+                    ]
+                }
+            ]
+        },
+        "static-list": {
+            "section": "Listas Estáticas.",
+            "content": "Una lista en programación es una estructura de datos lineal y ordenada que almacena una secuencia de elementos. Cada elemento ocupa una posición determinada (índice) y puede ser accedido, modificado o eliminado según su ubicación. Una <b>lista estática</b> es una lista cuya implementación se basa en arreglos. Esta implementación ofrece ventajas como un acceso rápido y eficiente a los elementos, y resulta sencilla de entender e implementar para los desarrolladores principiantes. Sin embargo, también presenta desventajas importantes, como su escasa flexibilidad. Además, mantener la coherencia en el orden de los elementos puede requerir reordenamientos frecuentes, lo cual impacta el rendimiento cuando se realizan muchas inserciones o eliminaciones.",
+            "extra": [],            
+            "content_under": "En las listas es común definir métodos que abstraen comportamientos frecuentes, como insertar, recuperar, modificar o eliminar elementos. Dependiendo del tipo de implementación deseada, estos métodos pueden adaptarse a diferentes necesidades. Por ejemplo, si se alcanza el tamaño máximo de la lista, se podría reubicar su contenido incrementando su capacidad en un valor determinado, o mantener siempre un tamaño fijo y reutilizar los espacios liberados. Esto dependerá del enfoque del programador. En este caso, nuestra lista estática mantendrá siempre un tamaño fijo, por lo que al eliminar un elemento, ese espacio podrá ser reutilizado manualmente."
+        },
+        "unsort-lists": {
+            "section": "Listas Estáticas Desordenadas",
+            "content": "Para este y los artículos posteriores crearemos siempre nuestra estructura a través de un typedef y antes de implementar sus métodos concretos, agregaremos nuestros métodos generales 'new' y 'delete' que servirán a modo de constructor y destructor respectivamente. De esta forma podemos abstraer nuestros métodos y poder instanciar tantas listas como queramos en las situaciones que necesitemos.",
+            "extra": [
+                {
+                    "type": "code",
+                    "lang": [ "C" ],
+                    "code": [
+                        "#include <stdio.h>\n#include<stdbool.h>\n#include <stdlib.h>\n\ntypedef struct _static_list {\n\tint *array;\n\tsize_t capacity, size;\n} StaticList;\n\nStaticList *new_static_list(size_t);\nvoid delete_static_list(StaticList*);\n\nint main(int argc, char *argv[]) {\n\tStaticList *list = new_static_list(10);\n\tdelete_static_list(list);\n\n\treturn 0;\n}\n\nStaticList *new_static_list(size_t capacity) {\n\tStaticList *list = (StaticList*) malloc( sizeof(StaticList) );\n\tif(!list) {\n\t\tprintf(\"Error al reservar memoria para la lista estatica.\n\");\n\t\texit(EXIT_FAILURE);\n\t}\n\n\tlist->array = (int*) malloc( capacity * sizeof(int) );\n\tif(!list->array) {\n\t\tprintf(\"Error al reservar memoria para el arreglo de la lista estatica.\");\n\t\texit(EXIT_FAILURE);\n\t}\n\n\tlist->capacity = capacity;\n\tlist->size = 0;\n\n\treturn list;\n}\n\nvoid delete_static_list(StaticList *list) {\n\tfor(int i = 0; i < list->size; i++) {\n\t\tlist->array[i] = 0;\n\t}\n\tfree(list->array);\n\tlist->array = NULL;\n\tlist->capacity = 0;\n\tlist->size = 0;\n\tfree(list);\n}"
+                    ]
+                }
+            ],
+            "content_under": "Con estos métodos implementados, podemos ahora sí realizar la implementación de nuestros métodos, tomando en consideración el caso más extremo de la lista, es decir una lista desordenada, donde podemos insertar datos al inicio, final o cualquier posición dentro de la misma que deseemos, igual eliminaciones. Así mismo consideraremos algunos métodos auxiliares que serán de uso común en otros métodos."
+        },
+        "auxiliars": {
+            "section": "Métodos auxiliares",
+            "content": "Estos métodos son fundamentales para interactuar de forma segura y eficiente con nuestra lista. No solo se reutilizan en diferentes funciones, sino que también proporcionan validaciones y accesos directos a datos importantes. Aquí encontramos:<ul><li><b>Is Void:</b> valida si la lista no contiene ningún elemento.</li><li><b>Is Full:</b> verifica si la lista alcanzó su capacidad máxima.</li><li><b>Get:</b> recupera un elemento específico según su índice.</li><li><b>Get First Index:</b> busca el primer índice donde aparece un valor determinado.</li><li><b>Get Last Index:</b> busca el último índice donde aparece un valor determinado; junto con Get y Get First Index, conforma los métodos de búsqueda.</li><li><b>Count:</b> cuenta todas las apariciones de un valor, útil para obtener métricas como la moda.</li></ul>",
+            "extra": [
+                {
+                    "type": "code",
+                    "lang": [ "C" ],
+                    "code": [
+                        "bool static_list_is_void(StaticList list) {\n\treturn !list.size;\n}\n\nbool static_list_is_full(StaticList list) {\n\treturn list.size == list.capacity;\n}\n\nint static_list_get(StaticList list, size_t index) {\n\tif(index < 0) {\n\t\treturn ERROR_VALUE;\n\t}\n\treturn list.array[index];\n}\n\nint static_list_get_first_index(StaticList list, int value) {\n\tif(static_list_is_void(list)) {\n\t\treturn -1;\n\t}\n\n\tint index = -1;\n\tfor(int i = 0; i < list.size; i++) {\n\t\tif(list.array[i] == value) {\n\t\t\tindex = i;\n\t\t\tbreak;\n\t\t}\n\t}\n\n\treturn index;\n}\n\nint static_list_get_last_index(StaticList list, int value) {\n\tif(static_list_is_void(list)) {\n\t\treturn -1;\n\t}\n\n\tint index = -1;\n\tfor(int i = list.size - 1; i >= 0; i--) {\n\t\tif(list.array[i] == value) {\n\t\t\tindex = i;\n\t\t\tbreak;\n\t\t}\n\t}\n\n\treturn index;\n}\n\nsize_t static_list_count(StaticList list, int value) {\n\tif(static_list_is_void(list)) {\n\t\treturn 0;\n\t}\n\n\tint count = 0;\n\tfor(int i = 0; i < list.size; i++) {\n\t\tif(list.array[i] == value) {\n\t\t\tcount++;\n\t\t}\n\t}\n\n\treturn count;\n}"
+                    ]
+                }
+            ]
+        },
+        "insertions": {
+            "section": "Inserción.",
+            "content": "Para insertar elementos en la lista, utilizamos un enfoque inspirado en el algoritmo de ordenamiento por inserción: desplazamos los elementos una posición hacia adelante para abrir espacio, excepto cuando insertamos al final. Como trabajamos con listas estáticas, no se realiza reubicación ni ampliación de memoria. Si la capacidad máxima se alcanza, se devuelve un error. Los métodos definidos son:<ul><li><b>Push:</b> inserta al final de la lista.</li><li><b>Shift:</b> inserta al inicio, desplazando todos los elementos una posición adelante.</li><li><b>After:</b> inserta después de la última aparición de una referencia dada; si no se encuentra, retorna error.</li><li><b>Before:</b> inserta antes de la primera aparición de una referencia dada.</li></ul>",
+            "extra": [
+                {
+                    "type": "code",
+                    "lang": [ "C" ],
+                    "code": [
+                        "bool static_list_push(StaticList *list, int value) {\n\tif(static_list_is_full(*list)) {\n\t\treturn false;\n\t}\n\n\tlist->array[list->size] = value;\n\tlist->size++;\n\n\treturn true;\n}\n\nbool static_list_shift(StaticList *list, int value) {\n\tif(static_list_is_full(*list)) {\n\t\treturn false;\n\t}\n\n\tfor(int i = list->size; i >= 0; i--) {\n\t\tlist->array[i + 1] = list->array[i];\n\t}\n\n\tlist->array[0] = value;\n\tlist->size++;\n\n\treturn true;\n}\n\nbool static_list_insert_after(StaticList *list, int value, int reference) {\n\tif(static_list_is_full(*list)) {\n\t\treturn false;\n\t}\n\n\tint index = static_list_get_last_index(*list, reference);\n\tif(index == -1) {\n\t\treturn false;\n\t}\n\n\tfor(int i = index + 2; i < list->size; i++) {\n\t\tlist->array[i] = list->array[i - 1];\n\t}\n\tlist->array[index + 1] = value;\n\tlist->size++;\n\n\treturn true;\n}\n\nbool static_list_insert_before(StaticList *list, int value, int reference) {\n\tif(static_list_is_full(*list)) {\n\t\treturn false;\n\t}\n\n\tint index = static_list_get_first_index(*list, reference);\n\tif(index == -1) {\n\t\treturn false;\n\t}\n\n\tfor(int i = list->size; i > index; i--) {\n\t\tlist->array[i] = list->array[i - 1];\n\t}\n\tlist->array[ index > 0 ? index : 0 ] = value;\n\tlist->size++;\n\n\treturn true;\n}"
+                    ]
+                }
+            ]
+        },
+        "removes": {
+            "section": "Eliminación.",
+            "content": "Las operaciones de eliminación siguen una lógica simétrica a la de inserción. Existen versiones equivalentes para eliminar al inicio, al final o en relación con un valor de referencia. Estos son:<ul><li><b>Pop:</b> elimina el último elemento.</li><li><b>Unshift:</b> elimina el primer elemento, desplazando los demás una posición atrás.</li><li><b>Remove Last:</b> elimina la última aparición de un valor específico.</li><li><b>Remove First:</b> elimina la primera aparición de un valor específico.</li><li><b>Remove All:</b> elimina todas las apariciones de un valor y devuelve cuántas se eliminaron.</li></ul>",
+            "extra": [
+                {
+                    "type": "code",
+                    "lang": [ "C" ],
+                    "code": [
+                        "int static_list_pull(StaticList *list) {\n\tif(static_list_is_void(*list)) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tlist->size--;\n\tint value = list->array[list->size];\n\n\treturn value;\n}\n\nint static_list_unshift(StaticList *list) {\n\tif(static_list_is_void(*list)) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tint value = list->array[0];\n\t--list->size;\n\tfor(int i = 0; i < list->size; i++) {\n\t\tlist->array[i] = list->array[i + 1];\n\t}\n\tlist->array[list->size] = 0;\n\n\treturn value;\n}\n\nint static_list_remove_first(StaticList *list, int value) {\n\tif(static_list_is_void(*list)) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tint index = static_list_get_first_index(*list, value);\n\tif(index == -1) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tint result = list->array[index];\n\tlist->size--;\n\tfor(int i = index; i < list->size; i++) {\n\t\tlist->array[i] = list->array[i + 1];\n\t}\n\tlist->array[list->size] = 0;\n\n\treturn result;\n}\n\nint static_list_remove_last(StaticList *list, int value) {\n\tif(static_list_is_void(*list)) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tint index = static_list_get_last_index(*list, value);\n\tif(index == -1) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tint result = list->array[index];\n\tlist->size--;\n\tfor(int i = index; i < list->size; i++) {\n\t\tlist->array[i] = list->array[i + 1];\n\t}\n\tlist->array[list->size] = 0;\n\n\treturn result;\n}\n\nint static_list_remove_all(StaticList *list, int value) {\n\tif(static_list_is_void(*list)) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tint count = 0;\n\twhile(static_list_remove_first(list, value) != ERROR_VALUE) {\n\t\tcount++;\n\t}\n\treturn count;\n}"
+                    ]
+                }
+            ]
+        },
+        "efficiency": {
+            "section": "Eficiencia.",
+            "content": "Al estar basadas en arreglos, estas listas heredan su rendimiento característico. Las consultas simples como el acceso por índice son muy rápidas, mientras que las operaciones que implican mover datos (como inserciones o eliminaciones) tienen un costo mayor. Aun así, este enfoque ofrece una solución clara, predecible y fácil de implementar para manejar conjuntos de datos de tamaño fijo.",
+            "extra": [
+                {
+                    "type": "table",
+                    "headers": [ "Tipo de consulta", "Eficiencia temporal", "Razón" ],
+                    "rows": [
+                        [ "Inserción", "O(n)", "Debe desplazar los datos restantes del arreglo, en el mejor de los casos ninguno, en el peor n-1." ],
+                        [ "Búsqueda", "O(n)", "En el peor de los casos debe recorrer todo el arreglo para encontrar la coincidencia." ],
+                        [ "Eliminación", "O(n)", "Debe extraer el dato y mover a los huecos el resto de datos, en el mejor solo desplaza el índice, en el peor n-1." ],
+                        [ "Consulta", "O(1)", "Está indexado, así que es muy rápido acceder a un dato concreto." ]
+                    ],
+                    "caption": "Tabla 2: Eficiencia de las consultas a una lista estática (desordenada)."
+                }
+            ]
+        },
+        "conclution": {
+            "section": "Conclusiones.",
+            "content": "Las listas estáticas son una excelente introducción a las estructuras de datos lineales. Ofrecen una implementación controlada y eficiente, especialmente útil cuando se conoce de antemano la cantidad máxima de elementos que se desea manejar. A través de los métodos auxiliares, de inserción y eliminación, hemos logrado simular comportamientos más dinámicos con estructuras fijas, reforzando conceptos clave como la manipulación por índice, el desplazamiento de datos y la validación de estados límite. Aunque presentan limitaciones en términos de flexibilidad, su claridad las convierte en una herramienta ideal para aprender principios fundamentales de la programación estructurada y del manejo de memoria.",
+            "extra": [
+                {
+                    "type": "video",
+                    "src": "https://www.youtube.com/embed/GxSggy6zn1Q?si=qqo3aP2b_H46A9Lh",
+                    "caption": "Vídeo 1: Implementación de listas estáticas desordenadas."
+                }
+            ]
+        }
+    }
+}

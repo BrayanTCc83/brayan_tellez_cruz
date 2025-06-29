@@ -2,7 +2,7 @@
     "id": "datastructures",
     "lesson": "arrays",
     "lang": "es",
-    "title": "Arreglos.",
+    "title": "Arreglos",
     "resume": "Una exploración sobre los arreglos en lenguaje C y su uso como estructuras de datos, así como ventajas y desventajas.",
     "sections": {
         "what-are" : {
@@ -22,8 +22,10 @@
             "extra": [
                 {
                     "type": "code",
-                    "lang": "C",
-                    "code": "int main() {\n\t// Definición de un arreglo de 5 números enteros de 32 bits.\n\tint numeros[5] = { 1, 2, 3, 4, 5 };\n\n\t//Definición de un arreglo de 10 caracteres.\n\tchar caracteres[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L' };\n\n\t// Definición de un arreglo de 10 reales de 64 bits.\n\tfloat reales[10];\n\n\treturn 0;\n}"
+                    "lang": [ "C" ],
+                    "code": [
+                        "int main() {\n\t// Definición de un arreglo de 5 números enteros de 32 bits.\n\tint numeros[5] = { 1, 2, 3, 4, 5 };\n\n\t//Definición de un arreglo de 10 caracteres.\n\tchar caracteres[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L' };\n\n\t// Definición de un arreglo de 10 reales de 64 bits.\n\tfloat reales[10];\n\n\treturn 0;\n}"
+                    ]
                 }
             ],
             "content_under": "Para acceder a la información o modificarla necesitamos hacer uso del operador [], con el nos posicionamos en el \"offset\" (desplazamiento relativo al origen del arreglo) deseado y podemos modificar o extraer el dato."
