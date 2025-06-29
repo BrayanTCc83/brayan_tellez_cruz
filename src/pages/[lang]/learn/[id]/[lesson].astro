@@ -79,7 +79,7 @@ const image = '/assets/logotipe/Logo Bpp Colored.png';
                         : type === 'code' ?
                             <div class="code">
                                 <pre class="container">{(rest as ICode).code}</pre>
-                                <span>{(rest as ICode).lang}</span>
+                                <span>{(rest as ICode).lang[0]}</span>
                             </div>
                         : type === 'table' ?
                             <table>

@@ -347,7 +347,8 @@ ul.video-container {
     .project_tag {
         grid-template-areas:
             "n n"
-            "i d"
+            "i i"
+            "d d"
             "t t";
     }
 }

@@ -34,8 +34,8 @@ export interface IMedia {
 
 export interface ICode {
     type: string
-    code: string
-    lang: string
+    code: string[]
+    lang: string[]
 }
 
 export interface ITable {

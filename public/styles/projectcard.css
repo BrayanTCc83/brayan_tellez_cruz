@@ -28,6 +28,10 @@ section#main {
                 border-color: var(--second-color);
             }
         }
+
+        & > span {
+            line-height: normal;
+        }
     }
 
     & > footer {
