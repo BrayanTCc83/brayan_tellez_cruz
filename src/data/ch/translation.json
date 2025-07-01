@@ -9,7 +9,14 @@
         "videos": "最新视频",
         "hobbies": "兴趣爱好",
         "projects": "最近项目",
-        "web": "访问网站"
+        "web": "访问网站",
+        "wai": {
+            "skills": "Highlighted skills",
+            "techs": "Technologies used",
+            "carousel": "Project image carousel",
+            "project_urls": "Project links",
+            "kwnown_langs": "Known languages"
+        }
     },
     "projects": {
         "title": "项目",

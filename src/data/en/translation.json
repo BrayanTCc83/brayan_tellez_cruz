@@ -9,7 +9,14 @@
         "videos": "Latest videos",
         "hobbies": "Hobbies",
         "projects": "Recent projects",
-        "web": "Go to website"
+        "web": "Go to website",
+        "wai": {
+            "skills": "Highlighted skills",
+            "techs": "Technologies used",
+            "carousel": "Project image carousel",
+            "project_urls": "Project links",
+            "kwnown_langs": "Known languages"
+        }
     },
     "projects": {
         "title": "Projects",
