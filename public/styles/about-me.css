@@ -164,7 +164,7 @@ ul.video-container {
         margin: 0;
         height: fit-content;
 
-        & > a {
+        & > a, & > div {
             padding: 0;
             margin: 0;
             width: 100%;
