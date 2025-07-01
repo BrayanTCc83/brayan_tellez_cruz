@@ -105,6 +105,7 @@
             "extra": [
                 {
                     "type": "video",
+                    "alt": "Video de listas estáticas.",
                     "src": "https://www.youtube.com/embed/GxSggy6zn1Q?si=qqo3aP2b_H46A9Lh",
                     "caption": "Vídeo 1: Implementación de listas estáticas desordenadas."
                 }

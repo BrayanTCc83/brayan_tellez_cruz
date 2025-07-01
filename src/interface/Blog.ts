@@ -18,6 +18,7 @@ export interface IBlogFragment {
     position: string
     caption: string
     text: string
+    alt: string
 }
 
 export interface IBlog {
@@ -28,5 +29,6 @@ export interface IBlog {
     update_date: string
     author: string
     poster: string
+    alt: string
     fragments: IBlogFragment[]
 };

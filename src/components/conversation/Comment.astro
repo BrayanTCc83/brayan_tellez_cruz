@@ -5,7 +5,7 @@ const { image, name, puntuation, comment } = Astro.props;
 ---
 <article class="container comment">
     <header>
-        <img src={image} alt="Imagen del cliente."/>
+        <img src={image} alt="Imagen del cliente." width="200px" height="200px"/>
         <span>{name}</span>
         <Puntuation puntuation={puntuation} client:only="react"/>
     </header>

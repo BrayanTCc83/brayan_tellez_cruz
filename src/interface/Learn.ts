@@ -30,6 +30,7 @@ export interface IMedia {
     type: string
     src: string
     caption: string
+    alt: string
 }
 
 export interface ICode {
@@ -62,6 +63,7 @@ export interface ILearnLesson {
     resume: string
     themes: IThemes
     sections: ISection
+    keywords: string[]
 };
 
 export interface ILearnAbstract {

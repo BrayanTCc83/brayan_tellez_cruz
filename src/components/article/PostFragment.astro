@@ -1,9 +1,19 @@
 ---
-    const { image, position, caption, text, id } = Astro.props;
+import type { IBlogFragment } from '../../interface/Blog';
+
+const { image, position, caption, text, id, alt }: IBlogFragment & { id: string} = {
+    alt: '',
+    caption: '',
+    id: '',
+    image: '',
+    position: '',
+    text: '',
+    ...Astro.props
+};
 ---
 <div class="fragment">
     <figure class={position}>
-        <img src=`/assets/blogs/${id}/${image}` alt="No encontrado">
+        <img src=`/assets/blogs/${id}/${image}` alt={alt} width="300px">
         <figcaption>{caption}</figcaption>
     </figure>
     <p>{text}</p>

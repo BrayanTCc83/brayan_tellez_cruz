@@ -10,7 +10,7 @@
     "author": "Brayan Téllez Cruz",
     "date": "08-06-2025",
     "realization": "01-Ene-2024 al 30-Abr-2025",
-    "cover": "lua_1.png",
+    "cover": "lua_1.webp",
     "technologies": [ "html", "css", "js", "django" ],
     "website": "https://www.brayantellez.com/es/projects",
     "isPublic": true,
@@ -23,7 +23,7 @@
     "clients": [
         {
             "name": "LMI",
-            "logotipe": "/assets/images/clients/LabMei.png",
+            "logotipe": "/assets/images/clients/LabMei.webp",
             "description": "Laboratorio de Multimedia e Internet de la facultad de ingeniería de la UNAM.",
             "portal": "https://mmedia1.fi-b.unam.mx/"
         }

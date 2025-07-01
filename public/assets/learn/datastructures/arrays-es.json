@@ -4,6 +4,7 @@
     "lang": "es",
     "title": "Arreglos",
     "resume": "Una exploración sobre los arreglos en lenguaje C y su uso como estructuras de datos, así como ventajas y desventajas.",
+    "keywords": [ "C", "programción", "estructuras de datos", "arreglos" ],
     "sections": {
         "what-are" : {
             "section": "¿Qué son los arreglos?",
@@ -11,7 +12,8 @@
             "extra": [
                 {
                     "type": "img",
-                    "src": "/assets/learn/datastructures/images/RAM.png",
+                    "alt": "Representación de memoria RAM.",
+                    "src": "/assets/learn/datastructures/images/RAM.webp",
                     "caption": "Figura 1: Representación de un arreglo dentro de la memoria RAM."
                 }
             ]
@@ -53,11 +55,13 @@
             "extra": [
                 {
                     "type": "video",
+                    "alt": "Video sobre arreglos.",
                     "src": "https://www.youtube.com/embed/7FIBvLUwReo?si=sszbQnGDV0CFNd0z",
                     "caption": "Vídeo 1: Introducción a los arreglos."
                 },
                 {
                     "type": "video",
+                    "alt": "Video sobre uso de arreglos.",
                     "src": "https://www.youtube.com/embed/1I8B4jxeb1A?si=ctIj-zpXIkd0-7J7",
                     "caption": "Vídeo 2: Arreglos como estructuras de datos."
                 }

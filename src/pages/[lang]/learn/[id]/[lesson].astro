@@ -13,15 +13,16 @@ export async function getStaticPaths() {
 const { lang, id, lesson } = Astro.params;
 const theme = await GetTheme({ lang, id, lesson });
 
-const title = `Brayan Téllez | ${theme.title}`;
+const title = `${theme.title} - ${id} | Brayan Téllez`;
 const description = theme.resume;
 const url = `https://tusitio.com/${lang}/learn/${id}/${lesson}`;
-const image = '/assets/logotipe/Logo Bpp Colored.png';
+const image = '/assets/logotipe/Logo Bpp Colored.webp';
 ---
 <Template
     includes={['learn-cover', 'lang-buttons', 'blog_post']}
     lang={lang}
-    title={`Brayan Téllez | ${theme.title}`}
+    title={`${theme.title} - ${id} | Brayan Téllez`}
+    keywords={theme.keywords}
     seo={{
         title,
         description,
@@ -68,7 +69,7 @@ const image = '/assets/logotipe/Logo Bpp Colored.png';
                     extra ? extra.map( ({ type, ...rest }) => {
                         return type === 'img' ?
                             <figure class="img">
-                                <img src={(rest as IMedia).src} alt="Image not found">
+                                <img src={(rest as IMedia).src} alt={(rest as IMedia).alt}>
                                 <figcaption>{(rest as IMedia).caption}</figcaption>
                             </figure>
                         : type === 'video' ? 

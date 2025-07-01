@@ -26,9 +26,9 @@ const images = (await GetProjectImages({ id })).splice(-3);
 ---
 <article class="project-card container">
     <div class="images-container">
-        <img src={images[0]} alt="Not found"/>
-        <img src={images[1]} alt="Not found"/>
-        <img src={images[2]} alt="Not found"/>
+        <img src={images[0]} alt="Not found" width="400px"/>
+        <img src={images[1]} alt="Not found" width="400px"/>
+        <img src={images[2]} alt="Not found" width="400px"/>
     </div>
     <main>
         <h2>{name}</h2>

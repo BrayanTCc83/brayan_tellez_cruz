@@ -1,5 +1,8 @@
 @font-face {
     font-family: Ubuntu;
+    font-display: swap;
+    font-style: normal;
+    font-weight: 400;
     src: url('/fonts/Ubuntu-Regular.ttf');
 }
 
@@ -20,6 +23,10 @@
     --error-color: rgb(151, 45, 50);
     --success-color: rgb(45, 151, 86);
     --standart-size-fr: 25px;
+}
+
+img {
+    background-color: black;
 }
 
 * {

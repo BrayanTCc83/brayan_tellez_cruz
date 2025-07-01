@@ -10,7 +10,7 @@
   "author": "Brayan Téllez Cruz",
   "date": "2025年6月8日",
   "realization": "2024年1月1日 到 2025年4月30日",
-  "cover": "lua_1.png",
+  "cover": "lua_1.webp",
   "technologies": [ "html", "css", "js", "django" ],
   "website": "https://www.brayantellez.com/es/projects",
   "isPublic": true,
@@ -23,7 +23,7 @@
   "clients": [
     {
       "name": "LMI",
-      "logotipe": "/assets/images/clients/LabMei.png",
+      "logotipe": "/assets/images/clients/LabMei.webp",
       "description": "UNAM 工程学院多媒体与互联网实验室。",
       "portal": "https://mmedia1.fi-b.unam.mx/"
     }

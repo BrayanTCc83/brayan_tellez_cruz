@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { lang, id } = Astro.params;
-const { title, subtitle, creation_date, update_date, author, duration, poster, fragments } = await GetBlog({ lang, id });
+const { title, subtitle, creation_date, update_date, author, duration, poster, fragments, alt } = await GetBlog({ lang, id });
 
 const translation: IBlogPostTranslation = lang === 'es' ? BlogPostES.blog_post : lang === 'en' ? BlogPostEN.blog_post : BlogPostCH.blog_post;
 const routes = [
@@ -45,13 +45,13 @@ const routes = [
         <span class="extra">{translation.publish}: {update_date}.</span>
 
         <meta itemprop="timeRequired" content={`PT${duration}M`}>
-        <img src={`/assets/blogs/${id}/${poster}`} alt="No encontrado" class="poster">
+        <img src={`/assets/blogs/${id}/${poster}`} alt={alt} class="poster" width="100%">
 
         <main itemprop="articleBody">
             {
-                (fragments??[]).map( fragment => 
-                    <PostFragment {...fragment} id={id}/>
-                )
+              (fragments??[]).map( fragment => 
+                <PostFragment {...fragment} id={id}/>
+              )
             }
         </main>
     </article>

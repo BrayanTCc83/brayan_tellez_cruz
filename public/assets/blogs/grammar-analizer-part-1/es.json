@@ -5,10 +5,12 @@
     "creation_date": "08-06-2025",
     "update_date": "08-06-2025",
     "author": "Brayan Téllez Cruz",
-    "poster": "poster.png",
+    "poster": "poster.webp",
+    "alt": "Poster.",
     "fragments": [
         {
-            "image": "poster.png", 
+            "image": "poster.webp",
+            "alt": "Imagen de referencia.",
             "position": "right",
             "caption": "Figura 4: Ejemplo",
             "text": "Contenido incompleto"
