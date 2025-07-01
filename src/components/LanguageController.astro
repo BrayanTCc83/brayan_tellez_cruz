@@ -15,19 +15,19 @@ const lang = Astro.props.lang;
         aria-label="Selector de idioma"
     >
         <li role="option" aria-selected={lang === 'es' ? 'true' : 'false'}>
-            <a class="tag" data-lang="es" tabindex={lang === 'es' ? "-1" : "0"}>
+            <a href="#" class="tag" data-lang="es" tabindex={lang === 'es' ? "-1" : "0"}>
                 <Fragment set:html={MX} />
                 <span>Español</span>
             </a>
         </li>
         <li role="option" aria-selected={lang === 'en' ? 'true' : 'false'}>
-            <a class="tag" data-lang="en" tabindex={lang === 'en' ? "-1" : "0"}>
+            <a href="#" class="tag" data-lang="en" tabindex={lang === 'en' ? "-1" : "0"}>
                 <Fragment set:html={UK} />
                 <span>English</span>
             </a>
         </li>
         <li role="option" aria-selected={lang === 'ch' ? 'true' : 'false'}>
-            <a class="tag" data-lang="ch" tabindex={lang === 'ch' ? "-1" : "0"}>
+            <a href="#" class="tag" data-lang="ch" tabindex={lang === 'ch' ? "-1" : "0"}>
                 <Fragment set:html={CH} />
                 <span>汉语</span>
             </a>
@@ -48,12 +48,12 @@ const lang = Astro.props.lang;
 <script is:inline>
     const langs = document.getElementById("langs");
     const langsOptions = document.getElementById("langs-options");
+    const links = langsOptions.querySelectorAll('a');
+    links.forEach(link => 
+        link.href = `${location.origin}/${link.getAttribute('data-lang')}${location.pathname.substring(3)}`
+    );
 
     langs.onclick = () => {
         langsOptions.classList.toggle('hide');
-        const links = langsOptions.querySelectorAll('a');
-        links.forEach(link => 
-            link.href = `${location.origin}/${link.getAttribute('data-lang')}${location.pathname.substring(3)}`
-        );
     }
 </script>
