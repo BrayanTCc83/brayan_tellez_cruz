@@ -8,28 +8,40 @@ import UK from "/assets/flags/uk.svg?raw";
 const lang = Astro.props.lang;
 ---
 <div class="language-controller">
-    <ul class="langs-container hide" id="langs-options">
-        <li>
-            <a class="tag" data-lang="es">
-                <Fragment set:html={MX}/>
+    <ul
+        class="langs-container hide"
+        id="langs-options"
+        role="listbox"
+        aria-label="Selector de idioma"
+    >
+        <li role="option" aria-selected={lang === 'es' ? 'true' : 'false'}>
+            <a class="tag" data-lang="es" tabindex={lang === 'es' ? "-1" : "0"}>
+                <Fragment set:html={MX} />
                 <span>Español</span>
             </a>
         </li>
-        <li>
-            <a class="tag" data-lang="en">
-                <Fragment set:html={UK}/>
+        <li role="option" aria-selected={lang === 'en' ? 'true' : 'false'}>
+            <a class="tag" data-lang="en" tabindex={lang === 'en' ? "-1" : "0"}>
+                <Fragment set:html={UK} />
                 <span>English</span>
             </a>
         </li>
-        <li>
-            <a class="tag" data-lang="ch">
-                <Fragment set:html={CH}/>
+        <li role="option" aria-selected={lang === 'ch' ? 'true' : 'false'}>
+            <a class="tag" data-lang="ch" tabindex={lang === 'ch' ? "-1" : "0"}>
+                <Fragment set:html={CH} />
                 <span>汉语</span>
             </a>
         </li>
     </ul>
-    <button class={`tag`} id="langs">
-        <Fragment set:html={World}/>
+    <button
+        class="tag"
+        id="langs"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+        aria-controls="langs-options"
+        aria-label="Abrir selector de idioma"
+    >
+        <Fragment set:html={World} />
         <span>{lang}</span>
     </button>
 </div>

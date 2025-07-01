@@ -7,19 +7,19 @@
 }
 
 :root {
-    --main-color: rgb(79, 27, 110);
-    --second-color: rgb(97, 70, 107);
+    --main-color: rgb(113, 39, 156);
+    --second-color: rgb(138, 98, 153);
     --third-color: rgb(155, 95, 175);
     --pale-color: rgb(201, 201, 201);
-    --dark-color: rgb(3, 19, 32);
+    --dark-color: rgb(2, 15, 26);
     --light-color: rgb(242, 234, 243);
     --text-heading-color: var(--third-color);
     --text-content-color: var(--light-color);
     --background-color: var(--dark-color);
     --shadow-color: rgba(5, 12, 17, 0.4);
     --shadow-color-black: rgba(0, 0, 0, 0.95);
-    --shadow-color-dark: rgba(46, 17, 53, 0.25);
-    --shadow-color-dark-deep: rgba(46, 17, 53, 0.7);
+    --shadow-color-dark: rgba(46, 17, 53, 0.15);
+    --shadow-color-dark-deep: rgba(46, 17, 53, 0.5);
     --error-color: rgb(151, 45, 50);
     --success-color: rgb(45, 151, 86);
     --standart-size-fr: 25px;
@@ -444,10 +444,20 @@ nav.breadcrumb {
     body {
         grid-template-columns: repeat(4, 1fr);
     }
-    nav.header-navigation > ul > li > a {
-        width: 80px;
-        & > span {
-            display: none;
+    nav.header-navigation > ul {
+        height: fit-content;
+
+        & > li > a {
+            flex-direction: column;
+            width: 80px;
+            height: 100%;
+            gap: 5px;
+
+            & > span {
+                line-height: normal;
+                text-align: center;
+                font-size: 0.85em;
+            }
         }
     }
 }
@@ -462,4 +472,16 @@ nav.breadcrumb.scrolled > ul {
     & > li {
         background-color: transparent;
     }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

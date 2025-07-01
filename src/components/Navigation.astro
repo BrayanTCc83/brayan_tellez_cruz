@@ -30,40 +30,40 @@ const options = {
 };
 const elems = (options as any)[lang ? lang: 'es'];
 ---
-
-<nav class="header-navigation">
-    <ul id="items">
-        <li>
-            <a href={`/${lang ? lang : 'es'}/`}>
-                <Fragment set:html={User}/>
-                <span>{elems.about}</span>
-            </a>
-        </li>
-        <li>
-            <a href={`/${lang ? lang : 'es'}/projects`}>
-                <Fragment set:html={Project}/>
-                <span>{elems.projects}</span>
-            </a>
-        </li>
-        <li>
-            <a href={`/${lang ? lang : 'es'}/blogs`}>
-                <Fragment set:html={Blog}/>
-                <span>{elems.blogs}</span>
-            </a>
-        </li>
-        <li>
-            <a href={`/${lang ? lang : 'es'}/learn`}>
-                <Fragment set:html={Learn}/>
-                <span>{elems.learn}</span>
-            </a>
-        </li>
-    </ul>
-    <script is:inline>
-        const currentUrl = location.pathname;
-        const anchors = Array.from(document.getElementById("items").children).map( li => li.children[0] );
-        (
-            currentUrl === '/' ? anchors[0]
-            : anchors.find(a => a.href.includes(currentUrl))
-        )?.classList.add('current');
-    </script>
+<nav class="header-navigation" role="navigation" aria-label="Menú principal" aria-labelledby="main-navigation-label">
+  <h2 id="main-navigation-label" class="visually-hidden">Menú principal</h2>
+  <ul id="items">
+    <li>
+      <a href={`/${lang ? lang : 'es'}/`} aria-label="Link About">
+        <Fragment set:html={User}/>
+        <span>{elems.about}</span>
+      </a>
+    </li>
+    <li>
+      <a href={`/${lang ? lang : 'es'}/projects`} aria-label="Link Projects">
+        <Fragment set:html={Project}/>
+        <span>{elems.projects}</span>
+      </a>
+    </li>
+    <li>
+      <a href={`/${lang ? lang : 'es'}/blogs`} aria-label="Link Blogs">
+        <Fragment set:html={Blog}/>
+        <span>{elems.blogs}</span>
+      </a>
+    </li>
+    <li>
+      <a href={`/${lang ? lang : 'es'}/learn`} aria-label="Link Learn">
+        <Fragment set:html={Learn}/>
+        <span>{elems.learn}</span>
+      </a>
+    </li>
+  </ul>
 </nav>
+<script is:inline>
+    const currentUrl = location.pathname;
+    const anchors = Array.from(document.getElementById("items").children).map( li => li.children[0] );
+    (
+        currentUrl === '/' ? anchors[0]
+        : anchors.find(a => a.href.includes(currentUrl))
+    )?.classList.add('current');
+</script>

@@ -9,7 +9,14 @@
         "videos": "Últimos vídeos",
         "hobbies": "Pasatiempos",
         "projects": "Proyectos recientes",
-        "web": "Ir a la web"
+        "web": "Ir a la web",
+        "wai": {
+            "skills": "Habilidades destacadas",
+            "techs": "Tecnologías utilizadas",
+            "carousel": "Carrusel de imágenes del proyecto",
+            "project_urls": "Enlaces del proyecto",
+            "kwnown_langs": "Lenguajes conocidos"
+        }
     },
     "projects": {
         "title": "Proyectos",

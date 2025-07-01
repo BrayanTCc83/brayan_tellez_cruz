@@ -6,16 +6,22 @@ const { routes } = {
     ...Astro.props
 };
 ---
-<nav class="breadcrumb" id="breadcrumb">
-    <ul>
-        {
-            routes.map( ({ text, href }) =>
-                <li>
-                    <a href={href}>{text}</a>
-                </li>
-            )
-        }
-    </ul>
+<nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb" aria-labelledby="breadcrumb-label">
+  <h2 id="breadcrumb-label" class="visually-hidden">Ruta de navegación</h2>
+  <ul>
+    {
+      routes.map(({ text, href }, index) => (
+        <li>
+          <a 
+            href={href} 
+            {...(index === routes.length - 1 ? { 'aria-current': 'page' } : {})}
+          >
+            {text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </nav>
 <div id="scroll-sentinel-breadcrumb" style="position: absolute; top: 75px; height: 1px;"></div>
 <script is:inline>

@@ -89,58 +89,58 @@ const about_me = aboutme.content;
     <h2 itemprop="name">{name}</h1>
     <h3 itemprop="jobTitle">{credentials}</h2>
   </section>
-  <div class="techs container">
-    <h2>{translation.skills}</h2>
+  <section class="techs container" role="region" aria-labelledby="skills-section-title">
+    <h2 id="skills-section-title">{translation.skills}</h2>
     <ul>
-      <div class="skills-container">
-        <button class={`skill`}>
+      <div class="skills-container" role="group" aria-label={translation.wai.skills}>
+        <button role="button" class={`skill`}>
           <Fragment set:html={Learn}/>
           <span>{aboutme.skills['learn']}</span>
         </button>
-        <button class={`skill`}>
+        <button role="button" class={`skill`}>
           <Fragment set:html={Teach}/>
           <span>{aboutme.skills['teach']}</span>
         </button>
-        <button class={`skill`}>
+        <button role="button" class={`skill`}>
           <Fragment set:html={Talk}/>
           <span>{aboutme.skills['talk']}</span>
         </button>
-        <button class={`skill`}>
+        <button role="button" class={`skill`}>
           <Fragment set:html={Idea}/>
           <span>{aboutme.skills['idea']}</span>
         </button>
-        <button class={`skill stroke`}>
+        <button role="button" class={`skill stroke`}>
           <Fragment set:html={Heart}/>
           <span>{aboutme.skills['empathy']}</span>
         </button>
-        <button class={`skill`}>
+        <button role="button" class={`skill`}>
           <Fragment set:html={Computer}/>
           <span>{aboutme.skills['technology']}</span>
         </button>
       </div>
     </ul>
-  </div>
-  <div class="main_project container">
-    <h2>{translation.mainProject}: {mainproject.name}.</h2>
+  </section>
+  <section class="main_project container" role="region" aria-labelledby="main-project-title">
+    <h2 id="main-project-title">{translation.mainProject}: {mainproject.name}.</h2>
     <h3>{mainproject.subname}</h3>
     {
       mainproject.description??[].map( d => <p>{d}</p> )
     }
-    <div class="tags">
+    <div class="tags" role="group" aria-label={translation.wai.techs}>
       {
         (mainproject.technologies??[]).map( tech => {
           const data = getIconData(tech);
-          return <button class={`tag button-lang ${tech}`}>
+          return <button class={`tag button-lang ${tech}`} aria-label={data.name}>
             <Fragment set:html={data.svg}/>
             <span>{data.name}</span>
           </button>
         })
       }
     </div>
-    <section itemprop="image">
+    <section itemprop="image" aria-label={translation.wai.carousel}>
       <Carousel images={images} client:only="react"/>
     </section>
-    <div class="tags">
+    <div class="tags" aria-label={translation.wai.project_urls}>
       {
         mainproject.urlweb ? 
           <a class="cv" href={mainproject.urlweb}>{translation.web}</a>
@@ -155,21 +155,21 @@ const about_me = aboutme.content;
         : null
       }
     </div>
-  </div>
-  <div class="about container">
-    <h2>{translation.about}</h2>
+  </section>
+  <section class="about container" role="region" aria-labelledby="about-section-title">
+    <h2 id="about-section-title">{translation.about}</h2>
     <p>
       <span>{about_me.header}</span>
-      <ul>
+      <ul role="list">
         {
           about_me.description.map( ({strong, text}) => <li><strong>{strong}: </strong>{text}</li>)
         }
       </ul>
     </p>
-  </div>
-  <div class="videos container">
-    <h2>{translation.videos}</h2>
-    <ul class="video-container">
+  </section>
+  <section class="videos container" role="region" aria-labelledby="videos-section-title">
+    <h2 id="videos-section-title">{translation.videos}</h2>
+    <ul class="video-container" role="list">
       {
         latestVideos.items ?
           latestVideos.items.map( video => (
@@ -188,16 +188,16 @@ const about_me = aboutme.content;
       }
     </ul>
     <div class="tags">
-      <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx">
+      <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx" aria-label="Link Youtube">
         <Fragment set:html={Youtube}/>
         <span>Ver más</span>
       </a>
     </div>
-  </div>
-  <div class="languages container">
-    <h2>{translation.langs}</h2>
-    <ul>
-      <div class="tags">
+  </section>
+  <section class="languages container" role="region" aria-labelledby="languages-section-title">
+    <h2 id="languages-section-title">{translation.langs}</h2>
+    <ul role="list">
+      <div class="tags" role="group" aria-label={translation.wai.kwnown_langs}>
         <button class={`tag button-lang-rl`}>
             <Fragment set:html={MX}/>
             <span><b>ES - </b>Nativo</span>
@@ -212,10 +212,10 @@ const about_me = aboutme.content;
         </button>
       </div>
     </ul>
-  </div>
-  <div class="hobbies container">
-    <h2>{translation.hobbies}</h2>
-    <ul class="video-container">
+  </section>
+  <section class="hobbies container" role="region" aria-labelledby="hobbies-section-title">
+    <h2 id="hobbies-section-title">{translation.hobbies}</h2>
+    <ul class="video-container" role="list">
       <li class="video">
         <a data-title={aboutme.hobbies['basketball']}>
           <img
@@ -257,9 +257,9 @@ const about_me = aboutme.content;
         </a>
       </li>
     </ul>
-  </div>
-  <div class="projects container">
-    <h2>{translation.projects}</h2>
+  </section>
+  <section class="projects container" role="region" aria-labelledby="projects-section-title">
+    <h2 id="projects-section-title">{translation.projects}</h2>
     <div>
     {
       projects.map( project => 
@@ -275,7 +275,7 @@ const about_me = aboutme.content;
             {
               (project.technologies??[]).splice(-2).map( tech => {
                 const data = getIconData(tech);
-                return <button class={`tag button-lang ${tech}`}>
+                return <button class={`tag button-lang ${tech}`} aria-label={data.name}>
                   <Fragment set:html={data.svg}/>
                   <span>{data.name}</span>
                 </button>
@@ -286,10 +286,10 @@ const about_me = aboutme.content;
       )
     }
     </div>
-  </div>
-  <div class="education container">
-    <h2>{translation.schoolar}</h2>
-    <ul class="experience">
+  </section>
+  <section class="education container" role="region" aria-labelledby="education-section-title">
+    <h2 id="education-section-title">{translation.schoolar}</h2>
+    <ul class="experience" role="list">
       <li>
         <img src="/assets/images/me/unam.webp" alt="Logotipo UNAM." width="60px" height="60px">
         <p>
@@ -305,20 +305,20 @@ const about_me = aboutme.content;
         </p>
       </li>
     </ul>
-  </div>
-  <footer class="data">
+  </section>
+  <footer class="data" role="contentinfo">
     <p>&copy; 2025 {name} - Todos los derechos reservados.</p>
     
-    <div class="tags">
-      <a itemprop="sameAs" class={`tag button-lang linkedin`} href="https://www.linkedin.com/in/brayan-t%C3%A9llez-cruz-mx/">
+    <div class="tags" role="group" aria-label="Redes sociales">
+      <a itemprop="sameAs" class={`tag button-lang linkedin`} href="https://www.linkedin.com/in/brayan-t%C3%A9llez-cruz-mx/" aria-label="Link LinkedIn">
         <Fragment set:html={LinkedIn}/>
         <span>LinkedIn</span>
       </a>
-      <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx">
+      <a itemprop="sameAs" class={`tag button-lang youtube`} href="https://www.youtube.com/@bpp_mx" aria-label="Link Youtube">
         <Fragment set:html={Youtube}/>
         <span>Youtube</span>
       </a>
-      <a itemprop="sameAs" class={`tag button-lang github`} href="https://github.com/BrayanTCc83">
+      <a itemprop="sameAs" class={`tag button-lang github`} href="https://github.com/BrayanTCc83" aria-label="Link GitHub">
         <Fragment set:html={GitHub}/>
         <span>GitHub</span>
       </a>

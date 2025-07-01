@@ -9,6 +9,13 @@ export interface IAboutMeTranslation {
     hobbies: string
     projects: string
     web: string
+    wai: {
+        skills: string
+        techs: string
+        carousel: string,
+        project_urls: string
+        kwnown_langs: string
+    }
 }
 
 export interface IProjectsTranslation {
