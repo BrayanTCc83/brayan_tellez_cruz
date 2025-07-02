@@ -1,18 +1,27 @@
 import { defineConfig } from 'astro/config';
+
 import vercel from '@astrojs/vercel/serverless';
-import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
+
+import baseUrl from './src/router/_base';
+
+import { GetLearnLessonsPaths, GetLearnPaths } from './src/router/learn';
+import { GetBlogsPaths } from './src/router/blogs';
+import { GetProjectsPaths } from './src/router/projects';
+
+console.log(GetLearnLessonsPaths());
 
 export default defineConfig({
   output: import.meta.env.DEV ? 'hybrid' : 'server',
-  site: import.meta.env.API??'https://www.brayantellez.com/',
+  site: import.meta.env.DEV ? 'http://localhost:3000' : 'https://www.brayantellez.com',
   integrations: [
     react({
       experimentalReactChildren: true,
       include: ['**/react/*']
     }),
     sitemap({
-      changefreq: 'always',
+      changefreq: 'weekly',
       i18n: {
         defaultLocale: 'es',
         locales: {
@@ -20,7 +29,17 @@ export default defineConfig({
           en: 'en-US',
           fr: 'ch-CH',
         },
-      }
+      },
+      customPages: [
+        `${baseUrl}/`,
+        `${baseUrl}/es`,
+        `${baseUrl}/en`,
+        `${baseUrl}/ch`,
+        ...GetLearnPaths(),
+        ...GetLearnLessonsPaths(),
+        ...GetBlogsPaths(),
+        ...GetProjectsPaths()
+      ]
     })
   ],
   adapter: vercel({
