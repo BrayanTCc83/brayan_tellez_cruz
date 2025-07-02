@@ -13,9 +13,6 @@ export default defineConfig({
     }),
     sitemap({
       changefreq: 'weekly',
-      filter: (page) =>
-        page !== 'https://stargazers.club/api/' &&
-        page !== 'https://stargazers.club/assets/',
       i18n: {
         defaultLocale: 'es',
         locales: {
