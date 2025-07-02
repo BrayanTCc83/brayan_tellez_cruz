@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 const { lang, id } = Astro.params;
 const learn: ILearnConcept = await GetLearn({ lang, id });
 ---
-<Template includes={['learn', 'learn-cover', 'lang-buttons', 'blog_post']} lang={lang} title={`Brayan Téllez | ${learn.title}`}>
+<Template includes={['learn', 'learn-cover', 'lang-buttons']} lang={lang} title={`Brayan Téllez | ${learn.title}`}>
     <LanguageController lang={lang}/>
     <aside class="container">
         <h3>Temario.</h3>
