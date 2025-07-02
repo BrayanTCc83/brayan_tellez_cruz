@@ -52,4 +52,7 @@ export default defineConfig({
       allow: ['../'],
     },
   },
+  redirects: [
+    { source: '/', destination: '/es', status: 308 }
+  ]
 });
