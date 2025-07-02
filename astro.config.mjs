@@ -27,14 +27,14 @@ export default defineConfig({
         locales: {
           es: 'es-ES', // The `defaultLocale` value must present in `locales` keys
           en: 'en-US',
-          fr: 'ch-CH',
+          fr: 'zh-CH',
         },
       },
       customPages: [
         `${baseUrl}/`,
         `${baseUrl}/es`,
         `${baseUrl}/en`,
-        `${baseUrl}/ch`,
+        `${baseUrl}/zh`,
         ...GetLearnPaths(),
         ...GetLearnLessonsPaths(),
         ...GetBlogsPaths(),

@@ -7,6 +7,7 @@ import UK from "/assets/flags/uk.svg?raw";
 
 import type { ILearnAbstract } from "../../interface/Learn";
 import type { ILearnTranslation } from "../../interface/AppLangs";
+import { ENGLISH, SPANISH } from "../../utils/langs";
 
 const { title, lang, themes, resume, git, id }: ILearnAbstract & { translate: ILearnTranslation } = {
     title: '',
@@ -29,7 +30,7 @@ const { title, lang, themes, resume, git, id }: ILearnAbstract & { translate: IL
     <b>Brayan Téllez Cruz</b>
     <b>Temas: {themes.length + 1}</b>
     <button class="tag lang">
-        <Fragment set:html={ lang === 'es' ? MX : lang === 'en' ? UK : CH }/>
+        <Fragment set:html={ lang === SPANISH ? MX : lang === ENGLISH ? UK : CH }/>
     </button>
     <a href={`/${lang}/learn/${id}`}>Detalles</a>
     <a itemprop="sameAs" target="_blank" class={`tag button-lang github`} href={git}>

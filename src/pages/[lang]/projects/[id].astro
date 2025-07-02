@@ -15,15 +15,16 @@ import Header from "../../../components/Header.astro";
 
 import ProjectDetailsES from "../../../data/es/translation.json";
 import ProjectDetailsEN from "../../../data/en/translation.json";
-import ProjectDetailsCH from "../../../data/ch/translation.json";
+import ProjectDetailsCH from "../../../data/zh/translation.json";
 
 import { GetProject, GetProjectImages } from "../../../api/projects";
 import { getIconData } from "../../../utils/getIconData";
 
 import type { IProjectDetailsTranslation } from "../../../interface/AppLangs";
+import LANGS_SUPPORTED, { ENGLISH, SPANISH } from "../../../utils/langs";
 
 export async function getStaticPaths() {
-  return Projects.flatMap( id => [ 'es', 'en', 'ch' ].map( lang => ({ params: { lang, id: id } })) );
+  return Projects.flatMap( id => LANGS_SUPPORTED.map( lang => ({ params: { lang, id: id } })) );
 }
 
 const { lang, id } = Astro.params;
@@ -46,8 +47,8 @@ const {
 } = await GetProject({ lang, id });
 const images = await GetProjectImages({ id });
 
-const translate: IProjectDetailsTranslation = lang === 'es' ? ProjectDetailsES.project_details 
-    : lang === 'en' ? ProjectDetailsEN.project_details : ProjectDetailsCH.project_details;
+const translate: IProjectDetailsTranslation = lang === SPANISH ? ProjectDetailsES.project_details 
+    : lang === ENGLISH ? ProjectDetailsEN.project_details : ProjectDetailsCH.project_details;
 const routes = [
   { text: 'Brayan Téllez', href: '/' },
   { text: translate.section, href: `/${lang}/projects` },

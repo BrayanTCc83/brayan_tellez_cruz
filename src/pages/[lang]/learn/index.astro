@@ -6,28 +6,29 @@ import LanguageController from "../../../components/LanguageController.astro";
 
 import LearnES from "../../../data/es/translation.json";
 import LearnEN from "../../../data/en/translation.json";
-import LearnCH from "../../../data/ch/translation.json";
+import LearnCH from "../../../data/zh/translation.json";
 
 import { GetAllLearn } from "../../../api/learn";
 
 import type { ILearnAbstract } from "../../../interface/Learn.ts";
 import type { ILearnTranslation } from "../../../interface/AppLangs";
+import { CHINESE, ENGLISH, SPANISH } from "../../../utils/langs";
 
 export async function getStaticPaths() {
   return [
-    { params: { lang: 'es' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'ch' } },
+    { params: { lang: SPANISH } },
+    { params: { lang: ENGLISH } },
+    { params: { lang: CHINESE } },
   ];
 }
 
 const { lang } = Astro.params;
 const articulos: ILearnAbstract[] = await GetAllLearn({ lang });
 
-const translate: ILearnTranslation = lang === 'es' ? LearnES.learn : lang === 'en' ? LearnEN.learn : LearnCH.learn;
+const translate: ILearnTranslation = lang === SPANISH ? LearnES.learn : lang === ENGLISH ? LearnEN.learn : LearnCH.learn;
 const routes = [
-  { text: 'Brayan Téllez', href: '/' },
-  { text: translate.title, href: '/learn' }
+  { text: 'Brayan Téllez', href: `/${lang}/` },
+  { text: translate.title, href: `/${lang}/learn` }
 ];
 ---
 <Template includes={['learn', 'lang-buttons']} lang={lang} title={`Brayan Téllez | ${translate.title}`}>

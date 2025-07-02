@@ -16,7 +16,7 @@ import UK from "/assets/flags/uk.svg?raw";
 
 import AboutES from "../../data/es/translation.json";
 import AboutEN from "../../data/en/translation.json";
-import AboutCH from "../../data/ch/translation.json";
+import AboutCH from "../../data/zh/translation.json";
 
 import LanguageController from "../../components/LanguageController.astro";
 import Carousel from "../../components/react/Carousel";
@@ -28,12 +28,13 @@ import { GetLatestVideos } from "../../api/youtube.ts";
 
 import type { IAboutMeTranslation } from "../../interface/AppLangs.ts";
 import Header from "../../components/Header.astro";
+import { CHINESE, ENGLISH, SPANISH } from "../../utils/langs";
 
 export async function getStaticPaths() {
   return [
-    { params: { lang: 'es' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'ch' } },
+    { params: { lang: SPANISH } },
+    { params: { lang: ENGLISH } },
+    { params: { lang: CHINESE } },
   ];
 }
 
@@ -46,7 +47,7 @@ const projects = await GetLatestProjects({ lang });
 
 const name = 'Brayan Téllez Cruz'
 const credentials = aboutme.credentials;
-const translation: IAboutMeTranslation = lang === 'es' ? AboutES.about : lang === 'en' ? AboutEN.about : AboutCH.about;
+const translation: IAboutMeTranslation = lang === SPANISH ? AboutES.about : lang === ENGLISH ? AboutEN.about : AboutCH.about;
 const meta = {
   ...aboutme.meta,
   title: `${name} | ${translation.title}`
@@ -54,7 +55,7 @@ const meta = {
 const about_me = aboutme.content;
 ---
 
-<html lang="es">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />

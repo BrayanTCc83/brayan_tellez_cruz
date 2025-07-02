@@ -5,6 +5,8 @@ import MX from "/assets/flags/mx.svg?raw";
 import CH from "/assets/flags/ch.svg?raw";
 import UK from "/assets/flags/uk.svg?raw";
 
+import { SPANISH, ENGLISH, CHINESE } from "../utils/langs";
+
 const lang = Astro.props.lang;
 ---
 <div class="language-controller">
@@ -14,20 +16,20 @@ const lang = Astro.props.lang;
         role="listbox"
         aria-label="Selector de idioma"
     >
-        <li role="option" aria-selected={lang === 'es' ? 'true' : 'false'}>
-            <a href="#" class="tag" data-lang="es" tabindex={lang === 'es' ? "-1" : "0"}>
+        <li role="option" aria-selected={lang === SPANISH ? 'true' : 'false'}>
+            <a href="#" class="tag" data-lang={SPANISH} tabindex={lang === SPANISH ? "-1" : "0"}>
                 <Fragment set:html={MX} />
                 <span>Español</span>
             </a>
         </li>
-        <li role="option" aria-selected={lang === 'en' ? 'true' : 'false'}>
-            <a href="#" class="tag" data-lang="en" tabindex={lang === 'en' ? "-1" : "0"}>
+        <li role="option" aria-selected={lang === ENGLISH ? 'true' : 'false'}>
+            <a href="#" class="tag" data-lang={ENGLISH} tabindex={lang === ENGLISH ? "-1" : "0"}>
                 <Fragment set:html={UK} />
                 <span>English</span>
             </a>
         </li>
-        <li role="option" aria-selected={lang === 'ch' ? 'true' : 'false'}>
-            <a href="#" class="tag" data-lang="ch" tabindex={lang === 'ch' ? "-1" : "0"}>
+        <li role="option" aria-selected={lang === CHINESE ? 'true' : 'false'}>
+            <a href="#" class="tag" data-lang={CHINESE} tabindex={lang === CHINESE ? "-1" : "0"}>
                 <Fragment set:html={CH} />
                 <span>汉语</span>
             </a>

@@ -10,9 +10,10 @@ import Learns from "../../../../../public/assets/learn/learn.json";
 import { GetLearn } from "../../../../api/learn";
 
 import type { ILearnConcept } from "../../../../interface/Learn";
+import LANGS_SUPPORTED from "../../../../utils/langs";
 
 export async function getStaticPaths() {
-    return Learns.flatMap( ({id}) => ['es','en','ch'].flatMap(lang => ({ params: { lang, id } })) );
+    return Learns.flatMap( ({id}) => LANGS_SUPPORTED.flatMap(lang => ({ params: { lang, id } })) );
 }
 
 const { lang, id } = Astro.params;

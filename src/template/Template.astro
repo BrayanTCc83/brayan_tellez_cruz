@@ -1,9 +1,11 @@
 ---
 import Header from "../components/Header.astro";
+import { SPANISH, ENGLISH } from "../utils/langs";
+
 const { lang, includes, title } = { 
 	title: '',
 	includes: [],
-	lang: 'es',
+	lang: SPANISH,
 	...Astro.props
 };
 
@@ -28,7 +30,7 @@ const seo = Astro.props.seo;
 					<meta property="og:type" content={seo.og.type} />
 					<meta property="og:url" content={seo.og.url} />
 					<meta property="og:image" content={seo.og.image} />
-					<meta property="og:locale" content={lang === 'es' ? 'es_MX' : lang === 'en' ? 'en_US' : 'zh_CN'} />
+					<meta property="og:locale" content={lang === SPANISH ? 'es_MX' : lang === ENGLISH ? 'en_US' : 'zh_CN'} />
 
 					<meta name="twitter:card" content="summary_large_image" />
 					<meta name="twitter:title" content={seo.twitter.title} />

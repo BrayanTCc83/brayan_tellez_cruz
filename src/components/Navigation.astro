@@ -4,55 +4,57 @@ import Blog from "/assets/icons/Blog.svg?raw";
 import Project from "/assets/icons/Project.svg?raw";
 import Learn from "/assets/icons/Learn.svg?raw";
 
+import { CHINESE, ENGLISH, SPANISH } from "../utils/langs";
+
 const { lang } = {
-    lang: 'es',
+    lang: SPANISH,
     ...Astro.props
 };
 const options = {
-    'es': {
+    [SPANISH]: {
         about: 'Sobre mí',
         projects: 'Proyectos',
         blogs: 'Publicaciones',
         learn: 'Aprende conmigo'
     },
-    'en': {
+    [ENGLISH]: {
         about: 'About me',
         projects: 'Projects',
         blogs: 'Blogs',
         learn: 'Learn with me'
     },
-    'ch': {
-        "about": "关于我",
-        "projects": "项目",
-        "blogs": "文章发布",
-        "learn": "跟我一起学习"
+    [CHINESE]: {
+        about: "关于我",
+        projects: "项目",
+        blogs: "文章发布",
+        learn: "跟我一起学习"
     }
 };
-const elems = (options as any)[lang ? lang: 'es'];
+const elems = (options as any)[lang ? lang: SPANISH];
 ---
 <nav class="header-navigation" role="navigation" aria-label="Menú principal" aria-labelledby="main-navigation-label">
   <h2 id="main-navigation-label" class="visually-hidden">Menú principal</h2>
   <ul id="items">
     <li>
-      <a href={`/${lang ? lang : 'es'}/`} aria-label="Link About">
+      <a href={`/${lang ? lang : SPANISH}/`} aria-label="Link About">
         <Fragment set:html={User}/>
         <span>{elems.about}</span>
       </a>
     </li>
     <li>
-      <a href={`/${lang ? lang : 'es'}/projects`} aria-label="Link Projects">
+      <a href={`/${lang ? lang : SPANISH}/projects`} aria-label="Link Projects">
         <Fragment set:html={Project}/>
         <span>{elems.projects}</span>
       </a>
     </li>
     <li>
-      <a href={`/${lang ? lang : 'es'}/blogs`} aria-label="Link Blogs">
+      <a href={`/${lang ? lang : SPANISH}/blogs`} aria-label="Link Blogs">
         <Fragment set:html={Blog}/>
         <span>{elems.blogs}</span>
       </a>
     </li>
     <li>
-      <a href={`/${lang ? lang : 'es'}/learn`} aria-label="Link Learn">
+      <a href={`/${lang ? lang : SPANISH}/learn`} aria-label="Link Learn">
         <Fragment set:html={Learn}/>
         <span>{elems.learn}</span>
       </a>

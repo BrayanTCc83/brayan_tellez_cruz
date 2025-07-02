@@ -2,13 +2,10 @@ import type { APIContext, APIRoute } from 'astro';
 import type { IBlogResume, IBlogDefinition } from '../../../interface/Blog';
 
 import STATUS from '../../../status/statuscode';
+import LANGS_SUPPORTED from '../../../utils/langs';
 
 export async function getStaticPaths() {
-  return [
-    { params: { lang: 'es', id: 1 } },
-    { params: { lang: 'en', id: 2 } },
-    { params: { lang: 'ch', id: 3 } },
-  ];
+  return LANGS_SUPPORTED.map( lang => ({ params: { lang } }) );
 }
 
 export const GET: APIRoute = async ({ params, url }: APIContext) => {

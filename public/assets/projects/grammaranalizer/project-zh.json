@@ -4,7 +4,7 @@
   "description": [
     "本项目旨在加深我对正则文法和上下文无关文法的理解，以及对编译器和解释器构建的掌握，同时也作为一个工具帮助他人学习。因此，代码是完全自由和开源的，已在 GitHub 上公开发布。",
     "该程序使用 C 语言开发，并通过 GCC 和 Make 进行编译。它读取具有特定格式的文本文件，格式为 “终结符 -> 产生式”，每条规则都应遵循该结构。",
-    "根据复杂度，文法可以分为不同层级，但本项目主要关注“正则文法”和“上下文无关文法”。在上下文无关文法中，目前已实现“简单”、“q”以及“LL(1)”等类型。项目将定期更新，添加对更多文法类型的支持及其他功能，例如基于输入推导不同类型文法。项目开发过程记录在 <a href=\"/ch/blogs\">我的博客</a> 中。",
+    "根据复杂度，文法可以分为不同层级，但本项目主要关注“正则文法”和“上下文无关文法”。在上下文无关文法中，目前已实现“简单”、“q”以及“LL(1)”等类型。项目将定期更新，添加对更多文法类型的支持及其他功能，例如基于输入推导不同类型文法。项目开发过程记录在 <a href=\"/zh/blogs\">我的博客</a> 中。",
     "该项目完全自由开放，欢迎你 fork 或提交 pull request。如果你发现了 bug 或有改进建议，请随时联系我。知识是全人类共享的财富，我们有责任将其普及和开放。"
   ],
   "author": "Brayan Téllez Cruz",
@@ -12,7 +12,7 @@
   "realization": "2025年1月1日 - 目前仍在进行中",
   "cover": "file_system.webp",
   "technologies": ["c"],
-  "website": "https://www.brayantellez.com/es/projects",
+  "website": "https://www.brayantellez.com/zh/projects",
   "isPublic": true,
   "code": "https://github.com/BrayanTCc83/GrammarAnalizer.git",
   "projectUrl": null,

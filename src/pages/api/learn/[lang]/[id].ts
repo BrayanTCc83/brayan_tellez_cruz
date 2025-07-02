@@ -2,9 +2,10 @@ import type { APIContext, APIRoute } from 'astro';
 
 import STATUS from '../../../../status/statuscode';
 import Learns from '../../../../../public/assets/learn/learn.json';
+import LANGS_SUPPORTED from '../../../../utils/langs';
 
 export async function getStaticPaths() {
-    return Learns.flatMap( ({id}) => ['es','en','ch'].flatMap(lang => ({ params: { lang, id } })) );
+    return Learns.flatMap( ({id}) => LANGS_SUPPORTED.flatMap(lang => ({ params: { lang, id } })) );
 }
 
 export const GET: APIRoute = async ({ params, url }: APIContext) => {
