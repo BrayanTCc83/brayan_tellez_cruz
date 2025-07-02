@@ -12,7 +12,7 @@ export default defineConfig({
       include: ['**/react/*']
     }),
     sitemap({
-      changefreq: 'weekly',
+      changefreq: 'always',
       i18n: {
         defaultLocale: 'es',
         locales: {
