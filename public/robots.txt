@@ -3,6 +3,4 @@ User-agent: *
 Disallow: 
 Allow: /
 
-Crawl-delay: 8
-
 Sitemap: https://www.brayantellez.com/sitemap-index.xml
