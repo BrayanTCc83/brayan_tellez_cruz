@@ -1,0 +1,108 @@
+{
+    "id": "datastructures",
+    "lesson": "static-stacks",
+    "lang": "es",
+    "title": "Pilas Estáticas",
+    "resume": "Explicación y aplicaciones útiles de las pilas como estructuras de datos en general y su implementación como pilas estáticas en partícular. Definición e implementación de pilas estáticas dentro del lenguaje C.",
+    "sections": {
+        "what-are": {
+            "section": "¿Qué son las pilas?",
+            "content": "Las pilas son una implementación concreta y acotada de una <a href=\"./static-lists\">lista</a>; es decir, tienen la capacidad de almacenar información coherente e indexada, pero limitan el acceso y la modificación de la información contenida en ellas. Así, una pila busca estructurar la información de tal modo que solo sea posible acceder al último elemento agregado (y no sustraído) de la misma. A esto se le llama <i>Top</i> y representa al elemento que se encuentra encima de todos los demás dentro de la pila.<br>Por estas características, a estas estructuras se les conoce como estructuras de tipo LIFO (Last In First Out). Suele hacerse un símil con una pila de trastes: para poder lavar los inferiores, es necesario primero lavar los superiores. Solo habremos terminado nuestra labor cuando hasta el último plato (el primero que colocamos) haya sido removido.",
+            "extra": [
+                {
+                    "type": "table",
+                    "caption": "Tabla 1: Comparación entre una pila y una lista.",
+                    "headers": [ "Característica", "Lista", "Pila" ],
+                    "rows": [
+                        [ "Permite recuperar cualquier elemento del arreglo.", "Sí", "En algunas implementaciones*" ],
+                        [ "Permite modificar los datos de un elemento concreto.", "Sí", "No" ],
+                        [ "Permite insertar al inicio.", "Sí", "No" ],
+                        [ "Permite insertar al final.", "Sí", "Sí" ],
+                        [ "Permite insertar antes o después de un elemento concreto.", "Sí", "No" ],
+                        [ "Permite eliminar el último elemento.", "Sí", "Sí" ],
+                        [ "Permite eliminar el primer elemento.", "Sí", "No" ],
+                        [ "Permite eliminar cualquier elemento(s) intermedio(s)", "Sí", "No" ]
+                    ]
+                },
+                {
+                    "type": "img",
+                    "caption": "Imagen 1: Representación del funcionamiento de una pila.",
+                    "alt": "funcionamiento de una pila de datos.",
+                    "src": "/assets/learn/datastructures/images/Stack.webp"
+                }
+            ]
+        },
+        "static-stack": {
+            "section": "Pila estática.",
+            "content": "Así, una pila estática —tal como la <a href=\"./static-lists\">lista estática</a>— es una implementación concreta basada en arreglos. Por lo tanto, tiene las ventajas y desventajas ya conocidas: para los principiantes es muy fácil de entender, utilizar e implementar, con la consecuencia de un posible mal uso de memoria y poca flexibilidad si se desea cambiar su tamaño. Sin embargo, a diferencia de las listas estáticas que suelen ser poco utilizadas, las pilas tienen aplicaciones muy variadas dentro de la informática. La más importante de ellas es en la administración de la memoria de los procesos, llamadas y paso de argumentos a funciones.</p><h4>Procesos.</h4><p>A nivel de sistema operativo, usualmente cuando un proceso es cargado en la memoria RAM, se le asignan diferentes secciones conocidas como: <b>code</b>, que —como su nombre indica— es el espacio donde se encuentran las instrucciones ejecutables del programa; <b>data</b>, que contiene las constantes globales compartidas por todo el programa, así como cadenas de texto y otros literales; <b>heap</b>, que almacena los datos reservados en tiempo de ejecución (es decir, memoria dinámica) a la cual se le asignan las direcciones bajas; y finalmente, <b>stack</b> o pila, con asignación de direcciones altas y que guarda mucha información relevante en tiempo de ejecución, desglosada en la [Tabla 2].",
+            "extra": [
+                {
+                    "type": "img",
+                    "caption": "Imagen 2: Asignación de memoria a un proceso.",
+                    "alt": "Segmentos de memoria dentro de un proceso en ejecución.",
+                    "src": "/assets/learn/datastructures/images/Proceso.webp"
+                },
+                {
+                    "type": "table",
+                    "caption": "Tabla 2: Información relevante almacenada en el stack.",
+                    "headers": [ "Información", "Uso" ],
+                    "rows": [
+                        [ "Espaciado.", "Es un espaciado entre datos guardados en el stack que permite mantener alineada la información al tamaño de dato correspondiente y a la arquitectura empleada, evitando errores en su interpretación." ],
+                        [ "Dirección de retorno.", "Es la dirección a la que debe regresar una función luego de ser llamada, para seguir el flujo normal de la ejecución." ],
+                        [ "Argumentos.", "Los diferentes valores que son pasados como argumentos a funciones también se guardan en el stack. Para trabajar con ellos, la función debe saber cuántas variables locales y argumentos están desplazados del tope de la pila." ],
+                        [ "Variables locales.", "Dentro de cada bloque de código, estas variables tienen un alcance determinado. Esto es porque, al crearse, incrementan el puntero del stack y, al dejar de ser útiles, su dirección es decrementada, lo que hace que solo existan durante un lapso de ejecución. Esto incluye funciones y estructuras de control." ],
+                        [ "Registros.", "Es común que se guarde la información que contenían los registros antes de la ejecución de una función u otro proceso (BCP), para evitar que se pierda o sobreescriba y así mantener la integridad del programa en ejecución." ]
+                    ]
+                }
+            ],
+            "content_under": "Como podemos ver, esta estructura tiene una aplicación fundamental en el funcionamiento de un sistema operativo y en la correcta ejecución de nuestros programas."
+        },
+        "implementation": {
+            "section": "Implementación.",
+            "content": "Ya que hemos definido qué son las pilas y algunos de los usos más interesantes que presentan, ha llegado el momento de implementarlas. Para ello, haremos el caso más simple: una pila estática. No puede reasignarse su tamaño en tiempo de ejecución (tiene un tamaño fijo desde su creación) y no podemos consultar ni el <b>top</b> ni ningún elemento intermedio de la pila.<br/>Así, para empezar, necesitaremos crear nuestro constructor y destructor, como ya hicimos con la lista estática.",
+            "extra": [
+                {
+                    "type": "code",
+                    "lang": [ "C" ],
+                    "code": [
+                        "typedef struct _static_stack {\n\tint *array;\n\tsize_t capacity, size;\n} StaticStack;\n\nStaticStack *new_static_stack(size_t capacity) {\n\tStaticStack *stack = (StaticStack*) malloc( sizeof(StaticStack) );\n\tif(!stack) {\n\t\tfprintf(stderr, \"Error al reservar memoria para la pila estática.\");\n\t\texit(EXIT_FAILURE);\n\t}\n\n\tstack->array = (int*) malloc( capacity * sizeof(int) );\n\tif(!stack->array) {\n\t\tfprintf(stderr, \"Error al reservar memoria para el arreglo de la pila estática.\");\n\t\texit(EXIT_FAILURE);\n\t}\n\n\tstack->capacity = capacity;\n\tstack->size = 0;\n\n\treturn stack;\n}\n\nvoid delete_static_stack(StaticStack *stack) {\n\tif(stack->size != 0) {\n\t\tfor(int i = 0; i < stack->size; i++) {\n\t\t\tstack->array[i] = 0;\n\t\t}\n\t}\n\tfree(stack->array);\n\tstack->capacity = 0;\n\tstack->size = 0;\n\tfree(stack);\n}"
+                    ]
+                }
+            ],
+            "content_under": "Aquí podemos ver que, al crear la pila, asignamos el tamaño fijo que pasamos como argumento y creamos el arreglo necesario para usarla correctamente. En el destructor, por otro lado, hacemos el proceso inverso: limpiamos la información y liberamos el espacio usado."
+        },
+        "stack-methods": {
+            "section": "Métodos de una Pila.",
+            "content": "Nuestras pilas necesitan de dos métodos fundamentales: <i>push</i> y <i>pop</i>, es decir, inserción al final y eliminación del final. Al tener una implementación basada en arreglos, estos métodos son muy sencillos, pues solo necesitamos un índice de referencia que se incremente o decremente según el caso. Es opcional (aunque recomendable) borrar la información del último índice antes de decrementar, para no dejar información en la RAM que pueda ser encontrada por algún programa malicioso.",
+            "extra": [
+                {
+                    "type": "code",
+                    "lang": [ "C" ],
+                    "code": [
+                        "bool static_stack_push(StaticStack *stack, int value) {\n\tif(static_stack_is_full(*stack)) {\n\t\treturn false;\n\t}\n\n\tstack->array[stack->size] = value;\n\tstack->size++;\n\n\treturn true;\n}\n\nint static_stack_pop(StaticStack *stack) {\n\tif(static_stack_is_void(*stack)) {\n\t\treturn ERROR_VALUE;\n\t}\n\n\tstack->size--;\n\tint value = stack->array[stack->size];\n\n\treturn value;\n}\n\nbool static_stack_is_void(StaticStack stack) {\n\treturn stack.size == 0;\n}\n\nbool static_stack_is_full(StaticStack stack) {\n\treturn stack.size == stack.capacity;\n}"
+                    ]
+                }
+            ],
+            "content_under": "Asimismo, podemos crear de forma opcional nuestros métodos auxiliares <i>Is Full</i> e <i>Is Void</i>, que verifican si queda espacio disponible en la pila o si esta está vacía, respectivamente."
+        },
+        "efficiency": {
+            "section": "Eficiencia.",
+            "content": "En general, al tener dos métodos tan sencillos, una pila es una estructura altamente eficiente. No necesitamos operaciones complejas y, al no requerir reorganizar la información, evitamos los problemas que se presentaban con las listas estáticas.",
+            "extra": [
+                {
+                    "type": "table",
+                    "caption": "Tabla 3: Eficiencia algorítmica de los métodos de la pila.",
+                    "headers": [ "Consulta", "Eficiencia temporal", "Razón" ],
+                    "rows": [
+                        [ "Inserción", "O(1)", "Incrementa el índice del puntero del top de la pila." ],
+                        [ "Eliminación", "O(1)", "Decrementa el índice del puntero de la pila." ]
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "section": "Conclusiones.",
+            "content": "Las pilas son estructuras de datos fundamentales en informática, cuyo comportamiento basado en el principio LIFO (Last In, First Out) permite organizar y administrar la información de forma controlada y eficiente. Su simplicidad estructural, especialmente en implementaciones estáticas, facilita su comprensión e integración en múltiples contextos, desde algoritmos hasta sistemas operativos.<br/>A lo largo de este recorrido, comprendimos no solo su definición y aplicaciones más comunes, sino también los aspectos técnicos que intervienen en su implementación, como el uso de arreglos, gestión de memoria, y la creación de funciones específicas para insertar y eliminar elementos. Además, exploramos el papel crítico que desempeñan en la gestión de memoria a nivel de sistema, donde el stack es esencial para el manejo de llamadas a funciones, almacenamiento temporal y protección del flujo de ejecución.<br/>Gracias a su eficiencia —con operaciones de inserción y eliminación en tiempo constante O(1)—, y su versatilidad —desde el análisis sintáctico hasta la recursión—, las pilas continúan siendo una herramienta esencial para todo desarrollador. Comprenderlas a fondo es un paso clave en el dominio de la programación estructurada y la construcción de software confiable.<br/>Puedes ver el vídeo relacionado en: <a href=\"https://youtu.be/IhWifTl--dk\">Canal de Youtube</a>"
+        }
+    }
+}

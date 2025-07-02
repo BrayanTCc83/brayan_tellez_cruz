@@ -2,6 +2,7 @@
     "text": "Introducción",
     "themes": [
         { "id": "arrays", "text": "Arreglos" },
-        { "id": "static-lists", "text": "Listas estáticas" }
+        { "id": "static-lists", "text": "Listas estáticas" },
+        { "id": "static-stacks", "text": "Pilas estáticas" }
     ]
 }
