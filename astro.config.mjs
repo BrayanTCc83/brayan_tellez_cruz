@@ -27,7 +27,7 @@ export default defineConfig({
         locales: {
           es: 'es-ES', // The `defaultLocale` value must present in `locales` keys
           en: 'en-US',
-          fr: 'zh-CH',
+          zh: 'zh-CH',
         },
       },
       customPages: [
