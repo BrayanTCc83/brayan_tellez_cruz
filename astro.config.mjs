@@ -10,8 +10,6 @@ import { GetLearnLessonsPaths, GetLearnPaths } from './src/router/learn';
 import { GetBlogsPaths } from './src/router/blogs';
 import { GetProjectsPaths } from './src/router/projects';
 
-console.log(GetLearnLessonsPaths());
-
 export default defineConfig({
   output: import.meta.env.DEV ? 'hybrid' : 'server',
   site: import.meta.env.DEV ? 'http://localhost:3000' : 'https://www.brayantellez.com',
