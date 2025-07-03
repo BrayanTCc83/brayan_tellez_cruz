@@ -2,10 +2,11 @@
 import Header from "../components/Header.astro";
 import { SPANISH, ENGLISH } from "../utils/langs";
 
-const { lang, includes, title } = { 
+const { lang, includes, title, ads } = { 
 	title: '',
 	includes: [],
 	lang: SPANISH,
+	ads: true,
 	...Astro.props
 };
 
@@ -18,6 +19,8 @@ const seo = Astro.props.seo;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="robots" content="index, follow">
+		
+		<meta name="google-adsense-account" content="ca-pub-1637045513206697">
 
 		{
 			seo ?
@@ -47,7 +50,7 @@ const seo = Astro.props.seo;
         <link rel="stylesheet" href="/styles/global.css">
 		{ includes.map( ( i: string ) => <link rel="stylesheet" href={`/styles/${i}.css`} set:html/> ) }
   		<link rel="icon" type="image/x-icon" href="/assets/logotipe/icon_bpp_colour.ico">
-		
+
 		<title>{title}</title>
 	</head>
 	<body id="root">
