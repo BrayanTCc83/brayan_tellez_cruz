@@ -41,3 +41,12 @@ export interface IProject {
     cover: string
     date?: string
 }
+
+export interface INotification {
+    title: string
+    message: string
+}
+
+export interface INotifications {
+    greatings: INotification
+}

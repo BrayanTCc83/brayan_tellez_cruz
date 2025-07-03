@@ -31,7 +31,7 @@ const routes = [
   { text: title, href: `/${lang}/blogs/${id}` }
 ];
 ---
-<Template includes={['lang-buttons', 'blogpost']} lang={lang} title={`Brayan Téllez | ${title}`}>
+<Template includes={['lang-buttons', 'blogpost']} lang={lang} title={`Brayan Téllez | ${title}`} notifications={true}>
     <Breadcrumb routes={routes}/>
     <LanguageController lang={lang}/>
     <article id="main" itemscope itemtype="https://schema.org/BlogPosting">

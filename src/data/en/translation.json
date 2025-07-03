@@ -50,5 +50,11 @@
         "duration": "Reading time",
         "publish": "Creation date",
         "time": "minutes"
+    },
+    "notifications": {
+        "greatings": {
+            "title": "Thank you for accepting.",
+            "message": "We will keep you updated on upcoming blog posts and newly added lessons."
+        }
     }
 }

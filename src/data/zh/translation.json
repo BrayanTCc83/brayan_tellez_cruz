@@ -50,5 +50,11 @@
         "duration": "阅读时间",
         "publish": "创建日期",
         "time": "分钟"
+    },
+    "notifications": {
+        "greatings": {
+            "title": "感谢您的接受。",
+            "message": "我们会及时通知您即将发布的文章和新增课程。"
+        }
     }
 }

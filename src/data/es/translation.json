@@ -50,5 +50,11 @@
         "duration": "Duración de lectura",
         "publish": "Fecha de creación",
         "time": "minutos"
+    },
+    "notifications": {
+        "greatings": {
+            "title": "Gracias por aceptar.",
+            "message": "Te mantendremos al tanto de las proximas actualizaciones de publicaciones y lecciones agregadas."
+        }
     }
 }

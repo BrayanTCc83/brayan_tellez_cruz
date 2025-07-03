@@ -29,7 +29,7 @@ const routes = [
   { text: translation.title, href: '/blog' }
 ];
 ---
-<Template includes={['article', 'blogs', 'lang-buttons']} lang={lang} title={`Brayan Téllez | ${translation.title}`}>
+<Template includes={['article', 'blogs', 'lang-buttons']} lang={lang} title={`Brayan Téllez | ${translation.title}`} notifications={true}>
     <LanguageController lang={lang}/>
     <Breadcrumb routes={routes}/>
     <section id="main">

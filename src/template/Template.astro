@@ -2,15 +2,25 @@
 import Header from "../components/Header.astro";
 import { SPANISH, ENGLISH } from "../utils/langs";
 
-const { lang, includes, title, ads } = { 
+import NotificationsES from "../data/es/translation.json";
+import NotificationsEN from "../data/en/translation.json";
+import NotificationsZH from "../data/zh/translation.json";
+
+import type { INotifications } from "../interface/LangSupport";
+
+const { lang, includes, title, ads, notifications } = { 
 	title: '',
 	includes: [],
 	lang: SPANISH,
 	ads: true,
+	notifications: false,
 	...Astro.props
 };
 
 const seo = Astro.props.seo;
+
+const greatings: INotifications = lang === SPANISH ? NotificationsES.notifications : 
+	lang === ENGLISH ? NotificationsEN.notifications : NotificationsZH.notifications;
 ---
 
 <html lang={lang}>
@@ -57,4 +67,28 @@ const seo = Astro.props.seo;
         <Header lang={lang}/>
         <slot/>
 	</body>
+	<script set:html={`const greatings = ${JSON.stringify(greatings.greatings)}`}></script>
+	{
+		notifications ? 
+			<script type="module">
+				let yaSolicitado = false;
+
+				const activarNotificaciones = async () => {
+					if (yaSolicitado) return;
+					yaSolicitado = true;
+			
+					const { EnableNotifications } = await import("/scripts/notifications.js");
+					EnableNotifications(greatings);
+
+					window.removeEventListener("touchstart", activarNotificaciones);
+					window.removeEventListener("mousedown", activarNotificaciones);
+					window.removeEventListener("click", activarNotificaciones);
+				};
+
+				window.addEventListener("touchstart", activarNotificaciones, { once: true });
+				window.addEventListener("click", activarNotificaciones, { once: true });
+				window.addEventListener("mousedown", activarNotificaciones, { once: true });
+			</script>
+		: null
+	}
 </html>
