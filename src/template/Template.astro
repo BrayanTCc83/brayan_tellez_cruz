@@ -10,11 +10,10 @@ import Bell from "/assets/icons/Bell.svg?raw";
 
 import type { INotifications } from "../interface/LangSupport";
 
-const { lang, includes, title, ads, notifications } = { 
+const { lang, includes, title, notifications } = { 
 	title: '',
 	includes: [],
 	lang: SPANISH,
-	ads: true,
 	notifications: false,
 	...Astro.props
 };
@@ -81,19 +80,17 @@ const greatings: INotifications = lang === SPANISH ? NotificationsES.notificatio
 				const publicKey = '${import.meta.env.PUBLIC_KEY}';
 				const url = '${import.meta.env.DEV ? 'http://localhost:3000' : 'https://brayan-tellez-server.vercel.app'}/api/subscribe';
 
-				const enableNotifications = async () => {
-					const { EnableNotifications } = await import("/scripts/notifications.js");
-					EnableNotifications(greatings, publicKey, url);
-				};
-
 				const btnNotifications = document.getElementById('btnNotifications');
 
 				if(!("Notification" in window) || Notification.permission === 'granted') {
 					document.getElementById("root").removeChild(btnNotifications);
 				} else {
-					btnNotifications?.addEventListener('click', enableNotifications);
+					btnNotifications?.addEventListener('click', async () => {
+						const { EnableNotifications } = await import("/scripts/notifications.js");
+						EnableNotifications(greatings, publicKey, url);
+					});
 				}
 			`}></script>
-		: null
+		: <Fragment set:html={''}></Fragment>
 	}
 </html>
