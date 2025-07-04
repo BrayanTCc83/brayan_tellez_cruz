@@ -52,6 +52,7 @@
         "time": "分钟"
     },
     "notifications": {
+        "button": "保持我知情",
         "greatings": {
             "title": "感谢您的接受。",
             "message": "我们会及时通知您即将发布的文章和新增课程。"

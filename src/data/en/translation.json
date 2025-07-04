@@ -52,6 +52,7 @@
         "time": "minutes"
     },
     "notifications": {
+        "button": "Keep me informed.",
         "greatings": {
             "title": "Thank you for accepting.",
             "message": "We will keep you updated on upcoming blog posts and newly added lessons."

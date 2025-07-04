@@ -48,5 +48,6 @@ export interface INotification {
 }
 
 export interface INotifications {
+    button: string
     greatings: INotification
 }
