@@ -33,8 +33,6 @@ const NotificationButton = ({ lang }: INotificationComponent) => {
                 applicationServerKey: import.meta.env.PUBLIC_KEY
             });
 
-            console.log(subscription);
-
             return fetch(`${url}/api/subscribe`, {
                 method: 'POST',
                 body: JSON.stringify(subscription),
