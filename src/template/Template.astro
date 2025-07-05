@@ -60,7 +60,7 @@ const seo = Astro.props.seo;
         <slot/>
 		{
 			notifications ?
-				<NotificationButton lang={lang} client:only="react"/>
+				null //<NotificationButton lang={lang} client:only="react"/>
 			: null
 		}
 	</body>
